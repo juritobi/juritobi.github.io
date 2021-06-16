@@ -1,0 +1,182 @@
+body {
+    background-color: #36393f;
+    color: white;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+i,
+a {
+    color: #f5f5f5;
+    margin: 0;
+}
+
+* {
+    text-size-adjust: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 100;
+}
+
+h3 {
+    font-size: 1.6rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+p {
+    font-size: 16px;
+}
+
+
+
+header {
+    background-color: #2f3136;
+    text-align: center;
+}
+
+header h2 {
+    font-weight: 100;
+}
+
+header .contact {
+    border-width: 1px 0 0 0;
+    border-color: #202225;
+    border-style: solid;
+
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+header .contact a {
+    border: solid;
+    border-color: transparent;
+    border-width: 0 0 2px;
+}
+
+header .contact a:hover {
+    border-color: rgb(0, 0, 138);
+}
+
+header .icon {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+header .icon>h4 {
+    flex-grow: 1;
+    padding: 1rem 0;
+}
+
+header .icon>i {
+    color: white;
+    padding: 1em 1em 1em 0;
+}
+
+
+
+.sec-title {
+    margin-top: 0;
+    padding: 1em 0;
+    background-color: #202225;
+    text-align: center;
+    font-weight: bold;
+}
+
+.single {
+    padding: 2rem 3rem;
+    background-color: #2f3136;
+    border-radius: 10px;
+}
+.single h1{
+    margin-bottom: .2rem;
+}
+.single h2{
+    margin-bottom: 1.5rem;
+}
+.single p{
+    margin-bottom: 1rem;
+}
+
+
+
+.link-bar{
+    width:100%;
+}
+.link-bar>a{
+    padding:.5em 1em;
+    margin: .5rem .2rem 0;
+    display:block;
+    width:max-content;
+    background-color: #101721;
+    border-radius: 100px;
+    color: #f5f5f5;
+    text-decoration: none;
+    border:solid;
+    border-width: 1px 2px 5px;
+    border-color: #949394;
+}
+.link-bar>a:hover{
+    background-color: #17273e;
+}
+
+
+ul{
+    list-style: none;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+}
+li{
+    margin:.2rem;
+    padding:.5rem 1.3rem;
+    background-color: #101721;
+    border-radius: 100px;
+    color: #f5f5f5;
+    text-decoration: none;
+    border:solid;
+    border-width: 1px 2px 5px;
+    border-color: #949394;
+    margin-left:.5em;
+}
+li *{
+ margin:0;
+}
+.skills h3{
+    margin:0.3em;
+    text-align: center;
+}
