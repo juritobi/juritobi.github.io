@@ -180,3 +180,20 @@ li *{
     margin:0.3em;
     text-align: center;
 }
+
+.sp{
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  background-color: #202225;
+  border-width: 1px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.sp .link-bar{
+    display:inline-block;
+    width:initial;
+  }
+.sp a{
+    margin:auto;
+}
