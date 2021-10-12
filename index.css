@@ -60,8 +60,25 @@ p {
     
 }
 
-
-
+.card{
+    border-radius: 1rem;
+    background-color: #101721;
+    margin:1rem .5rem;
+    border:solid;
+    border-width: 1px 2px 5px;
+    border-color: #949394;
+    max-width: 50%;
+    min-width: 25%;
+}
+.card-link{
+    font-weight: 700;
+    color:rgb(122, 199, 225);
+    padding: 0 1rem;
+}
+.card-link:hover{
+    color:rgb(122, 199, 225);
+    text-decoration: underline;
+}
 header {
     background-color: #2f3136;
     text-align: center;
