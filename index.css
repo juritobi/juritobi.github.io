@@ -290,9 +290,7 @@ iframe{
     --grid-line-color:                   #000;
     --month:                             10px;
     --grid-width:                        120px;
-    --timeline-events-no:                5;
     --timeline-events-line-height:       12px;
-    --timeline-years-no:                 7;
 }
 
 
@@ -424,6 +422,7 @@ iframe{
     color:#56C2F3;
 }
 
+
 .kids{
     left:calc(41 *var(--month));
 }
@@ -470,6 +469,33 @@ iframe{
 }
 .activa h3{
     color:#C2E34E;
+}
+
+
+.divas2{
+    
+    left:calc(70 *var(--month));
+}
+.divas2:before{
+    background:#56C2F3;
+    width:calc(2*var(--month));
+}
+.divas2 h3{
+    color:#56C2F3;
+}
+
+
+.kids2{
+    top:-70px;
+    left:calc(71*var(--month));
+}
+.kids2:before{
+    top:15px!important;
+    background:#56C2F3;
+    width:calc(2*var(--month));
+}
+.kids2 h3{
+    color:#56C2F3;
 }
 
 .hobby{
