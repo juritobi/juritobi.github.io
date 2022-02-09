@@ -70,10 +70,16 @@ p {
     max-width: 50%;
     min-width: 25%;
 }
+.card-body{
+    position:relative;
+    padding-bottom: 3rem!important;
+}
 .card-link{
+    position:absolute;
+    bottom:1rem;
+    right:1rem;
     font-weight: 700;
     color:rgb(122, 199, 225);
-    padding: 0 1rem;
 }
 .card-link:hover{
     color:rgb(122, 199, 225);
@@ -604,4 +610,9 @@ iframe{
 }
 .timeline-events li:nth-child(5) h3 {
     color: #4A8B8F;
+}
+*/
+
+.card-hold>div{
+    max-width: 380px;
 }
