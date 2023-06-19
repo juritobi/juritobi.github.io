@@ -1,4 +1,5 @@
 <script setup>
+
 defineProps({
   id: String,
   title: String,
@@ -12,12 +13,19 @@ defineProps({
   VideoLink: String
 })
 
+function getImageUrl() {
+  if(image != undefined)
+  return new URL(image, import.meta.url);
+  else return "";
+}
+
+
 </script>
 
 <template>
   <div class="col-12 col-md-6 col-lg-4 mb-4">
     <div class="card cCard">
-      <img class="card-img-top" :src=image alt="Card image cap">
+      <img class="card-img-top" :src="image" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{ title }}</h5>
         <h6 class="sub">{{ subTitle }}</h6>

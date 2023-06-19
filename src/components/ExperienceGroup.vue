@@ -15,7 +15,7 @@ onBeforeMount(() => {
 })
 
 function windowResize() {
-
+  
   for (var i = 0; i < json.length; i++) {
     if (i == parseInt(Type)) group.push(i);
   };

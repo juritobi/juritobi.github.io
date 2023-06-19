@@ -2,6 +2,7 @@
 defineProps({
   title: String
 })
+
 </script>
 
 <template>
