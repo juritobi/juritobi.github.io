@@ -44,7 +44,7 @@ function windowResize() {
         <card v-bind="json[i]" />
       </template>
     </TabItem>
-    <TabItem title="Librarys, tools and engines">
+    <TabItem title="Libraries, tools and engines">
       <template v-for="i in libsIds" >
         <card v-bind="json[i]" />
       </template>

@@ -11,8 +11,8 @@ var finalDate = new Date().getFullYear() + 1;
 var years = finalDate - fisrtDate.getFullYear();
 
 var containerWidth = ref(900);
-var monthSize = containerWidth / years / 12;
-var yearSize = containerWidth / years;
+var monthSize = ref(containerWidth / years / 12);
+var yearSize = ref(containerWidth / years);
 
 const instance = getCurrentInstance();
 const tl = ref();

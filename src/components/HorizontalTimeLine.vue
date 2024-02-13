@@ -34,7 +34,7 @@ defineExpose({
     </div>
   </div>
   <ul class="timelines-years">
-    <li v-for="i in pYears" :style="{ width: pYearSize + 'px' }">
+    <li v-for="i in pYears" :style="{ width: 133.33333333333334 + 'px' }">
       {{ i + pFisrtDate.getFullYear() - 1 }}
     </li>
 
