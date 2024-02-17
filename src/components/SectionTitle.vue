@@ -1,19 +1,18 @@
 <script setup>
 defineProps({
-  title: String
-})
-
+  title: String,
+});
 </script>
 
 <template>
   <div class="row">
-    <h2 class="sec-title"><i class="fas fa-address-card me-4"></i>{{title}}</h2>
+    <h2 class="sec-title">
+      <i class="fas fa-address-card me-4"></i>{{ title }}
+    </h2>
   </div>
   <div class="container">
-      <slot/>
+    <slot />
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -528,16 +528,8 @@ iframe {
   color: #DD3D01;
 }
 
-.leyend {
-  box-sizing: border-box;
-  position: absolute;
-  left: 0;
-  padding: 0 3rem;
-  display: flex;
-  justify-content: space-between;
-}
 
-.leyend span {
+.legend span {
   margin: 0 0 1px 0;
   font-weight: normal;
   font-size: 11px;
@@ -545,7 +537,7 @@ iframe {
   margin: 0 1.5rem;
 }
 
-.leyend span::before {
+.legend span::before {
   width: 120%;
   background-color: #DD3D01;
 
@@ -557,34 +549,34 @@ iframe {
   content: '';
 }
 
-.leyend>div:first-child>span:first-child {
+.legend>div:first-child>span:first-child {
   color: #DD3D01;
 }
 
-.leyend>div:first-child>span:first-child::before {
+.legend>div:first-child>span:first-child::before {
   background: #DD3D01;
 }
 
-.leyend>div:first-child>span:last-child {
+.legend>div:first-child>span:last-child {
   color: #FF9704;
 }
 
-.leyend>div:first-child>span:last-child::before {
+.legend>div:first-child>span:last-child::before {
   background: #FF9704;
 }
 
-.leyend>div:last-child>span:first-child {
+.legend>div:last-child>span:first-child {
   color: #56C2F3;
 }
 
-.leyend>div:last-child>span:first-child::before {
+.legend>div:last-child>span:first-child::before {
   background: #56C2F3;
 }
 
-.leyend>div:last-child>span:last-child {
+.legend>div:last-child>span:last-child {
   color: #C2E34E;
 }
 
-.leyend>div:last-child>span:last-child::before {
+.legend>div:last-child>span:last-child::before {
   background: #C2E34E;
 }

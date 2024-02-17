@@ -1,24 +1,22 @@
-
 <script setup>
-import card from '../components/ExperienceCard.vue';
-import json from "../assets/experience.json"
-import { onBeforeMount } from 'vue'
+import card from "../components/ExperienceCard.vue";
+import json from "../assets/experience.json";
+import { onBeforeMount } from "vue";
 
 defineProps({
   Type: Number,
-})
+});
 
-var group =[];
+var group = [];
 
 onBeforeMount(() => {
   windowResize();
-})
+});
 
 function windowResize() {
-  
   for (var i = 0; i < json.length; i++) {
     if (i == parseInt(Type)) group.push(i);
-  };
+  }
 }
 </script>
 
@@ -31,10 +29,9 @@ function windowResize() {
 <style scoped>
 body {
   padding: 10px;
-
 }
 
-.nav-pills>li>a {
+.nav-pills > li > a {
   border-radius: 4px 4px 0 0;
 }
 

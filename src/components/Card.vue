@@ -1,5 +1,4 @@
 <script setup>
-
 defineProps({
   id: String,
   title: String,
@@ -10,22 +9,19 @@ defineProps({
   platform: String,
   downloadLink: String,
   codeLink: String,
-  VideoLink: String
-})
+  VideoLink: String,
+});
 
 function getImageUrl() {
-  if(image != undefined)
-  return new URL(image, import.meta.url);
+  if (image != undefined) return new URL(image, import.meta.url);
   else return "";
 }
-
-
 </script>
 
 <template>
   <div class="col-12 col-md-6 col-lg-4 mb-4">
     <div class="card cCard">
-      <img class="card-img-top" :src="image" alt="Card image cap">
+      <img class="card-img-top" :src="image" alt="Card image cap" />
       <div class="card-body">
         <h5 class="card-title">{{ title }}</h5>
         <h6 class="sub">{{ subTitle }}</h6>
@@ -40,9 +36,15 @@ function getImageUrl() {
           </div>
 
           <div>
-            <a v-if="codeLink" :href=codeLink class="card-link m-0">Source Code</a>
-            <a v-if="VideoLink" :href=VideoLink class="card-link m-0">Video</a>
-            <a v-if="downloadLink" :href=downloadLink class="card-link m-0">Play</a>
+            <a v-if="codeLink" :href="codeLink" class="card-link m-0"
+              >Source Code</a
+            >
+            <a v-if="VideoLink" :href="VideoLink" class="card-link m-0"
+              >Video</a
+            >
+            <a v-if="downloadLink" :href="downloadLink" class="card-link m-0"
+              >Play</a
+            >
           </div>
         </div>
       </div>
@@ -51,21 +53,21 @@ function getImageUrl() {
 </template>
 
 <style scoped>
-.sub{
+.sub {
   line-height: 0.5;
 }
-.card-title{
+.card-title {
   margin-bottom: 0.2rem;
 }
 .legend {
-  color:#aaa;
+  color: #aaa;
   font-size: 0.6rem;
   font-weight: 100;
 }
-h6{
+h6 {
   line-height: 0.5rem;
   padding-bottom: 0.2rem;
-  color:#fff;
+  color: #fff;
 }
 
 .cCard {
@@ -81,7 +83,7 @@ h6{
 }
 
 .card-link {
-  text-align:end;
+  text-align: end;
   display: block;
   font-weight: 700;
   color: rgb(122, 199, 225);

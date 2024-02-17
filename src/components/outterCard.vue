@@ -1,10 +1,9 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
-    <div class="row p-4 my-4 text-justify mx-auto">
-      <slot></slot>
-    </div>
+  <div class="row p-4 my-4 text-justify mx-auto">
+    <slot></slot>
+  </div>
 </template>
 
 <style scoped>
@@ -16,7 +15,7 @@ div {
 }
 
 div h1 {
-  margin-bottom: .2rem;
+  margin-bottom: 0.2rem;
 }
 
 div h2 {
