@@ -1,70 +1,36 @@
-<script setup></script>
+<script setup>
+defineProps({
+  pOrganization: String,
+  pDescription: String,
+  pStart: Date,
+  pEnd:Date,
+  pLink: String
+});
+</script>
 
 <template>
-  <div class="col-12 col-md-6 col-lg-4 mb-4">
-    <div class="card cCard">
-      <img class="card-img-top" :src="image" alt="Card image cap" />
-      <div class="card-body">
-        <h5 class="card-title">{{ title }}</h5>
-        <h6 class="sub">{{ subTitle }}</h6>
-        <div class="d-flex justify-content-between align-items-end">
-          <div>
-            <span class="legend">platform:</span>
-            <h6>{{ platform }}</h6>
-            <span class="legend">Language/Engine:</span>
-            <h6>{{ language }}</h6>
-            <span class="legend">Date:</span>
-            <h6>{{ releaseDate }}</h6>
-          </div>
-
-          <div>
-            <a v-if="codeLink" :href="codeLink" class="card-link m-0"
-              >Source Code</a
-            >
-            <a v-if="VideoLink" :href="VideoLink" class="card-link m-0"
-              >Video</a
-            >
-            <a v-if="downloadLink" :href="downloadLink" class="card-link m-0"
-              >Play</a
-            >
-          </div>
-        </div>
-      </div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ pOrganization }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        {{ pStart }} - {{ pEnd }}<br />1 year
+      </h6>
+      <p class="card-text"> {{ pDescription }} </p>
+      <a href={{pLink}} class="card-link float-end">See Projects</a>
     </div>
   </div>
 </template>
 
 <style scoped>
-.sub {
-  line-height: 0.5;
-}
-.card-title {
-  margin-bottom: 0.2rem;
-}
-.legend {
-  color: #aaa;
-  font-size: 0.6rem;
-  font-weight: 100;
-}
-h6 {
-  line-height: 0.5rem;
-  padding-bottom: 0.2rem;
-  color: #fff;
-}
 
-.cCard {
+.card{
   border-radius: 1rem;
   background-color: #101721;
   border: solid;
   border-width: 1px 2px 5px;
   border-color: #949394;
 }
-
-.cCard img {
-  border-radius: 1rem 1rem 0 0;
-}
-
-.card-link {
+.card-link{
   text-align: end;
   display: block;
   font-weight: 700;
@@ -72,9 +38,4 @@ h6 {
   width: 100%;
 }
 
-.card-link:hover {
-  color: rgb(122, 199, 225);
-  text-decoration: underline;
-  cursor: pointer;
-}
 </style>

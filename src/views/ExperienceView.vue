@@ -2,6 +2,7 @@
 import json from "../assets/db.json";
 import HorizontalTimeLine from "../components/HorizontalTimeLine.vue";
 import SectionTitle from "../components/SectionTitle.vue";
+import ExperienceGroup from "@/components/ExperienceGroup.vue";
 
 import {
   ref,
@@ -99,6 +100,7 @@ function windowResize() {
       </div>
     </div>
 
+    <ExperienceGroup pTitle="GameDeveloper" :pJson="json"></ExperienceGroup>
     <div class="job mb-4 py-4 px-4 px-sm-5 row">
       <h2>Game developer</h2>
       <div class="card-hold d-flex justify-content-center flex-wrap">

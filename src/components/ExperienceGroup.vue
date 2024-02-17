@@ -1,29 +1,29 @@
 <script setup>
 import card from "../components/ExperienceCard.vue";
-import json from "../assets/experience.json";
-import { onBeforeMount } from "vue";
+import ExperienceCard from "@/components/ExperienceCard.vue";
 
 defineProps({
-  Type: Number,
+  pTitle: String,
+  pJson: Array,
 });
 
-var group = [];
-
-onBeforeMount(() => {
-  windowResize();
-});
-
-function windowResize() {
-  for (var i = 0; i < json.length; i++) {
-    if (i == parseInt(Type)) group.push(i);
-  }
-}
 </script>
 
 <template>
-  <template v-for="i in group">
-    <card v-bind="json[i]" />
-  </template>
+  <div class="job mb-4 py-4 px-4 px-sm-5 row">
+    <h2>{{pTitle}}</h2>
+    <div class="card-hold d-flex justify-content-center flex-wrap">
+
+      <ExperienceCard
+      p-organization="Game"
+      p-description="lorem ipsum sit amet jaja mo mese mas pero esto chuta que flipas lo tendre que sacar del json pero ya veremeos"
+      p-end=""
+      p-start=""
+      p-link="juritobi.com"></ExperienceCard>
+
+
+    </div>
+  </div>
 </template>
 
 <style scoped>
