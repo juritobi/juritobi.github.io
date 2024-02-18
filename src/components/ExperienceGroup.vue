@@ -1,43 +1,56 @@
 <script setup>
-import card from "../components/ExperienceCard.vue";
 import ExperienceCard from "@/components/ExperienceCard.vue";
+import { onMounted, ref } from "vue";
+import json from "@/assets/db.json";
 
-defineProps({
+const props = defineProps({
   pTitle: String,
   pJson: Array,
 });
 
+let finalList = ref([]);
+
+onMounted(() => {
+  if (props.pTitle !== "Other") {
+    for (let i = 0; i < json.length; i++) {
+      if (json[i].Role === props.pTitle) {
+        finalList.value.push(json[i]);
+      }
+    }
+  } else {
+    for (let i = 0; i < json.length; i++) {
+      if (
+        json[i].Role !== "Game Development" &&
+        json[i].Role !== "Studies" &&
+        json[i].Role !== "Web Development"
+      ) {
+        finalList.value.push(json[i]);
+      }
+    }
+  }
+});
 </script>
 
 <template>
   <div class="job mb-4 py-4 px-4 px-sm-5 row">
-    <h2>{{pTitle}}</h2>
+    <h2 class="mb-4">{{ pTitle }}</h2>
     <div class="card-hold d-flex justify-content-center flex-wrap">
-
       <ExperienceCard
-      p-organization="Game"
-      p-description="lorem ipsum sit amet jaja mo mese mas pero esto chuta que flipas lo tendre que sacar del json pero ya veremeos"
-      p-end=""
-      p-start=""
-      p-link="juritobi.com"></ExperienceCard>
-
-
+        v-for="i in finalList"
+        :key="i"
+        :p-organization="i.Organization"
+        :p-description="i.Descirption"
+        :p-end="i.start"
+        :p-start="i.end"
+        :p-link="i.Link"
+      ></ExperienceCard>
     </div>
   </div>
 </template>
 
 <style scoped>
-body {
-  padding: 10px;
-}
-
-.nav-pills > li > a {
-  border-radius: 4px 4px 0 0;
-}
-
-.tab-content {
-  color: white;
-  background-color: #428bca;
-  padding: 5px 15px;
+.card-hold {
+  display: flex;
+  gap: calc(var(--bs-gutter-x));
 }
 </style>

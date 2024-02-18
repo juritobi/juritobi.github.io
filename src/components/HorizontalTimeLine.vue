@@ -56,6 +56,91 @@ defineExpose({
 </template>
 
 <style scoped>
+
+.timeline h1 {
+  text-align: center;
+  color: #fff;
+  margin: 0 0 100px;
+}
+
+.timelines-years > li {
+  position: relative;
+  top: -6px;
+  display: inline-block;
+  width: calc(v-bind("pYearSize"));
+  color: #868686;
+  font-size: 11px;
+  line-height: 11px;
+  text-indent: -12px;
+}
+
+.timeline-events h2,
+.timeline-events h3,
+.timeline-events h4 {
+  margin: 0 0 1px 0;
+  font-weight: normal;
+  font-size: 11px;
+}
+
+.timeline-events h2 {
+  color: #777;
+  text-transform: uppercase;
+}
+
+.timeline-events h4 {
+  color: #fff;
+  font-style: italic;
+}
+
+.timeline-events li {
+  display: inline-block;
+}
+
+.timeline-events li:before {
+  position: absolute;
+  left: 0;
+  top: -15px;
+  height: v-bind("lineHeight");
+  border-radius: v-bind("lineHeight");
+  content: "";
+}
+
+.timelines-years {
+  padding: 0 0 0 0;
+  width: auto;
+  margin: auto;
+  white-space: nowrap;
+  border-top: 1px solid #282828;
+  list-style: none;
+  font-size: 0;
+  height: 120px;
+}
+
+.timelines-years>li {
+  position: relative;
+  top: -6px;
+  display: inline-block;
+  width: calc(var(--grid-width));
+  color: #868686;
+  font-size: 11px;
+  line-height: 11px;
+  text-indent: -12px;
+}
+
+.timeline-events {
+  position: relative;
+  padding: 0;
+  list-style: none;
+  white-space: nowrap;
+  font-size: 0;
+}
+
+.timeline-event {
+  position: absolute;
+  top: 0;
+  left: 30px;
+}
+
 .legend {
   box-sizing: border-box;
   position: absolute;
