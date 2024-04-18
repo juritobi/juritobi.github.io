@@ -11,16 +11,11 @@ import album from '../components/album.vue';
 
     <SectionTitle title="About Myself">
       <outterCard>
-        <p class="mb-2">I have a degree on multimedia engineering, and HND in Game
-          Progamming, My strongest suit is gameplay programming and I'm also
-          interested in game design, althoug I also enjoy low level programming
-          and tools. I also have a little experience in web development, photo and
-          video editing and 3D modeling and animation.
-        </p>
-        <p class="mb-2">I have always loved to learn new things and I have never
-          been afraid to take on new projects and challenges. That has helped me
-          develop my learning abilities, making it easier for me to adapt to new
-          environments and quickly get comfortable with the tools I use.
+        <p class="mb-2">When I was 16, I decided I would work in the video game industry. Since then, I've slowly and steadily been working on learning and improving my skills to be the best game developer I can be, while also exploring other areas of multimedia development. I have always enjoyed learning and facing new challenges, which has led me to gain some experience in lots of different areas.
+
+          <br><br>I enjoy working within a team environment. Seeing the combined effort we all make always motivates me to put out my best, and to achieve great results the whole team can enjoy. I'm an ogranized person and I usually end up taking on leadership roles within self-organized groups, being a communication bridge between team members and deciding and assigning tasks.
+
+          <br><br>Overall, I am driven by a deep-seated passion for creating games and thrive on the collaborative process. I am eager to contribute my skills and expertise to new and exciting projects.
         </p>
       </outterCard>
     </SectionTitle>
