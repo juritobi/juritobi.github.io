@@ -5,6 +5,7 @@ import TabItem from "../components/TabItem.vue";
 import json from "../assets/portfolio.json";
 import { onBeforeMount } from "vue";
 
+var highLightsIds = [];
 var gamesIds = [];
 var libsIds = [];
 var appsIds = [];
@@ -15,21 +16,26 @@ onBeforeMount(() => {
 
 function windowResize() {
   for (var i = 0; i < json.length; i++) {
-    var d = new Date(json[i].releaseDate);
-    json[i].yearDate = d.getFullYear();
-
-    switch (parseInt(json[i].type)) {
-      case 0:
-        gamesIds.push(i);
-        break;
-      case 1:
-        libsIds.push(i);
-        break;
-      case 2:
-        appsIds.push(i);
-        break;
-      default:
-        break;
+    if(json[i].display == "1"){
+      var d = new Date(json[i].releaseDate);
+      json[i].yearDate = d.getFullYear();
+      
+      switch (parseInt(json[i].type)) {
+        case 0:
+          gamesIds.push(i);
+          break;
+        case 1:
+          libsIds.push(i);
+          break;
+        case 2:
+          appsIds.push(i);
+          break;
+        default:
+          break;
+      }
+      if(json[i].HighLight == "1"){
+        highLightsIds.push(i);
+      }
     }
   }
 }
@@ -37,12 +43,17 @@ function windowResize() {
 
 <template>
   <TabsWrapper>
+    <TabItem title="High Lights">
+      <template v-for="i in highLightsIds">
+        <card v-bind="json[i]" />
+      </template>
+    </TabItem>
     <TabItem title="Games">
       <template v-for="i in gamesIds">
         <card v-bind="json[i]" />
       </template>
     </TabItem>
-    <TabItem title="Libraries, tools and engines">
+    <TabItem title="Tools and Demos">
       <template v-for="i in libsIds">
         <card v-bind="json[i]" />
       </template>
