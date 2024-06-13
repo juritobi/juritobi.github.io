@@ -14,20 +14,26 @@ defineProps({
 </script>
 
 <template>
-  <div class="col-12 col-md-6 col-lg-4 mb-4">
+  <div class="col-12 col-lg-6 mb-4">
     <div class="card cCard">
       <img class="card-img-top" :src="image" alt="Card image cap" />
       <div class="card-body">
-        <h5 class="card-title">{{ title }}</h5>
+        <h3 class="card-title">{{ title }}</h3>
         <h6 class="sub">{{ subTitle }}</h6>
         <div class="d-flex justify-content-between align-items-end">
-          <div>
-            <span class="legend">platform:</span>
-            <h6>{{ platform }}</h6>
-            <span class="legend">Language/Engine:</span>
-            <h6>{{ language }}</h6>
-            <span class="legend">Date:</span>
-            <h6>{{ yearDate }}</h6>
+          <div class="d-flex">
+            <div class="pe-3">
+              <span class="legend">platform:</span>
+              <h6>{{ platform }}</h6>
+            </div>
+            <div class="pe-3">
+              <span class="legend">Language/Engine:</span>
+              <h6>{{ language }}</h6>
+            </div>
+            <div class="pe-3">
+              <span class="legend">Date:</span>
+              <h6>{{ yearDate }}</h6>
+            </div>
           </div>
 
           <div>
@@ -42,6 +48,8 @@ defineProps({
             >
           </div>
         </div>
+
+        <slot />
       </div>
     </div>
   </div>
