@@ -11,7 +11,9 @@ const props = defineProps({
 
 var months;
 onBeforeMount(() => {
-  var diff = (props.pEnd - props.pStart) / 1000;
+  const startDate = new Date(props.pStart);
+  const endDate = new Date(props.pEnd);
+  var diff = (startDate.getTime() - endDate.getTime()) / 1000;
   diff /= 60 * 60 * 24 * 7 * 4;
   months = Math.abs(Math.round(diff));
 
@@ -25,7 +27,7 @@ onBeforeMount(() => {
         <div>
           <h5 class="card-title">{{ pOrganization }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">
-            {{ pStart }} - {{ pEnd }}<br />1 year
+            {{ pStart }} - {{ pEnd }}<br />{{ months }} Months
           </h6>
           <p class="card-text">{{ pDescription }}</p>
         </div>
