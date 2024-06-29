@@ -32,9 +32,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="job mb-4 py-4 px-4 px-sm-5 row">
+  <div class="job row mb-4 py-4 px-4 px-sm-5">
     <h2 class="mb-4">{{ pTitle }}</h2>
-    <div class="card-hold d-flex justify-content-center flex-wrap">
+    <div class="row p-4 mb-4 text-justify mx-auto">
       <ExperienceCard
         v-for="i in finalList"
         :key="i"
@@ -49,8 +49,4 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.card-hold {
-  display: flex;
-  gap: calc(var(--bs-gutter-x));
-}
 </style>
