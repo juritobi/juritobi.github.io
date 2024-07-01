@@ -24,7 +24,7 @@ import AboutView from "./views/AboutView.vue";
           <h4>juritobi@gmail.com</h4>
         </div>
       </a>
-      <a href="https://wa.me/34674410 029">
+      <a href="tel:34674410029">
         <div class="icon">
           <i class="fas fa-phone"></i>
           <h4>+34 674 410 029</h4>
