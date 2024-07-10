@@ -20,19 +20,19 @@ import AboutView from "./views/AboutView.vue";
     <div class="contact mx-5">
       <a href="mailto:juritobi@gmail.com">
         <div class="icon">
-          <i class="fas fa-envelope"></i>
+          <fa-icon icon="envelope" />
           <h4>juritobi@gmail.com</h4>
         </div>
       </a>
       <a href="tel:34674410029">
         <div class="icon">
-          <i class="fas fa-phone"></i>
+          <fa-icon icon="phone" />
           <h4>+34 674 410 029</h4>
         </div>
       </a>
       <a href="https://www.linkedin.com/in/juritobi/">
         <div class="icon">
-          <i class="fab fa-linkedin"></i>
+          <fa-icon :icon="['fab', 'linkedin']" />
           <h4>Javier Izquierdo Vicedo</h4>
         </div>
       </a>
@@ -41,7 +41,7 @@ import AboutView from "./views/AboutView.vue";
         download="Portfolio Javier Izquierdo Vicedo"
       >
         <div class="icon">
-          <i class="fas fa-clipboard-list"></i>
+          <fa-icon icon="clipboard-list" />
           <h4>Download as PDF</h4>
         </div>
       </a>
@@ -60,5 +60,9 @@ import AboutView from "./views/AboutView.vue";
 img {
   width: 150px;
   height: 150px;
+}
+.icon > svg {
+  color: white;
+  padding: 1em 1em 1em 0;
 }
 </style>
