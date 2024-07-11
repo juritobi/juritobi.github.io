@@ -15,4 +15,6 @@ app.component("fa-icon", FontAwesomeIcon);
 app.use(router);
 app.mount("#app");
 
+import "@/assets/css/index.css";
+
 import "bootstrap/dist/js/bootstrap.js";

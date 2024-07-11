@@ -11,6 +11,7 @@ import {
   onUnmounted,
   getCurrentInstance,
 } from "vue";
+import SectionLayout from "@/components/layouts/SectionLayout.vue";
 
 let firstDate = new Date(json[0].start);
 let finalDate = new Date().getFullYear() + 1;
@@ -86,8 +87,9 @@ function windowResize() {
 </script>
 
 <template>
-  <SectionTitle title="Experience and Studies">
-    <div class="row timeline mx-0 mb-4 mt-3">
+
+  <section-layout p-data="experience" p-title="Experience">
+    <div class="row timeline m-0 d-none d-lg-block">
       <div ref="mainContainer" class="m-0 p-0 row">
         <HorizontalTimeLine
           ref="tl"
@@ -104,7 +106,7 @@ function windowResize() {
     <ExperienceGroup pTitle="Studies" :pJson="json"></ExperienceGroup>
     <ExperienceGroup pTitle="Web Development" :pJson="json"></ExperienceGroup>
     <ExperienceGroup pTitle="Other" :pJson="json"></ExperienceGroup>
-  </SectionTitle>
+  </section-layout>
 </template>
 
 <style scoped>
@@ -112,8 +114,7 @@ function windowResize() {
   font-family: sans-serif;
   position: relative;
   width: 100%;
-  height: auto;
-  padding: 2rem 3rem;
+  padding: 2rem 1rem;
   background: rgb(15, 15, 15);
   border-radius: 10px;
 }

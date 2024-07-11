@@ -1,5 +1,4 @@
 <script setup>
-
 import { useSlots, ref, provide } from "vue";
 
 const slots = useSlots();
@@ -9,55 +8,57 @@ provide("selectedTitle", selectedTitle);
 </script>
 
 <template>
-  <div class="row d-flex p-0 my-4 text-justify mx-auto">
-    <ul class="tabs__header col-12">
+  <div class="tabs-nav">
+    <ul>
       <li
         v-for="title in tabTitles"
         :key="title"
-        class="tabs__item"
+        class="tabs-nav-item"
         :class="{ selected: selectedTitle === title }"
         @click="selectedTitle = title"
       >
         {{ title }}
       </li>
     </ul>
-
-    <slot />
   </div>
+  <slot />
 </template>
 
 <style scoped>
-div {
-  padding: 2rem 3rem;
-  border-radius: 10px;
-  margin: 0;
+.tabs-nav {
+  margin: 0 calc(var(--bs-gutter-x) * 0.5) 1rem;
+  padding: 0.5rem 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--jet);
+  border-radius: 0.9rem;
+  background-color: var(--onyx);
 }
-
-.tabs__header {
+.tabs-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: start;
-  gap: 5px;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.tabs__item {
-  background-color: #2f3136;
-  padding: 0.5rem 1rem;
-  border-radius: 10px 10px 0 0;
+.tabs-nav-item {
+  color: var(--light-gray);
+  font-size: 1rem;
   transition: 0.4s all ease-out;
   cursor: pointer;
   user-select: none;
 }
 
-.tabs__item.selected {
-  background-color: #202225;
+.tabs-nav-item.selected {
+  color: var(--highlight);
+}
+.tabs-nav-item:hover,
+.tabs-nav-item:focus {
+  color: var(--mid);
 }
 </style>
-<style>
-.tabs__content {
-  background-color: #202225;
-  min-height: 300px;
-}
-</style>
+<style></style>

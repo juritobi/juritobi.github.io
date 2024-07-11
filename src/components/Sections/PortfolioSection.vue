@@ -1,14 +1,12 @@
 <script setup>
-import SectionTitle from "../Headers/SectionTitle.vue";
-import album from "../Containers/ExperienceTabs.vue";
+import ExperienceTabs from "../Containers/ExperienceTabs.vue";
+import SectionLayout from "@/components/layouts/SectionLayout.vue";
 </script>
 
 <template>
-  <div id="main" class="container-fluid">
-    <SectionTitle title="Portfolio">
-      <album></album>
-    </SectionTitle>
-  </div>
+  <SectionLayout p-title="Portfolio" p-data="Portfolio">
+    <experience-tabs></experience-tabs>
+  </SectionLayout>
 </template>
 
 <style></style>

@@ -149,6 +149,9 @@ defineExpose({
   display: flex;
   justify-content: space-between;
 }
+.legend div{
+  display: flex;
+}
 .legend span {
   font-weight: normal;
   font-size: 11px;

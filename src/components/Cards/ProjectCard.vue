@@ -10,7 +10,7 @@ defineProps({
   downloadLink: String,
   codeLink: String,
   VideoLink: String,
-  DetailsLink: Boolean
+  DetailsLink: Boolean,
 });
 </script>
 

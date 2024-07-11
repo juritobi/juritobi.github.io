@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import AboutView from "@/components/Sections/AboutSection.vue";
+import AboutView from "@/views/MainView.vue";
 import Copperfield from "@/views/CopperfieldView.vue";
 import Katto from "@/views/KattoView.vue";
 

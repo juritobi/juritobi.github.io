@@ -1,10 +1,7 @@
 <script setup>
-import AboutView from "./components/Sections/AboutSection.vue";
 </script>
 
 <template>
-
-
   <router-view />
 </template>
 
@@ -62,11 +59,9 @@ p {
   font-size: 16px;
 }
 
-:root {
-  --grid-background-color: rgb(15, 15, 15);
-  --grid-line-color: #000;
-  --month: 10px;
-  --grid-width: 120px;
-  --timeline-events-line-height: 12px;
-}
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+
+
 </style>
