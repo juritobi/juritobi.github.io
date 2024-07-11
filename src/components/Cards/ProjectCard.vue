@@ -10,6 +10,7 @@ defineProps({
   downloadLink: String,
   codeLink: String,
   VideoLink: String,
+  DetailsLink: Boolean
 });
 </script>
 
@@ -31,15 +32,15 @@ defineProps({
           </div>
 
           <div>
-            <a v-if="codeLink" :href="codeLink" class="card-link m-0"
-              >Source Code</a
-            >
-            <a v-if="VideoLink" :href="VideoLink" class="card-link m-0"
-              >Video</a
-            >
-            <a v-if="downloadLink" :href="downloadLink" class="card-link m-0"
-              >Play</a
-            >
+            <a v-if="codeLink" :href="codeLink" class="card-link m-0">
+              Source Code
+            </a>
+            <a v-if="VideoLink" :href="VideoLink" class="card-link m-0">
+              Video
+            </a>
+            <a v-if="downloadLink" :href="downloadLink" class="card-link m-0">
+              Play
+            </a>
           </div>
         </div>
       </div>

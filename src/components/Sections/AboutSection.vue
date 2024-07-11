@@ -1,12 +1,14 @@
 <script setup>
-import SectionTitle from "../components/SectionTitle.vue";
-import outterCard from "../components/outterCard.vue";
-import Experience from "./ExperienceView.vue";
-import album from "../components/album.vue";
-import skills from "./SkillsView.vue";
+import SectionTitle from "../Headers/SectionTitle.vue";
+import outterCard from "../Containers/OuterFrame.vue";
+import Experience from "./ExperienceSection.vue";
+import album from "../Containers/ExperienceTabs.vue";
+import skills from "./SkillsSection.vue";
+import MainHeader from "@/components/Headers/MainHeader.vue";
 </script>
 
 <template>
+  <MainHeader />
   <div id="main" class="container-fluid">
     <SectionTitle title="About Myself">
       <outterCard>

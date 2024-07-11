@@ -1,6 +1,6 @@
 <script setup>
-import SectionTitle from "../components/SectionTitle.vue";
-import album from "../components/album.vue";
+import SectionTitle from "../Headers/SectionTitle.vue";
+import album from "../Containers/ExperienceTabs.vue";
 </script>
 
 <template>

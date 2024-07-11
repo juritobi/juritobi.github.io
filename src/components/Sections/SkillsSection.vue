@@ -1,6 +1,6 @@
 <script setup>
-import SectionTitle from "../components/SectionTitle.vue";
-import OutterCard from "@/components/outterCard.vue";
+import SectionTitle from "../Headers/SectionTitle.vue";
+import OutterCard from "@/components/Containers/OuterFrame.vue";
 </script>
 
 <template>
@@ -86,4 +86,33 @@ import OutterCard from "@/components/outterCard.vue";
   </SectionTitle>
 </template>
 
-<style></style>
+<style>
+.skills ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+}
+
+.skills li {
+  padding: 0.5rem 1.3rem;
+  background-color: #101721;
+  border-radius: 100px;
+  color: #f5f5f5;
+  text-decoration: none;
+  border: solid;
+  border-width: 1px 2px 5px;
+  border-color: #949394;
+  margin: 0.2rem 0.2rem 0.2rem 0.5em;
+}
+
+.skills li * {
+  margin: 0;
+}
+
+.skills h3 {
+  margin: 0.3em;
+  text-align: center;
+}
+</style>

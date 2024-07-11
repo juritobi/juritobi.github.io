@@ -46,6 +46,7 @@ defineProps({
             <a v-if="downloadLink" :href="downloadLink" class="card-link m-0"
               >Play</a
             >
+            <router-link to="Copperfield"> More Details </router-link>
           </div>
         </div>
 

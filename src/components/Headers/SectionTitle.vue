@@ -15,4 +15,12 @@ defineProps({
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.sec-title {
+  margin-top: 0;
+  padding: 1em 0;
+  background-color: #202225;
+  text-align: center;
+  font-weight: bold;
+}
+</style>

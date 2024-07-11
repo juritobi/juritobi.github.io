@@ -1,10 +1,10 @@
 <script setup>
-import card from "../components/Card.vue";
-import TabsWrapper from "../components/TabsWrapper.vue";
-import TabItem from "../components/TabItem.vue";
-import json from "../assets/portfolio.json";
+import card from "../Cards/ProjectCard.vue";
+import TabsWrapper from "../TabsSystem/TabsWrapper.vue";
+import TabItem from "../TabsSystem/TabItem.vue";
+import json from "../../assets/portfolio.json";
 import { onBeforeMount } from "vue";
-import Copperfield from "@/components/Copperfield.vue";
+import Copperfield from "@/components/Cards/HighlightProjectCard.vue";
 
 var highLightsIds = [];
 var gamesIds = [];
