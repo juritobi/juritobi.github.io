@@ -3,6 +3,7 @@ import Experience from "../components/Sections/ExperienceSection.vue";
 import MainHeader from "@/components/Headers/MainHeader.vue";
 import AboutSection from "@/components/Sections/AboutSection.vue";
 import PortfolioSection from "@/components/Sections/PortfolioSection.vue";
+import SkillsSection from "@/components/Sections/SkillsSection.vue";
 </script>
 
 <template>
@@ -10,8 +11,7 @@ import PortfolioSection from "@/components/Sections/PortfolioSection.vue";
   <AboutSection />
   <PortfolioSection />
   <Experience />
-
-  <!--  <skills></skills>-->
+  <SkillsSection />
 </template>
 
 <style></style>
