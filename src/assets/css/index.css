@@ -32,9 +32,9 @@
     ),
     hsl(240, 2%, 13%);
     --border-gradient-onyx: linear-gradient(
-            to bottom right,
-            hsl(0, 0%, 25%) 0%,
-            hsla(0, 0%, 25%, 0) 50%
+            to top left,
+            hsl(0, 0%, 20%) 0%,
+            hsla(0, 0%, 20%, 0) 50%
     );
     --text-gradient-yellow: linear-gradient(
             to right,
@@ -333,3 +333,8 @@ body::-webkit-scrollbar-button {
 }
 
 
+@media (max-width: 576px) {
+    .section{
+        padding: 1rem 2rem;
+    }
+}

@@ -26,10 +26,10 @@ li {
   padding: 0 0 10px 0;
 }
 a {
-  min-width: 100%;
   display: flex;
   justify-content: flex-end;
   gap: 16px;
+  flex-direction: row-reverse;
 }
 
 a:hover .content {
@@ -41,7 +41,7 @@ a:hover .content {
   transition: var(--transition-1);
 }
 p {
-  text-align: right;
+  text-align: left;
 }
 
 .title {
@@ -53,13 +53,13 @@ p {
 .icon-box {
   position: relative;
   background: var(--border-gradient-onyx);
-  width: 30px;
-  height: 30px;
+  width: 2.2rem;
+  height: 2.2rem;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--highlight);
   box-shadow: var(--shadow-1);
   z-index: 1;
@@ -78,6 +78,6 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: var(--fw-300);
-  --fs-7: 14px;
+  --fs-7: 1rem;
 }
 </style>

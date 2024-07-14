@@ -15,7 +15,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="col-12 col-md-6 col-lg-4 mb-4">
+  <div class="col-12 col-md-6 col-xl-4 mb-4">
     <div class="card cCard">
       <img class="card-img-top" :src="image" alt="Card image cap" />
       <div class="card-body">
@@ -49,9 +49,6 @@ defineProps({
 </template>
 
 <style scoped>
-.sub {
-  line-height: 0.5;
-}
 .card-title {
   margin-bottom: 0.2rem;
 }
@@ -60,18 +57,21 @@ defineProps({
   font-size: 0.6rem;
   font-weight: 100;
 }
+.sub{
+  line-height: 1rem;
+}
 h6 {
-  line-height: 0.5rem;
-  padding-bottom: 0.2rem;
+  line-height: 0.6rem;
+  padding-bottom: 0.4rem;
   color: #fff;
 }
 
 .cCard {
   border-radius: 1rem;
-  background-color: #101721;
+  background: var(--onyx);
   border: solid;
-  border-width: 1px 2px 5px;
-  border-color: #949394;
+  border-width: 0px 1px 3px;
+  border-color: var(--jet);
 }
 
 .cCard img {
@@ -81,14 +81,15 @@ h6 {
 .card-link {
   text-align: end;
   display: block;
-  font-weight: 700;
-  color: rgb(122, 199, 225);
+  color: var(--highlight);
   width: 100%;
+  transition: var(--transition-1);
 }
 
 .card-link:hover {
-  color: rgb(122, 199, 225);
-  text-decoration: underline;
+  transition: var(--transition-1);
+  color: var(--mid);
   cursor: pointer;
 }
+
 </style>

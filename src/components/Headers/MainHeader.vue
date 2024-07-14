@@ -4,60 +4,60 @@ import HeaderLink from "@/components/Snippets/HeaderLink.vue";
 
 <template>
   <header class="container section">
-    <div class="row d-md-flex m-auto">
-      <div class="main-content">
-        <figure class="image-box">
-          <img src="@/assets/Logo.png" alt="photo" />
-        </figure>
+    <div class="main-content">
+      <figure class="image-box">
+        <img src="@/assets/Logo.png" alt="photo" />
+      </figure>
 
-        <div class="info-content">
-          <h1 class="name" title="Javier Izquierdo Vicedo">
-            Javier Izquierdo Vicedo
-          </h1>
-          <p class="role">
-            <span>Game Programmer</span>
-          </p>
-        </div>
+      <div class="info-content">
+        <h1 class="name" title="Javier Izquierdo Vicedo">
+          Javier Izquierdo Vicedo
+        </h1>
+        <p class="role">
+          <span>Game Programmer</span>
+        </p>
       </div>
+    </div>
 
-      <div class="contacts-list">
-        <ul class="">
-          <HeaderLink
-            p-icon="envelope"
-            p-link="mailto:juritobi@gmail.com"
-            p-title="EMAIL"
-            p-content="juritobi@gmail.com"
-          />
-          <HeaderLink
-            p-icon="phone"
-            p-link="tel:34674410029"
-            p-title="PHONE"
-            p-content="+34 674 410 029"
-          />
-          <HeaderLink
-            :p-icon="['fab', 'linkedin']"
-            p-link="https://www.linkedin.com/in/juritobi/"
-            p-title="LinkedIn"
-            p-content="Javier Izquierdo Vicedo"
-          />
-          <!--          <HeaderLink-->
-          <!--            p-icon="clipboard-list"-->
-          <!--            p-link="@/assets/Javier Izquierdo Vicedo Portfolio.pdf"-->
-          <!--            p-title="CV"-->
-          <!--            p-content="Download as PDF"-->
-          <!--          />-->
-        </ul>
-      </div>
+    <div class="contacts-list">
+      <ul>
+        <HeaderLink
+          p-icon="envelope"
+          p-link="mailto:juritobi@gmail.com"
+          p-title="EMAIL"
+          p-content="juritobi@gmail.com"
+        />
+        <HeaderLink
+          p-icon="phone"
+          p-link="tel:34674410029"
+          p-title="PHONE"
+          p-content="+34 674 410 029"
+        />
+        <HeaderLink
+          :p-icon="['fab', 'linkedin']"
+          p-link="https://www.linkedin.com/in/juritobi/"
+          p-title="LinkedIn"
+          p-content="Javier Izquierdo Vicedo"
+        />
+        <HeaderLink
+          p-icon="clipboard-list"
+          p-link="@/assets/Javier Izquierdo Vicedo Portfolio.pdf"
+          p-title="CV"
+          p-content="Download as PDF"
+        />
+      </ul>
     </div>
   </header>
 </template>
 
 <style scoped>
-.row {
-  width: 100%;
+.section {
+  display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3rem;
 }
-
 .main-content {
   display: flex;
   justify-content: center;
@@ -71,9 +71,10 @@ import HeaderLink from "@/components/Snippets/HeaderLink.vue";
   position: relative;
   display: flex;
   justify-content: center;
-  height: 150px;
-  width: 150px;
+  height: 9rem;
+  width: 9rem;
   box-shadow: var(--shadow-1);
+  margin: 0;
 }
 
 img {
@@ -82,7 +83,7 @@ img {
 
 .name {
   color: var(--white-2);
-  font-size: var(--fs-3);
+  font-size: 2.2rem;
   font-weight: var(--fw-500);
   letter-spacing: -0.25px;
   margin-bottom: 10px;
@@ -90,7 +91,7 @@ img {
 .role {
   color: var(--white-1);
   background: var(--onyx);
-  font-size: var(--fs-8);
+  font-size: 1.2rem;
   font-weight: var(--fw-300);
   width: max-content;
   padding: 3px 12px;
@@ -102,12 +103,46 @@ img {
   width: fit-content;
 }
 ul {
-  margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 15px;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: end;
+  width: 28rem;
+  gap: 0 1rem;
+}
+li {
+  width: 13rem;
+}
+@media (max-width: 1200px) {
+  .section {
+    gap: 1rem;
+  }
+  ul {
+    padding: 1rem 0 0 0;
+    justify-content: space-around;
+  }
 }
 
+@media (max-width: 576px) {
+  .main-content {
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .image-box {
+    height: 7rem;
+    width: 7rem;
+  }
+  .name {
+    font-size: 1.8rem;
+  }
+  .role {
+    font-size: 1.2rem;
+    width: auto;
+  }
+  ul {
+    width: auto;
+  }
+}
 </style>
