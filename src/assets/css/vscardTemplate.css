@@ -239,12 +239,12 @@ article.active {
     font-weight: var(--fw-500);
 }
 
-.article-title {
+.section-title {
     position: relative;
     padding-bottom: 7px;
 }
 
-.article-title::after {
+.section-title::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -495,7 +495,7 @@ main {
   #ABOUT
 \*-----------------------------------*/
 
-.about .article-title { margin-bottom: 15px; }
+.about .section-title { margin-bottom: 15px; }
 
 .about-text {
     color: var(--light-gray);
@@ -764,7 +764,7 @@ main {
   #RESUME
 \*-----------------------------------*/
 
-.article-title { margin-bottom: 30px; }
+.section-title { margin-bottom: 30px; }
 
 
 /**
@@ -1294,12 +1294,12 @@ textarea.form-input::-webkit-resizer { display: none; }
         padding: 30px;
     }
 
-    .article-title {
+    .section-title {
         font-weight: var(--fw-600);
         padding-bottom: 15px;
     }
 
-    .article-title::after {
+    .section-title::after {
         width: 40px;
         height: 5px;
     }
@@ -1385,7 +1385,7 @@ textarea.form-input::-webkit-resizer { display: none; }
      * #ABOUT
      */
 
-    .about .article-title { margin-bottom: 20px; }
+    .about .section-title { margin-bottom: 20px; }
 
     .about-text { margin-bottom: 40px; }
 
@@ -1599,7 +1599,7 @@ textarea.form-input::-webkit-resizer { display: none; }
      * PORTFOLIO
      */
 
-    .article-title { padding-bottom: 20px; }
+    .section-title { padding-bottom: 20px; }
 
     .filter-select-box { display: none; }
 

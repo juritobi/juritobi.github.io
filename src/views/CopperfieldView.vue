@@ -1,5 +1,4 @@
 <script setup>
-import Sidebar from "@/components/Headers/Sidebar.vue";
 import SidebarLayout from "@/components/layouts/SidebarLayout.vue";
 </script>
 

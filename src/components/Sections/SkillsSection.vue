@@ -1,6 +1,4 @@
 <script setup>
-import SectionTitle from "../Headers/SectionTitle.vue";
-import OutterCard from "@/components/Containers/OuterFrame.vue";
 import SectionLayout from "@/components/layouts/SectionLayout.vue";
 import SkillsCard from "@/components/Cards/SkillsCard.vue";
 import SkillsList from "@/components/Cards/SkillsList.vue";

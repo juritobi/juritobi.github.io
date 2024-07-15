@@ -1,7 +1,6 @@
 <script setup>
 import json from "../../assets/db.json";
 import HorizontalTimeLine from "../HorizontalTimeLine.vue";
-import SectionTitle from "../Headers/SectionTitle.vue";
 import ExperienceGroup from "@/components/Containers/ExperienceGroup.vue";
 
 import {

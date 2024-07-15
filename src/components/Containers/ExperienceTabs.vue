@@ -1,10 +1,9 @@
 <script setup>
-import card from "../Cards/ProjectCard.vue";
 import TabsWrapper from "../TabsSystem/TabsWrapper.vue";
 import TabItem from "../TabsSystem/TabItem.vue";
 import json from "../../assets/portfolio.json";
 import { onBeforeMount } from "vue";
-import Copperfield from "@/components/Cards/HighlightProjectCard.vue";
+import DetailCard from "@/components/Cards/ProjectCard.vue";
 
 var highLightsIds = [];
 var gamesIds = [];
@@ -46,7 +45,7 @@ function windowResize() {
   <TabsWrapper>
     <TabItem title="High Lights">
       <template v-slot:default>
-        <Copperfield v-bind="json[0]">
+        <DetailCard :p-high-light="true" v-bind="json[0]">
           <template v-slot:default>
             <p class="pt-3">
               This is the first published game I've been part of. In it, I've
@@ -95,8 +94,8 @@ function windowResize() {
             </ul>
             <h3></h3>
           </template>
-        </Copperfield>
-        <Copperfield v-bind="json[1]">
+        </DetailCard>
+        <DetailCard :p-high-light="true" v-bind="json[1]">
           <template v-slot:default>
             <p class="pt-3">
               Copperfield Engine is a 3D game engine created by just two people.
@@ -121,26 +120,29 @@ function windowResize() {
             </ul>
             <h3></h3>
           </template>
-        </Copperfield>
+        </DetailCard>
       </template>
     </TabItem>
     <TabItem title="Games">
       <template v-for="i in gamesIds">
-        <card v-bind="json[i]" />
+        <DetailCard v-bind="json[i]" />
       </template>
     </TabItem>
     <TabItem title="Tools and Demos">
       <template v-for="i in libsIds">
-        <card v-bind="json[i]" />
+        <DetailCard v-bind="json[i]" />
       </template>
     </TabItem>
     <TabItem title="Apps">
       <template v-for="i in appsIds">
-        <card v-bind="json[i]" />
+        <DetailCard v-bind="json[i]" />
       </template>
     </TabItem>
   </TabsWrapper>
 </template>
 
 <style scoped>
+li {
+  list-style: outside disc;
+}
 </style>

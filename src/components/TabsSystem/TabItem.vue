@@ -8,7 +8,7 @@ const selectedTitle = inject("selectedTitle");
 
 <template>
   <div
-    class="tabs-content row mb-4 text-justify mx-auto"
+    class="tabs-content row text-justify mx-auto"
     v-show="selectedTitle === title"
   >
     <slot />
