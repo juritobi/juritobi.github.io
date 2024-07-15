@@ -2,10 +2,10 @@
 import ExperienceCard from "@/components/Cards/ExperienceCard.vue";
 import { onMounted, ref } from "vue";
 import json from "@/assets/db.json";
-import OuterFrame from "@/components/Containers/OuterFrame.vue";
 
 const props = defineProps({
   pTitle: String,
+  pIcon: [],
   pJson: Array,
 });
 
@@ -33,19 +33,68 @@ onMounted(() => {
 </script>
 
 <template>
-  <h3 class="h3 mt-4 mb-0">{{ pTitle }}</h3>
-  <div class="row pt-4 text-justify mx-auto">
-    <ExperienceCard
-      v-for="i in finalList"
-      :key="i"
-      :p-organization="i.Organization"
-      :p-description="i.Descirption"
-      :p-end="i.start"
-      :p-start="i.end"
-      :p-link="i.Link"
-    ></ExperienceCard>
-  </div>
+  <section class="experience-group">
+    <div class="title-wrapper">
+      <div class="icon-box">
+        <fa-icon :icon="pIcon" />
+      </div>
+      <h3 class="h3">{{ pTitle }}</h3>
+    </div>
+    <ol class="timeline-list">
+      <ExperienceCard
+        v-for="i in finalList"
+        :key="i"
+        :p-organization="i.Organization"
+        :p-description="i.Descirption"
+        :p-end="i.start"
+        :p-start="i.end"
+        :p-link="i.Link"
+      ></ExperienceCard>
+    </ol>
+  </section>
 </template>
 
 <style scoped>
+.experience-group {
+  margin-top: 30px;
+}
+
+.experience-group .title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 1rem;
+}
+
+.timeline-list {
+  font-size: var(--fs-6);
+  margin-left: 1rem;
+}
+ol {
+  margin: 0;
+}
+
+
+.icon-box {
+  position: relative;
+  background: var(--border-gradient-onyx);
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--highlight);
+  box-shadow: var(--shadow-1);
+  z-index: 1;
+}
+.icon-box::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--eerie-black-1);
+  border-radius: inherit;
+  z-index: -1;
+}
 </style>

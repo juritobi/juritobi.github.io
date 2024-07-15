@@ -83,7 +83,7 @@ function windowResize() {
               </li>
               <li>
                 <b>Non-Playable Character:</b> As a secondary task, the player
-                can push a button to open Robin's cage and free him, which will
+                can push a button to open the NPC cage and free him, which will
                 trigger a dialogue and reward you with coins.
               </li>
               <li>

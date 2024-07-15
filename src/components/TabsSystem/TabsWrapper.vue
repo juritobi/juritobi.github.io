@@ -34,19 +34,21 @@ provide("selectedTitle", selectedTitle);
   border-radius: 0.9rem;
   background-color: var(--onyx);
 }
+
 .tabs-nav ul {
+  flex-wrap: wrap;
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: row;
-  gap: 2rem;
   justify-content: space-around;
   align-items: center;
 }
 
 .tabs-nav-item {
   color: var(--light-gray);
+  padding: 0rem 1rem;
   font-size: 1rem;
   transition: 0.4s all ease-out;
   cursor: pointer;
@@ -56,9 +58,24 @@ provide("selectedTitle", selectedTitle);
 .tabs-nav-item.selected {
   color: var(--highlight);
 }
+
 .tabs-nav-item:hover,
 .tabs-nav-item:focus {
   color: var(--mid);
+}
+
+@media (max-width: 576px) {
+  .tabs-nav {
+    margin-left: auto;
+    align-self: end;
+    width: fit-content;
+  }
+  .tabs-nav ul {
+    padding: 0 0 0 3rem;
+    flex-direction: column;
+    align-items: end;
+    text-align: left;
+  }
 }
 </style>
 <style></style>

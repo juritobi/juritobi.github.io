@@ -86,7 +86,6 @@ function windowResize() {
 </script>
 
 <template>
-
   <section-layout p-data="experience" p-title="Experience">
     <div class="row timeline m-0 d-none d-lg-block">
       <div ref="mainContainer" class="m-0 p-0 row">
@@ -101,10 +100,26 @@ function windowResize() {
       </div>
     </div>
 
-    <ExperienceGroup pTitle="Game Development" :pJson="json"></ExperienceGroup>
-    <ExperienceGroup pTitle="Studies" :pJson="json"></ExperienceGroup>
-    <ExperienceGroup pTitle="Web Development" :pJson="json"></ExperienceGroup>
-    <ExperienceGroup pTitle="Other" :pJson="json"></ExperienceGroup>
+    <ExperienceGroup
+      p-title="Game Development"
+      p-icon="gamepad"
+      :p-json="json"
+    ></ExperienceGroup>
+    <ExperienceGroup
+      pTitle="Studies"
+      p-icon="graduation-cap"
+      :pJson="json"
+    ></ExperienceGroup>
+    <ExperienceGroup
+      p-title="Web Development"
+      :p-icon="['fab', 'html5']"
+      :p-json="json"
+    ></ExperienceGroup>
+    <ExperienceGroup
+      p-title="Other"
+      p-icon="pencil"
+      :p-json="json"
+    ></ExperienceGroup>
   </section-layout>
 </template>
 

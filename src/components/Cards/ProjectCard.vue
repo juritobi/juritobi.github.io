@@ -125,4 +125,10 @@ defineProps({
 .highlight .legend-container {
   flex-direction: row;
 }
+
+@media (max-width: 576px) {
+  .highlight .legend-container {
+    flex-direction: column;
+  }
+}
 </style>
