@@ -45,7 +45,7 @@ function windowResize() {
   <TabsWrapper>
     <TabItem title="High Lights">
       <template v-slot:default>
-        <DetailCard :p-high-light="true" v-bind="json[0]">
+        <DetailCard :p-high-light="true" p-link="Katto" v-bind="json[0]">
           <template v-slot:default>
             <p class="pt-3">
               This is the first published game I've been part of. In it, I've
@@ -95,7 +95,7 @@ function windowResize() {
             <h3></h3>
           </template>
         </DetailCard>
-        <DetailCard :p-high-light="true" v-bind="json[1]">
+        <DetailCard :p-high-light="true" p-link="Copperfield" v-bind="json[1]">
           <template v-slot:default>
             <p class="pt-3">
               Copperfield Engine is a 3D game engine created by just two people.

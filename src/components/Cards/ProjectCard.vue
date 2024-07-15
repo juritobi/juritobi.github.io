@@ -1,5 +1,7 @@
 <script setup>
-defineProps({
+import router from "@/router";
+
+const props = defineProps({
   id: String,
   title: String,
   subTitle: String,
@@ -11,7 +13,12 @@ defineProps({
   codeLink: String,
   VideoLink: String,
   pHighLight: Boolean,
+  pLink: String,
 });
+
+function navigate(){
+  router.push(props.pLink);
+}
 </script>
 
 <template>
@@ -46,16 +53,19 @@ defineProps({
           </div>
 
           <div>
-            <a v-if="codeLink" :href="codeLink" class="card-link m-0"
-              >Source Code</a
-            >
-            <a v-if="VideoLink" :href="VideoLink" class="card-link m-0"
-              >Video</a
-            >
-            <a v-if="downloadLink" :href="downloadLink" class="card-link m-0"
-              >Play</a
-            >
-            <!--            <router-link to="Copperfield"> More Details </router-link>-->
+            <a v-if="codeLink" :href="codeLink" class="card-link m-0">
+              Documentation
+            </a>
+            <a v-if="VideoLink" :href="VideoLink" class="card-link m-0">
+              Video
+            </a>
+            <a v-if="downloadLink" :href="downloadLink" class="card-link m-0">
+              Play
+            </a>
+            <a v-if="pLink" v-on:click="navigate()" class="card-link m-0">
+              Implementation
+            </a>
+<!--            <router-link :to="{ name: pLink }">Implementation</router-link>-->
           </div>
         </div>
 
@@ -66,6 +76,14 @@ defineProps({
 </template>
 
 <style scoped>
+
+a{
+  color: var(--highlight);
+}
+router-link{
+  color: var(--highlight);
+}
+
 .experience-card {
   position: relative;
   background: var(--border-gradient-onyx-inverse);
@@ -89,7 +107,7 @@ defineProps({
 .experience-card img {
   border-radius: 1rem 1rem 0 0;
 }
-.experience-card .card-link {
+.experience-card a {
   text-align: end;
   display: block;
   color: var(--highlight);
@@ -97,7 +115,7 @@ defineProps({
   transition: var(--transition-1);
 }
 
-.experience-card .card-link:hover {
+.experience-card a:hover {
   transition: var(--transition-1);
   color: var(--mid);
   cursor: pointer;
