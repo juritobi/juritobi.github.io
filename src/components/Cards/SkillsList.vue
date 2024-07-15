@@ -6,8 +6,8 @@ defineProps({
 </script>
 
 <template>
-  <h4>{{ pTitle }}</h4>
-  <ul class="skills-list">
+  <h4 class="pb-2 text-center">{{ pTitle }}</h4>
+  <ul class="skills-list pb-4 m-0">
     <li v-for="skill in pSkills" :key="skill" :value="skill">{{ skill }}</li>
   </ul>
 </template>

@@ -59,4 +59,5 @@ import SkillsList from "@/components/Cards/SkillsList.vue";
   </section-layout>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>

@@ -6,7 +6,7 @@ defineProps({
 
 <template>
   <h3 class="h3">{{ pTitle }}</h3>
-  <div class="content-card">
+  <div class="content-card mb-4">
     <slot></slot>
   </div>
 </template>
@@ -15,7 +15,7 @@ defineProps({
 .content-card {
   position: relative;
   background: var(--border-gradient-onyx);
-  padding: 2rem 1rem 1rem;
+  padding: 1.5rem 1rem 0;
   border-radius: 1rem;
   box-shadow: var(--shadow-2);
   z-index: 1;
@@ -29,4 +29,6 @@ defineProps({
   border-radius: inherit;
   z-index: -1;
 }
+
+
 </style>
