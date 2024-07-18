@@ -5,7 +5,7 @@ defineProps({
 </script>
 
 <template>
-  <h3 class="h3">{{ pTitle }}</h3>
+  <h3>{{ pTitle }}</h3>
   <div class="content-card mb-4">
     <slot></slot>
   </div>
@@ -29,6 +29,4 @@ defineProps({
   border-radius: inherit;
   z-index: -1;
 }
-
-
 </style>
