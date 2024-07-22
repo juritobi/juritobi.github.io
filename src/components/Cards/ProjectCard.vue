@@ -62,10 +62,10 @@ function navigate(){
             <a v-if="downloadLink" :href="downloadLink" class="card-link m-0">
               Play
             </a>
+            <!-- TODO: PDF SWAP -->
             <a v-if="pLink" v-on:click="navigate()" class="card-link m-0">
               Implementation
             </a>
-<!--            <router-link :to="{ name: pLink }">Implementation</router-link>-->
           </div>
         </div>
 

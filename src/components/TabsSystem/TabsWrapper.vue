@@ -8,7 +8,9 @@ provide("selectedTitle", selectedTitle);
 </script>
 
 <template>
+  <!-- TODO: PDF SWAP -->
   <div class="tabs-nav">
+
     <ul>
       <li
         v-for="title in tabTitles"

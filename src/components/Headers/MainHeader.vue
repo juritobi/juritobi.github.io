@@ -39,11 +39,16 @@ import HeaderLink from "@/components/Snippets/HeaderLink.vue";
           p-title="LinkedIn"
           p-content="Javier Izquierdo Vicedo"
         />
+        <!--        <HeaderLink-->
+        <!--          p-icon="clipboard-list"-->
+        <!--          p-link="@/assets/Javier Izquierdo Vicedo Portfolio.pdf"-->
+        <!--          p-title="CV"-->
+        <!--          p-content="Download as PDF"-->
+        <!--        />-->
         <HeaderLink
-          p-icon="clipboard-list"
-          p-link="@/assets/Javier Izquierdo Vicedo Portfolio.pdf"
-          p-title="CV"
-          p-content="Download as PDF"
+          p-icon="calendar"
+          p-title="Birthday"
+          p-content="14/06/1998"
         />
       </ul>
     </div>

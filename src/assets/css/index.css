@@ -288,7 +288,7 @@ h2,
 h3,
 h4,
 h5,
-h6{
+h6 {
     margin: 0 0 0.5rem 0;
     font-weight: 500;
     line-height: 1.2;
@@ -324,4 +324,16 @@ h5 {
     .section {
         padding: 1rem 2rem;
     }
+}
+
+
+@media print {
+    a, h1, h2, h3, h4, h5, h6, p, span {
+        color: var(--smoky-black);
+    }
+    .section {
+        border: 0;
+        box-shadow: none;
+    }
+
 }
