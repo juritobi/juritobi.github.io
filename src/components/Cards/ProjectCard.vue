@@ -64,7 +64,7 @@ function navigate(){
             </a>
             <!-- TODO: PDF SWAP -->
             <a v-if="pLink" v-on:click="navigate()" class="card-link m-0">
-              Implementation
+              In Depth Details
             </a>
           </div>
         </div>
