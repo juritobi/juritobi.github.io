@@ -116,16 +116,48 @@ import SectionLayout from "@/components/layouts/SectionLayout.vue";
   </SectionLayout>
 
   <SectionLayout p-title="Destructible objects" p-data="Destuctibles">
+    <h3>Behaviour</h3>
     <p>
-      I'm still writing this, but here is a title for some of the challenges I
-      faced
+      For the game, we needed to have objects that like boxes, vases and
+      pillars, tht broke when the player or boss crashed with them. I was done
+      using the Unreal Chaos Physics.
     </p>
-    <h4 class="challenge">Circumventing Chaos Bugs</h4>
-    <!--    <h3>Behaviour</h3>-->
-    <!--    <p>WIP</p>-->
-    <!--    <h3>Challenges</h3>-->
-    <!--    <h4 class="challenge">Chaos bug solving</h4>-->
-    <!--    <p>WIP</p>-->
+    <h3>Challenges</h3>
+    <h4 class="challenge">Deactivating Debris Collisions</h4>
+    <p>
+      We wanted the debris of these objects to ignore the collisions with the
+      player, but the object should block the player while it wasn't broken. For
+      some reason, Geometry Collections (the breakable objects) didn't allow
+      changing the collision channel during runtime.
+    </p>
+    <p>
+      To solve this issue, I created a class that included both the Geometry
+      Collection and a static mesh. When the game started, the static mesh,
+      which collides with the player, would be used. However, when the object
+      needed to be destroyed, the static mesh would be deactivated, and the
+      Geometry Collection, which doesn't collide with the player, would be made
+      visible and broken.
+    </p>
+    <h4 class="challenge">The Elusive Build-Only Bug</h4>
+    <p>
+      The boxes needed to have physics enabled, and there wasn't a problem with
+      it until, at some point, a month after it was done, we realized that only
+      in builds, the boxes would stay floating, and the physics wouldn't
+      activate until something touched them.
+    </p>
+    <p>
+      This was a very difficult and tedious problem to solve. In previous
+      instances of mysterious bugs that started occurring suddenly only in
+      builds, I tried to debug a build or use version control to identify which
+      commit introduced the bug. However, in this case, that didn't work. The
+      debugging showed that the physics were indeed activated, and the bug was
+      introduced too long ago to be traced. I blindly started making small
+      changes that might have had a slight possibility of fixing the issue, but
+      none of them worked. In the end, after going through the Unreal forums, I
+      found that there seemed to be a bug in the version we were working on.
+      Manually executing a command to disable physics sleep when the game
+      started solved the issue.
+    </p>
   </SectionLayout>
 
   <SectionLayout p-title="Optimizations" p-data="Optimizations">

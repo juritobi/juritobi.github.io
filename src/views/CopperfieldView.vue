@@ -75,11 +75,54 @@ import DetailLayout from "@/components/layouts/DetailLayout.vue";
   </SectionLayout>
   <SectionLayout p-title="Physics" p-data="Physics">
     <p>
-      I'm still writing this, but here is a title for some of the challenges I
-      faced
+      The physics system I developed included collision detection between
+      spheres, Axis Aligned Bounding Boxes (AABBs), and Oriented Bounding Boxes
+      (OBBs). Besides detecting collisions, the collision functions also
+      provided information about the collisions, such as penetration depth and
+      contact points, which helped calculate the impulse to be applied after a
+      collision occurred.
     </p>
-    <h3>Unit testing using blender</h3>
-    <h3>collision worked on first attempt (no, they didn't)</h3>
+    <p>
+      The simulation was performed using Verlet integration, and to display
+      movement smoothly, the renderer used interpolation between the last two
+      frames of the simulation as the world position for each object.
+    </p>
+    <h3>The Blender Debugging Technique</h3>
+    <p>
+      For collision detection, I used unit testing. While creating the tests,
+      calculating the expected results was sometimes time-consuming, and I might
+      get it wrong. So, I came up with the idea of using Blender (a 3D modeling
+      software). In Blender, I would draw boxes and extrude vertices from them
+      to represent vectors. Then, I could measure the length of these vectors
+      and find intersection positions. The precision wasn't perfect, but it was
+      good enough to either confirm my calculations or validate the final code
+      results.
+    </p>
+    <p>
+      I didn't expect it, but using Blender turned out to be really helpful, not
+      only for testing but also for understanding some geometry problems.
+      Sometimes it's not easy to visualize the entire problem in your head or
+      even on paper, and having a 3D representation of the problem proved to be
+      very useful.
+    </p>
+    <h3>The Surprising First Attempt Success and Subsequent Setback</h3>
+    <p>
+      OBB-to-OBB collisions were the last thing I implemented. It was already
+      clear which functions I needed to create and how to integrate them into
+      the physics system. After developing and testing the basic collisions,
+      which only returned true or false, I implemented the functions that
+      provided collision information and integrated them directly without
+      creating unit tests for them. Surprisingly, it worked on the first try. It
+      compiled, and in a small test environment, it seemed to work as expected.
+    </p>
+    <p>
+      I was right to be worried about it, since the next day, when I used it in
+      a more open and randomized environment, it turned out that when the angle
+      between the two objects was nearly 0, the objects would pass through each
+      other. I could easily find the error, it was just a vector that needed to
+      be normalized. This was yet another lesson in how important it is to
+      properly test things, especially if they have never failed before.
+    </p>
   </SectionLayout>
   <SectionLayout p-title="Input" p-data="Input">
     <p>
