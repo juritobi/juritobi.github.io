@@ -161,44 +161,121 @@ import SectionLayout from "@/components/layouts/SectionLayout.vue";
   </SectionLayout>
 
   <SectionLayout p-title="Optimizations" p-data="Optimizations">
-    <p>
-      I'm still writing this, but here is a title for some of the challenges I
-      faced
-    </p>
     <h4 class="challenge">Loading and Unloading Levels</h4>
+    <p>
+      We were using world composition in Unreal, but there were reasons why we
+      didn't want to use level streaming to unload complete sections of the
+      maps. First, our maps had several places where the final part of the level
+      could be seen from the beginning. Aside from that, we also had problems
+      with objects using physics and checkpoints. For physics, if the ground or
+      boxes disappeared, they would have to be repositioned. The checkpoints
+      were problematic because they were just used to teleport the player, and
+      if the ground at the teleport location wasn't loaded, the character would
+      fall into the void.
+    </p>
+    <p>
+      Because of all these reasons, we created our own loading and unloading
+      system that only included the consuming elements in the game, like coins,
+      enemies, particles, and similar items. The first attempt we tried was to
+      have a load and unload trigger for each sub-level, but that still had some
+      of the same problems we were trying to avoid. It was also really hard to
+      set up and very prone to bugs.
+    </p>
+    <p>
+      After 4 hours of trying to set up that system on the first level, I came
+      up with a different method. Instead of using triggers, we used a large
+      volume and loaded and unloaded elements when entering or exiting the
+      volume. Additionally, instead of the volume having references to all the
+      objects it had to activate and deactivate, the objects held a reference to
+      the volume. This way, we could force the system to be used by the
+      designers and artists, helping to avoid bugs. This method solved all the
+      problems we had. It still wasn't easy to set up, but it was much easier
+      than the previous approach.
+    </p>
     <h4 class="challenge">Optimizing Lumen</h4>
-    <!--    <h3>Loading and Unloading Levels</h3>-->
-    <!--    <p>WIP</p>-->
-    <!--    <h3>Optimizing Lumen</h3>-->
-    <!--    <p>WIP</p>-->
+    <p>
+      Towards the end of development, we started testing the game on different
+      computers, and it only worked properly on very high-end PCs. So, I was in
+      charge of fixing it. The initial analysis showed that our main problem was
+      with the GPU thread, specifically related to Lumen and anti-aliasing. We
+      also had a lot of draw calls and many tris to render. We asked the artists
+      to create more instances, adjust the meshes' Level of Detail, and reduce
+      texture resolutions, hoping that would mitigate the issue. In the end, we
+      used Nanite, but even though we had drastically reduced the draw calls and
+      tris, it didn't improve performance because those changes didn't address
+      the bottleneck.
+    </p>
+    <p>
+      To fix this, I started looking into which Lumen options could be modified
+      without affecting the game's visual quality. There wasn't much, but I
+      found that we could use Screen Space Reflections instead of Lumen
+      Reflections. This change made a noticeable visual difference but
+      significantly improved performance. After discussing with the artists, we
+      agreed that Screen Space Reflections suited our visual style better, so
+      there was no downside to disabling Lumen reflections. Aside from that,
+      there wasn't much more to do, so the only option left was to use the
+      scalability settings.
+    </p>
+    <p>
+      We already had a settings menu, but it was created in the early stages and
+      didn't include options for global illumination, shadows, and resolution
+      scale, which were the most relevant settings. After adding these options,
+      setting them to medium made the game look poor, as it completely
+      deactivated Lumen. So, I created custom scalability settings to try to
+      retain essential features like shadows, Lumen, and anti-aliasing even on
+      low settings while reducing other parameters to still improve performance.
+    </p>
   </SectionLayout>
 
   <SectionLayout p-title="Pickups and Coins" p-data="Pickups">
+    <h3>Behaviour</h3>
     <p>
-      I'm still writing this, but here is a title for some of the challenges I
-      faced
+      Every enemy or character can drop coins or a power-up. These are thrown in
+      a circle and will bounce using physics, similar to Sonic 3D games. The
+      coins also have an area where they are pulled towards the player. There is
+      a special kind of flying enemy, when they are killed, after of dropping
+      the coins, these are pulled towards the player, no matter how far they
+      are.
     </p>
-    <h4 class="challenge">Projectile Move Component vs physics</h4>
-    <h4 class="challenge">The unnoticed visual bug</h4>
-    <!--    <h3>Behaviour</h3>-->
-    <!--    <p>WIP</p>-->
-    <!--    <h3>Challenges</h3>-->
-    <!--    <h4 class="challenge">Projectile Move Component vs physics</h4>-->
-    <!--    <p>WIP</p>-->
-    <!--    <h4 class="challenge">The unnoticed visual bug</h4>-->
-    <!--    <p>WIP</p>-->
+    <h4 class="challenge">Projectile Move Component vs Physics</h4>
+    <p>
+      When implementing the coin drop, I initially used physics, but I couldn't
+      achieve consistent results with it. Even when applying the same force to
+      all the coins, they wouldn't cover the same distance and would bounce
+      slightly differently from one another. To fix this, I tested using a
+      Projectile Movement Component, which is a simplified physics system, and
+      that worked perfectly.
+    </p>
+    <p>
+      I was concerned that the Projectile Movement Component might make it
+      difficult to achieve other effects, so I kept the physics-based coins for
+      a while. And in fact, there was a problem with the pool system that made
+      me consider returning to using physics.
+    </p>
+    <p>
+      I'm still not sure why, but deactivating the component would sometimes
+      cause it to lose the reference to the object it should be moving. Knowing
+      that, resetting the reference fixed the problem, finding the issue took
+      quite a while, as it didn't crash the game and seemingly at random, most
+      coins would just stop moving.
+    </p>
   </SectionLayout>
   <SectionLayout p-title="NPC" p-data="PickNPCups">
     <p>
-      I'm still writing this, but here is a title for some of the challenges I
-      faced
+      The NPC is caged in each level, and the player has to push a button to
+      open the cage. Then, when near him, a dialogue will start, and he will
+      drop some coins. The only difficulties encountered were with the
+      animations, as the character had to look at the player while performing
+      some of them.
     </p>
-    <h4 class="challenge">Turn the body to face the player</h4>
-    <!--    <h3>Behaviour</h3>-->
-    <!--    <p>WIP</p>-->
-    <!--    <h3>Challenges</h3>-->
-    <!--    <h4 class="challenge">Look at the player</h4>-->
-    <!--    <p>WIP</p>-->
+    <p>
+      To make the NPC look at the player, using only the neck bone for movement
+      looked unnatural. So, I also rotated a spine bone to aim halfway. With
+      these two rotation points, the animation looked much more natural. I also
+      had to create a transition for the rotation to prevent it from snapping
+      when switching to an animation where the NPC didn't need to look at the
+      player.
+    </p>
   </SectionLayout>
 </template>
 
