@@ -124,26 +124,53 @@ import DetailLayout from "@/components/layouts/DetailLayout.vue";
       properly test things, especially if they have never failed before.
     </p>
   </SectionLayout>
-  <SectionLayout p-title="Input" p-data="Input">
-    <p>
-      I'm still writing this, but here is a title for some of the challenges I
-      faced
-    </p>
-    <h3>Controller support</h3>
-  </SectionLayout>
   <SectionLayout p-title="Rendering" p-data="Rendering">
     <p>
-      I'm still writing this, but here is a title for some of the challenges I
-      faced
+      For rendering, we used OpenGL and implemented both forward and deferred
+      rendering, each supporting any number of point, directional, or spot
+      lights. Both rendering modes also support dynamic shadows using shadow
+      mapping.
     </p>
-    <h3>Refactoring renderer, again, and again, and again</h3>
-  </SectionLayout>
-  <SectionLayout p-title="Asset Loading" p-data="Asset">
+    <h3>Refactoring the render system, again and again</h3>
     <p>
-      I'm still writing this, but here is a title for some of the challenges I
-      faced
+      The main problem we faced with the rendering implementation was
+      structuring and organizing the code. Since it was our first time
+      implementing many of the techniques we were using, we often didn’t know
+      what we would need next, making it incredibly difficult to create scalable
+      code.
     </p>
-    <h3>Asset storing and retrieving</h3>
+    <p>
+      We ended up completely remaking the entire rendering loop at least three
+      times to achieve manageable code. Typically, we would implement a new
+      feature and then work on improving the code to avoid dealing with the same
+      complex and unorganized sections again.
+    </p>
+  </SectionLayout>
+  <SectionLayout p-title="Input" p-data="Input">
+    <p>
+      Using GLFW, I implemented an action-based input system. For this system,
+      the user needed to create a map of strings and a vector of keys. With that
+      map, users could detect if an action (the string) had been triggered,
+      meaning any of the keys associated had been pressed, released, or held.
+      This method provided an easy way to remap the buttons with any hustles.
+    </p>
+    <h3>Controller support</h3>
+    <p>
+      When implementing input support for the keyboard following the GLFW
+      documentation, it was recommended to use callbacks instead of just
+      checking the state of the needed button. This was because if a key was
+      pressed and released in the same frame, you would miss that key press. So,
+      I created a system of callbacks to track the state of each required input,
+      which worked great until I wanted to add controller support.
+    </p>
+    <p>
+      It turns out callbacks are not supported for controller inputs, and since
+      I had built the whole system around callbacks, adding controller support
+      meant I had to create a new system from scratch and either attach it to
+      the existing one or completely replace it. In the end, I just focused on
+      other features, and the engine doesn't have controller support because of
+      this.
+    </p>
   </SectionLayout>
 </template>
 

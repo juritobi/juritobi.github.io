@@ -3,7 +3,7 @@ import TabsWrapper from "../TabsSystem/TabsWrapper.vue";
 import TabItem from "../TabsSystem/TabItem.vue";
 import json from "../../assets/portfolio.json";
 import { onBeforeMount } from "vue";
-import DetailCard from "@/components/Cards/ProjectCard.vue";
+import ProjectCard from "@/components/Cards/ProjectCard.vue";
 
 var highLightsIds = [];
 var gamesIds = [];
@@ -45,7 +45,7 @@ function windowResize() {
   <TabsWrapper>
     <TabItem title="High Lights">
       <template v-slot:default>
-        <DetailCard :p-high-light="true" p-link="Katto" v-bind="json[0]">
+        <ProjectCard :p-high-light="true" p-link="Katto" v-bind="json[2]">
           <template v-slot:default>
             <p class="pt-3">
               This is the first published game I've been part of. In it, I've
@@ -92,10 +92,9 @@ function windowResize() {
                 games.
               </li>
             </ul>
-            <h3></h3>
           </template>
-        </DetailCard>
-        <DetailCard :p-high-light="true" p-link="Copperfield" v-bind="json[1]">
+        </ProjectCard>
+        <ProjectCard :p-high-light="true" p-link="Copperfield" v-bind="json[3]">
           <template v-slot:default>
             <p class="pt-3">
               Copperfield Engine is a 3D game engine created by just two people.
@@ -118,24 +117,23 @@ function windowResize() {
               <li>Physics and collisions</li>
               <li>Sound and Music</li>
             </ul>
-            <h3></h3>
           </template>
-        </DetailCard>
+        </ProjectCard>
       </template>
     </TabItem>
     <TabItem title="Games">
       <template v-for="i in gamesIds">
-        <DetailCard v-bind="json[i]" />
+        <ProjectCard v-bind="json[i]" />
       </template>
     </TabItem>
     <TabItem title="Tools and Demos">
       <template v-for="i in libsIds">
-        <DetailCard v-bind="json[i]" />
+        <ProjectCard v-bind="json[i]" />
       </template>
     </TabItem>
     <TabItem title="Apps">
       <template v-for="i in appsIds">
-        <DetailCard v-bind="json[i]" />
+        <ProjectCard v-bind="json[i]" />
       </template>
     </TabItem>
   </TabsWrapper>

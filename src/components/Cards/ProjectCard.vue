@@ -14,9 +14,10 @@ const props = defineProps({
   VideoLink: String,
   pHighLight: Boolean,
   pLink: String,
+  Description: String,
 });
 
-function navigate(){
+function navigate() {
   router.push(props.pLink);
 }
 </script>
@@ -69,18 +70,18 @@ function navigate(){
           </div>
         </div>
 
-        <slot />
+<!--        <p class="pt-4" v-if="Description">{{ Description }}</p>-->
+        <slot/>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-
-a{
+a {
   color: var(--highlight);
 }
-router-link{
+router-link {
   color: var(--highlight);
 }
 
