@@ -1,6 +1,7 @@
 <script setup>
 import DetailLayout from "@/components/layouts/DetailLayout.vue";
 import SectionLayout from "@/components/layouts/SectionLayout.vue";
+import router from "@/router";
 </script>
 
 <template>
@@ -47,7 +48,7 @@ import SectionLayout from "@/components/layouts/SectionLayout.vue";
           attack is performed if the player is near.
         </p>
       </div>
-      <img class="col-xl-6" src="Boss.gif" alt="aaa" />
+      <img class="col-xl-6" src="/Boss.gif" alt="aaa" />
       <div>
         <h3 class="pt-4">Challenges</h3>
         <h4 class="challenge pt-0">Deadline-Driven Refactoring</h4>
@@ -94,7 +95,7 @@ import SectionLayout from "@/components/layouts/SectionLayout.vue";
           overridden.
         </p>
       </div>
-      <img class="col-xl-6" src="PhaseBT.png" alt="aaa" />
+      <img class="col-xl-6" src="/PhaseBT.png" alt="aaa" />
       <div>
         <h4 class="challenge">The Wave Dilemma</h4>
         <p>
@@ -141,7 +142,7 @@ import SectionLayout from "@/components/layouts/SectionLayout.vue";
           done using the Unreal Chaos Physics.
         </p>
       </div>
-      <img class="thin" src="Destructibles.gif" alt="aaa" />
+      <img class="thin" src="/Destructibles.gif" alt="aaa" />
       <div>
         <h3 class="pt-4">Challenges</h3>
         <h4 class="challenge">Deactivating Debris Collisions</h4>
@@ -160,7 +161,7 @@ import SectionLayout from "@/components/layouts/SectionLayout.vue";
           would be made visible and broken.
         </p>
       </div>
-      <img class="" src="destructible.png" alt="aaa" />
+      <img class="" src="/destructible.png" alt="aaa" />
       <div>
         <h4 class="challenge">The Elusive Build-Only Bug</h4>
         <p>
@@ -223,7 +224,7 @@ import SectionLayout from "@/components/layouts/SectionLayout.vue";
           was much easier than the previous approach.
         </p>
       </div>
-      <img class="col-xl-6 small toped" src="Volumes.gif" alt="aaa" />
+      <img class="col-xl-6 small toped" src="/Volumes.gif" alt="aaa" />
       <div>
         <h4 class="challenge">Optimizing Lumen</h4>
         <p>
@@ -298,7 +299,7 @@ import SectionLayout from "@/components/layouts/SectionLayout.vue";
           random, most coins would just stop moving.
         </p>
       </div>
-      <img class="col-xl-6 toped" src="Coins.gif" alt="aaa" />
+      <img class="col-xl-6 toped" src="/Coins.gif" alt="aaa" />
     </div>
   </SectionLayout>
   <SectionLayout p-title="NPC" p-data="PickNPCups">
@@ -320,7 +321,7 @@ import SectionLayout from "@/components/layouts/SectionLayout.vue";
           didn't need to look at the player.
         </p>
       </div>
-      <img class="col-xl-6 small toped" src="NPC.gif" alt="aaa" />
+      <img class="col-xl-6 small toped" src="/NPC.gif" alt="aaa" />
     </div>
   </SectionLayout>
 </template>
