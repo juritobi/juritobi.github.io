@@ -42,12 +42,12 @@ onMounted(() => {
     </div>
     <ol class="timeline-list">
       <ExperienceCard
-        v-for="i in finalList"
+        v-for="i in finalList.slice().reverse()"
         :key="i"
         :p-organization="i.Organization"
         :p-description="i.Descirption"
-        :p-end="i.start"
-        :p-start="i.end"
+        :p-end="i.end"
+        :p-start="i.start"
         :p-link="i.Link"
       ></ExperienceCard>
     </ol>
