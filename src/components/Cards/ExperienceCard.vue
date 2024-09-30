@@ -7,15 +7,24 @@ const props = defineProps({
   pStart: Date,
   pEnd: Date,
   pLink: String,
+  pColot: String,
 });
 
 var months;
+var startDateStr;
+var endDateStr;
 onBeforeMount(() => {
   const startDate = new Date(props.pStart);
   const endDate = new Date(props.pEnd);
   var diff = (startDate.getTime() - endDate.getTime()) / 1000;
   diff /= 60 * 60 * 24 * 7 * 4;
   months = Math.abs(Math.round(diff));
+
+  Date.shortMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  startDateStr = Date.shortMonths[startDate.getMonth()] + " " + startDate.getFullYear();
+  endDateStr = Date.shortMonths[endDate.getMonth()] + " " + endDate.getFullYear();
+
 });
 </script>
 
@@ -23,7 +32,7 @@ onBeforeMount(() => {
   <li class="timeline-item">
     <h4 class="h4 timeline-item-title">{{ pOrganization }}</h4>
 
-    <span>{{ pStart }} - {{ pEnd }}<br />{{ months }} Months</span>
+    <span>{{ startDateStr }} - {{ endDateStr }}</span>
 
     <p class="timeline-text">
       {{ pDescription }}
@@ -35,18 +44,6 @@ onBeforeMount(() => {
 </template>
 
 <style scoped>
-.card-link {
-  text-align: end;
-  display: block;
-  color: var(--highlight);
-  margin-top: auto;
-  transition: var(--transition-1);
-}
-.card-link:hover {
-  transition: var(--transition-1);
-  color: var(--mid);
-}
-
 .timeline-item {
   position: relative;
 }
@@ -58,8 +55,8 @@ onBeforeMount(() => {
 
 .timeline-item-title {
   font-size: var(--fs-6);
-  line-height: 1.3;
-  margin-bottom: 7px;
+  line-height: 1.5;
+  margin-bottom: 5px;
   position: relative;
   width: fit-content;
 }
@@ -69,8 +66,8 @@ onBeforeMount(() => {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: var(--highlight);
+  height: 3px;
+  background: v-bind(pColot);
   border-radius: 5px;
 }
 
@@ -93,11 +90,11 @@ onBeforeMount(() => {
 .timeline-item::after {
   content: "";
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: -33px;
   height: 6px;
   width: 6px;
-  background: var(--text-gradient-yellow);
+  background: v-bind(pColot);
   border-radius: 50%;
   box-shadow: 0 0 0 4px var(--jet);
 }
@@ -108,7 +105,4 @@ onBeforeMount(() => {
   line-height: 1.6;
 }
 
-span {
-
-}
 </style>

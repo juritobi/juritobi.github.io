@@ -25,12 +25,12 @@ defineExpose({
   <h1>Timeline</h1>
   <div class="legend">
     <div>
-      <span>Game Developer</span>
-      <span>Studies</span>
+      <a href="#GameDev">Game Developer</a>
+      <a href="#Studies">Studies</a>
     </div>
     <div>
-      <span>Full-Stack Developer</span>
-      <span>Other</span>
+      <a href="#Web">Full-Stack Developer</a>
+      <a href="#Other">Other</a>
     </div>
   </div>
   <ul class="timelines-years">
@@ -56,7 +56,6 @@ defineExpose({
 </template>
 
 <style scoped>
-
 .timeline h1 {
   text-align: center;
   color: #fff;
@@ -90,6 +89,7 @@ defineExpose({
 .timeline-events h4 {
   color: #fff;
   font-style: italic;
+  cursor: default;
 }
 
 .timeline-events li {
@@ -116,7 +116,7 @@ defineExpose({
   height: 120px;
 }
 
-.timelines-years>li {
+.timelines-years > li {
   position: relative;
   top: -6px;
   display: inline-block;
@@ -149,17 +149,17 @@ defineExpose({
   display: flex;
   justify-content: space-between;
 }
-.legend div{
+.legend div {
   display: flex;
 }
-.legend span {
+.legend a {
   font-weight: normal;
   font-size: 11px;
   position: relative;
   margin: 0 1.5rem;
 }
 
-.legend span::before {
+.legend a::before {
   width: 120%;
   background-color: #dd3d01;
 
@@ -171,35 +171,38 @@ defineExpose({
   content: "";
 }
 
-.legend > div:first-child > span:first-child {
+.legend > div > a {
+  transition: var(--transition-1);
+}
+.legend > div:first-child > a:first-child:hover {
   color: #dd3d01;
 }
 
-.legend > div:first-child > span:first-child::before {
+.legend > div:first-child > a:first-child::before {
   background: #dd3d01;
 }
 
-.legend > div:first-child > span:last-child {
+.legend > div:first-child > a:last-child:hover {
   color: #ff9704;
 }
 
-.legend > div:first-child > span:last-child::before {
+.legend > div:first-child > a:last-child::before {
   background: #ff9704;
 }
 
-.legend > div:last-child > span:first-child {
+.legend > div:last-child > a:first-child:hover {
   color: #56c2f3;
 }
 
-.legend > div:last-child > span:first-child::before {
+.legend > div:last-child > a:first-child::before {
   background: #56c2f3;
 }
 
-.legend > div:last-child > span:last-child {
+.legend > div:last-child > a:last-child:hover {
   color: #c2e34e;
 }
 
-.legend > div:last-child > span:last-child::before {
+.legend > div:last-child > a:last-child::before {
   background: #c2e34e;
 }
 .marker {

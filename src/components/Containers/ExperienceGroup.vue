@@ -7,6 +7,7 @@ const props = defineProps({
   pTitle: String,
   pIcon: [],
   pJson: Array,
+  pColor: String,
 });
 
 let finalList = ref([]);
@@ -49,6 +50,7 @@ onMounted(() => {
         :p-end="i.end"
         :p-start="i.start"
         :p-link="i.Link"
+        :p-colot="pColor"
       ></ExperienceCard>
     </ol>
   </section>
@@ -58,7 +60,6 @@ onMounted(() => {
 .experience-group {
   margin-top: 30px;
 }
-
 .experience-group .title-wrapper {
   display: flex;
   align-items: center;
@@ -74,7 +75,6 @@ ol {
   margin: 0;
 }
 
-
 .icon-box {
   position: relative;
   background: var(--border-gradient-onyx);
@@ -85,7 +85,7 @@ ol {
   justify-content: center;
   align-items: center;
   font-size: 1rem;
-  color: var(--highlight);
+  color: v-bind(pColor);
   box-shadow: var(--shadow-1);
   z-index: 1;
 }
@@ -96,5 +96,8 @@ ol {
   background: var(--eerie-black-1);
   border-radius: inherit;
   z-index: -1;
+}
+h3{
+  //color: v-bind(pColor);
 }
 </style>

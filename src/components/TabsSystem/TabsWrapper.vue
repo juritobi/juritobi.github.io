@@ -10,7 +10,6 @@ provide("selectedTitle", selectedTitle);
 <template>
   <!-- TODO: PDF SWAP -->
   <div class="tabs-nav">
-
     <ul>
       <li
         v-for="title in tabTitles"
@@ -80,4 +79,3 @@ provide("selectedTitle", selectedTitle);
   }
 }
 </style>
-<style></style>

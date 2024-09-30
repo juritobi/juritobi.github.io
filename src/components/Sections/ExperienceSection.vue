@@ -101,24 +101,32 @@ function windowResize() {
     </div>
 
     <ExperienceGroup
+      id="GameDev"
       p-title="Game Development"
       p-icon="gamepad"
       :p-json="json"
+      p-color="#dd3d01"
     ></ExperienceGroup>
     <ExperienceGroup
+      id="Studies"
       pTitle="Studies"
       p-icon="graduation-cap"
       :pJson="json"
+      p-color="#ff9704"
     ></ExperienceGroup>
     <ExperienceGroup
+      id="Web"
       p-title="Web Development"
       :p-icon="['fab', 'html5']"
       :p-json="json"
+      p-color="#56c2f3"
     ></ExperienceGroup>
     <ExperienceGroup
+      id="Other"
       p-title="Other"
       p-icon="pencil"
       :p-json="json"
+      p-color="#c2e34e"
     ></ExperienceGroup>
   </section-layout>
 </template>
