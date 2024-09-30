@@ -1,4 +1,6 @@
 <script setup>
+import router from "@/router";
+
 defineProps({
   pYears: Number,
   pYearSize: Number,
@@ -8,12 +10,17 @@ defineProps({
 });
 
 import { getCurrentInstance } from "vue";
+
 const instance = getCurrentInstance();
 
 const lineHeight = "12px";
 
 function methodThatForcesUpdate() {
   instance?.proxy?.$forceUpdate();
+}
+
+function navigate(link) {
+  router.replace(link);
 }
 
 defineExpose({
@@ -25,12 +32,12 @@ defineExpose({
   <h1>Timeline</h1>
   <div class="legend">
     <div>
-      <a href="#GameDev">Game Developer</a>
-      <a href="#Studies">Studies</a>
+      <a v-on:click="navigate('#GameDev')">Game Developer</a>
+      <a v-on:click="navigate('#Studies')">Studies</a>
     </div>
     <div>
-      <a href="#Web">Full-Stack Developer</a>
-      <a href="#Other">Other</a>
+      <a v-on:click="navigate('#Web')">Full-Stack Developer</a>
+      <a v-on:click="navigate('#Other')">Other</a>
     </div>
   </div>
   <ul class="timelines-years">
@@ -149,9 +156,11 @@ defineExpose({
   display: flex;
   justify-content: space-between;
 }
+
 .legend div {
   display: flex;
 }
+
 .legend a {
   font-weight: normal;
   font-size: 11px;
@@ -174,6 +183,7 @@ defineExpose({
 .legend > div > a {
   transition: var(--transition-1);
 }
+
 .legend > div:first-child > a:first-child:hover {
   color: #dd3d01;
 }
@@ -205,14 +215,17 @@ defineExpose({
 .legend > div:last-child > a:last-child::before {
   background: #c2e34e;
 }
+
 .marker {
   position: absolute;
   height: 12px;
   border-radius: 100px;
 }
+
 .markerTop {
   top: 15px;
 }
+
 .markerBot {
   top: -15px;
 }

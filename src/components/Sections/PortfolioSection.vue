@@ -4,7 +4,7 @@ import SectionLayout from "@/components/layouts/SectionLayout.vue";
 </script>
 
 <template>
-  <SectionLayout p-title="Portfolio" p-data="Portfolio">
+  <SectionLayout p-title="Projects" p-data="Portfolio" id="Projects">
     <experience-tabs></experience-tabs>
   </SectionLayout>
 </template>

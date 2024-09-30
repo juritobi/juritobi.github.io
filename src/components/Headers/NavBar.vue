@@ -1,42 +1,62 @@
 <script setup>
-import { useSlots, ref, provide } from "vue";
+import router from "@/router";
 
-const slots = useSlots();
-const tabTitles = ref(slots.default().map((tab) => tab.props.title));
-const selectedTitle = ref(tabTitles.value[0]);
-provide("selectedTitle", selectedTitle);
+function navigate(link) {
+  router.replace(link);
+}
 </script>
 
 <template>
   <!-- TODO: PDF SWAP -->
-  <div class="tabs-nav">
+  <div class="navBar">
     <ul>
-      <li
-        v-for="title in tabTitles"
-        :key="title"
-        class="tabs-nav-item"
-        :class="{ selected: selectedTitle === title }"
-        @click="selectedTitle = title"
-      >
-        {{ title }}
+      <li class="nav-item" v-on:click="navigate('#AboutMe')">About Me</li>
+      <li class="nav-item" v-on:click="navigate('#Projects')">Projects</li>
+      <li class="nav-item" v-on:click="navigate('#Experience')">
+        Work Experience
       </li>
+      <li class="nav-item" v-on:click="navigate('#Skills')">Skills</li>
     </ul>
   </div>
-  <slot />
+  <a class="to-top" v-on:click="navigate('#app')">^</a>
 </template>
 
 <style scoped>
-.tabs-nav {
-  margin: 0 calc(var(--bs-gutter-x) * 0.5) 1rem;
-  padding: 0.5rem 0;
+.to-top {
+  width: 2rem;
+  height: 2rem;
+  line-height: 1.4rem;
+  text-align: center;
+  font-weight: bolder;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 100;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 80px;
   border-width: 1px;
   border-style: solid;
   border-color: var(--jet);
-  border-radius: 0.9rem;
   background-color: var(--onyx);
 }
+.to-top:hover {
+  color: var(--highlight);
+}
 
-.tabs-nav ul {
+.navBar {
+  z-index: 100;
+  padding: 0.5rem 0;
+  border-width: 0 0 1px 1px;
+  border-style: solid;
+  border-color: var(--jet);
+  border-radius: 0 0 0 0.9rem;
+  background-color: var(--onyx);
+  width: max-content;
+  margin-left: auto;
+}
+
+.navBar ul {
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
@@ -47,7 +67,7 @@ provide("selectedTitle", selectedTitle);
   align-items: center;
 }
 
-.tabs-nav-item {
+.nav-item {
   color: var(--light-gray);
   padding: 0rem 1rem;
   font-size: 1rem;
@@ -56,26 +76,25 @@ provide("selectedTitle", selectedTitle);
   user-select: none;
 }
 
-.tabs-nav-item.selected {
+.nav-item:hover,
+.nav-item:focus {
   color: var(--highlight);
 }
 
-.tabs-nav-item:hover,
-.tabs-nav-item:focus {
-  color: var(--mid);
-}
-
 @media (max-width: 576px) {
-  .tabs-nav {
-    margin-left: auto;
-    align-self: end;
+  .navBar {
+    margin: auto;
     width: fit-content;
+    border-width: 0 1px 1px 1px;
+    border-radius: 0 0 20px 20px;
   }
-  .tabs-nav ul {
-    padding: 0 0 0 3rem;
+  .navBar ul {
+    padding: 0 4rem;
     flex-direction: column;
-    align-items: end;
-    text-align: left;
+    align-items: center;
+    text-align: center;
+    row-gap: 0.3rem;
+    justify-content: center;
   }
 }
 </style>

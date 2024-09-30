@@ -3,7 +3,7 @@ import HeaderLink from "@/components/Snippets/HeaderLink.vue";
 </script>
 
 <template>
-  <header class="container section">
+  <header class="container section" id="MainHeader">
     <div class="main-content">
       <figure class="image-box">
         <img src="@/assets/Logo.png" alt="photo" />

@@ -10,7 +10,7 @@ import NavBar from "@/components/Headers/NavBar.vue";
 <template>
   <!-- TODO: PDF -->
   <!--  <OnlineWarning />-->
-  <!--  <nav-bar />-->
+  <nav-bar />
   <MainHeader />
   <AboutSection />
   <PortfolioSection />

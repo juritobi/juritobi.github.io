@@ -86,7 +86,7 @@ function windowResize() {
 </script>
 
 <template>
-  <section-layout p-data="experience" p-title="Experience">
+  <section-layout p-data="experience" p-title="Experience" id="Experience">
     <div class="row timeline m-0 d-none d-lg-block">
       <div ref="mainContainer" class="m-0 p-0 row">
         <HorizontalTimeLine

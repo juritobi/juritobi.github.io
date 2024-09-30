@@ -5,7 +5,7 @@ import SkillsList from "@/components/Cards/SkillsList.vue";
 </script>
 
 <template>
-  <section-layout p-title="Skills" p-data="Skills">
+  <section-layout p-title="Skills" p-data="Skills" id="Skills">
     <SkillsCard p-title="Game Programming">
       <SkillsList
         pTitle="Programming Languages"

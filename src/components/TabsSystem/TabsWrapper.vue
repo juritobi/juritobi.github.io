@@ -14,7 +14,7 @@ provide("selectedTitle", selectedTitle);
       <li
         v-for="title in tabTitles"
         :key="title"
-        class="tabs-nav-item"
+        class="nav-item"
         :class="{ selected: selectedTitle === title }"
         @click="selectedTitle = title"
       >
@@ -47,7 +47,7 @@ provide("selectedTitle", selectedTitle);
   align-items: center;
 }
 
-.tabs-nav-item {
+.nav-item {
   color: var(--light-gray);
   padding: 0rem 1rem;
   font-size: 1rem;
@@ -56,12 +56,12 @@ provide("selectedTitle", selectedTitle);
   user-select: none;
 }
 
-.tabs-nav-item.selected {
+.nav-item.selected {
   color: var(--highlight);
 }
 
-.tabs-nav-item:hover,
-.tabs-nav-item:focus {
+.nav-item:hover,
+.nav-item:focus {
   color: var(--mid);
 }
 
