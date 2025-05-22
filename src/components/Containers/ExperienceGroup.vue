@@ -98,6 +98,6 @@ ol {
   z-index: -1;
 }
 h3{
-  //color: v-bind(pColor);
+  /*color: v-bind(pColor);*/
 }
 </style>
