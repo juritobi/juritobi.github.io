@@ -1,24 +1,66 @@
 <script setup>
 import router from "@/router";
+import { onBeforeMount, onMounted, getCurrentInstance } from "vue";
+
+onMounted(() => {
+  window.addEventListener("scroll", onScroll);
+});
+
+onBeforeMount(() => {
+  window.removeEventListener("scroll", onScroll);
+});
+
+const instance = getCurrentInstance();
+var activeSection = "MainHeader";
+var navItems = [
+  { name: "About Me", id: "MainHeader" },
+  { name: "Projects", id: "Projects" },
+  { name: "Work Experience", id: "Experience" },
+  { name: "Skills", id: "Skills" },
+];
+
+function onScroll() {
+  const sections = document.querySelectorAll(".section");
+  const scrollPosition = window.scrollY;
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+
+    if (
+      scrollPosition >= sectionTop - 50 &&
+      scrollPosition < sectionTop + sectionHeight - 50
+    ) {
+      activeSection = section.id;
+      if (activeSection === "AboutMe") {
+        activeSection = "MainHeader";
+      }
+    }
+  });
+  instance?.proxy?.$forceUpdate();
+}
 
 function navigate(link) {
-  router.replace(link);
+  var id = "#" + link;
+  router.replace(id);
 }
 </script>
 
 <template>
-  <!-- TODO: PDF SWAP -->
-  <div class="navBar">
+  <nav class="navBar">
     <ul>
-      <li class="nav-item" v-on:click="navigate('#AboutMe')">About Me</li>
-      <li class="nav-item" v-on:click="navigate('#Projects')">Projects</li>
-      <li class="nav-item" v-on:click="navigate('#Experience')">
-        Work Experience
+      <li v-for="item in navItems" :key="item.id" class="nav-item">
+        <a
+          :href="'#' + item.id"
+          @click.prevent="navigate(item.id)"
+          :class="{ active: activeSection === item.id }"
+        >
+          {{ item.name }}
+        </a>
       </li>
-      <li class="nav-item" v-on:click="navigate('#Skills')">Skills</li>
     </ul>
-  </div>
-  <a class="to-top" v-on:click="navigate('#app')">^</a>
+  </nav>
+  <a class="to-top" v-on:click="navigate('app')">^</a>
 </template>
 
 <style scoped>
@@ -45,6 +87,8 @@ function navigate(link) {
 }
 
 .navBar {
+  position: sticky;
+  top: 0;
   z-index: 100;
   padding: 0.5rem 0;
   border-width: 0 0 1px 1px;
@@ -71,13 +115,15 @@ function navigate(link) {
   color: var(--light-gray);
   padding: 0rem 1rem;
   font-size: 1rem;
-  transition: 0.4s all ease-out;
   cursor: pointer;
   user-select: none;
 }
 
-.nav-item:hover,
-.nav-item:focus {
+.nav-item a {
+  transition: var(--transition-1);
+}
+.active,
+.nav-item a:hover {
   color: var(--highlight);
 }
 

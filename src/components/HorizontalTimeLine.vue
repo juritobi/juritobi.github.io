@@ -182,6 +182,7 @@ defineExpose({
 
 .legend > div > a {
   transition: var(--transition-1);
+  cursor: pointer;
 }
 
 .legend > div:first-child > a:first-child:hover {
