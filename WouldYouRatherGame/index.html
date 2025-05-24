@@ -11,36 +11,63 @@
             margin: 0 auto;
             padding: 20px;
             background-color: #f0f0f0;
+            width: 100%;
+            box-sizing: border-box;
         }
         .container {
             background-color: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
+            box-sizing: border-box;
         }
         h1 {
             text-align: center;
             color: #333;
         }
-        .nsfw-selector, .tag-selector {
-            margin: 10px 0;
-            padding: 15px;
-            background-color: #f8f8f8;
+        .options-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 15px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
             border-radius: 5px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+            z-index: 100;
         }
-        .nsfw-selector h3, .tag-selector h3 {
-            margin: 0;
-            margin-right: 20px;
+        .options-button:hover {
+            background-color: #5a6268;
         }
-        .nsfw-controls, .tag-controls {
+        .nsfw-selector {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+            z-index: 100;
+            min-width: 200px;
+            max-width: calc(100% - 40px);
+        }
+        .nsfw-selector.visible {
+            display: block;
+        }
+        .nsfw-controls {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 8px;
-            align-items: center;
+        }
+        .nsfw-selector h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 1em;
         }
         .pill-button {
             padding: 6px 12px;
@@ -62,28 +89,83 @@
         }
         .question-display {
             margin: 20px 0;
-            padding: 20px;
-            background-color: #e9ecef;
-            border-radius: 5px;
-            min-height: 100px;
+            padding: 0;
+            background-color: white;
+            border-radius: 10px;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            font-size: 1.2em;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+        .option {
+            padding: 0px 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100px;
             text-align: center;
-            font-size: 1.2em;
+            font-weight:900;
+        }
+        .option-1 {
+            background-color: #e3f2fd;
+        }
+        .option-2 {
+            background-color: #ffebee;
+        }
+        .option-divider {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            padding: 0 0px;
+            pointer-events: none;
+        }
+        .divider-line {
+            flex: 1;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .divider-text {
+            padding: 0 15px;
+            color: #6c757d;
+            font-weight: bold;
+            font-size: 1.1em;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 5px 15px;
+        }
+        .button-container {
+            text-align: center;
+            position: relative;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
         }
         .next-button {
             display: inline-block;
-            width: 200px;
-            margin: 20px 10px;
-            padding: 10px 20px;
+            width: 50px;
+            height: 50px;
+            margin: 0;
+            padding: 0;
             background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 1.1em;
+            font-size: 1.5em;
             transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .next-button:hover {
             background-color: #0056b3;
@@ -91,10 +173,6 @@
         .next-button:disabled {
             background-color: #cccccc;
             cursor: not-allowed;
-        }
-        .button-container {
-            text-align: center;
-            position: relative;
         }
         .reshuffle-button {
             display: inline-block;
@@ -116,93 +194,38 @@
             margin-top: 20px;
             color: #666;
         }
-        .questions-lists {
-            margin-top: 30px;
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        .questions-section {
-            flex: 1;
-            min-width: 300px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .questions-section h2 {
-            margin-top: 0;
-            color: #333;
-            font-size: 1.2em;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-        }
-        .questions-list {
-            max-height: 300px;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-        .questions-list::-webkit-scrollbar {
-            width: 8px;
-        }
-        .questions-list::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-        .questions-list::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 4px;
-        }
-        .questions-list::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-        .question-item {
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 0.9em;
-            color: #666;
-        }
-        .question-item:last-child {
-            border-bottom: none;
-        }
-        .question-item .nsfw-level {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.8em;
-            margin-right: 8px;
-            background-color: #e9ecef;
-        }
         .selectors-container {
             display: flex;
             flex-direction: column;
             gap: 5px;
+            align-items: center;
         }
         .reshuffle-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 5px;
+            margin-top: 10px;
         }
         .like-button {
             background: none;
-            border: none;
-            color: #666;
+            border: 2px solid #ff4444;
+            color: #ff4444;
             cursor: pointer;
-            font-size: 1.2em;
-            padding: 5px;
-            transition: color 0.3s;
-        }
-        .like-button:hover {
-            color: #ff4444;
-        }
-        .like-button.liked {
-            color: #ff4444;
-        }
-        .question-display {
+            font-size: 1.5em;
+            padding: 5px 20px;
+            width: 90px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            border-radius: 10px;
+        }
+        .like-button:hover {
+            background-color: #fff0f0;
+        }
+        .like-button.liked {
+            color: white;
+            background-color: #ff4444;
+        }
+        .like-button.liked:hover {
+            background-color: #ff6666;
         }
         .export-liked {
             position: fixed;
@@ -215,61 +238,177 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            z-index: 100;
         }
         .export-liked:hover {
             background-color: #0056b3;
         }
+        .players-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            display: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .players-list {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px 0;
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+        }
+        .player-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 200px;
+            max-width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .player-name {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .player-score {
+            font-size: 1.2em;
+            color: #007bff;
+        }
+        .player-controls {
+            display: flex;
+            gap: 10px;
+        }
+        .score-button {
+            flex: 1;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        .increase-score {
+            background-color: #28a745;
+            color: white;
+        }
+        .decrease-score {
+            background-color: #dc3545;
+            color: white;
+        }
+        .player-management {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .player-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .management-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+        .add-player {
+            background-color: #007bff;
+            color: white;
+        }
+        .reset-scores {
+            background-color: #ffc107;
+            color: #000;
+        }
+        .remove-players {
+            background-color: #dc3545;
+            color: white;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container, .players-card, .player-management {
+                padding: 15px;
+            }
+            .player-management {
+                flex-direction: column;
+            }
+            .player-input {
+                width: 100%;
+            }
+            .management-button {
+                width: 100%;
+            }
+            .options-button, .export-liked {
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+            .nsfw-selector {
+                right: 10px;
+                left: 10px;
+                width: auto;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Would You Rather Game</h1>
-        
-        <div class="selectors-container">
-            <div class="nsfw-selector">
-                <h3>Select NSFW Levels:</h3>
-                <div class="nsfw-controls">
-                    <button class="pill-button selected" data-value="1">Level 1 (Safe)</button>
-                    <button class="pill-button selected" data-value="2">Level 2 (Mild)</button>
-                    <button class="pill-button selected" data-value="3">Level 3 (Moderate)</button>
-                    <button class="pill-button selected" data-value="4">Level 4 (Adult)</button>
-                    <button class="pill-button selected" data-value="5">Level 5 (Extreme)</button>
-                </div>
-            </div>
+    <button class="options-button" id="optionsButton">⚙️ Options</button>
 
-            <div class="reshuffle-container">
-                <button class="reshuffle-button" id="reshuffleButton">Reshuffle</button>
-            </div>
+    <div class="nsfw-selector" id="nsfwSelector">
+        <h3>NSFW Levels</h3>
+        <div class="nsfw-controls">
+            <button class="pill-button selected" data-value="1">Level 1 (Safe)</button>
+            <button class="pill-button selected" data-value="2">Level 2 (Mild)</button>
+            <button class="pill-button selected" data-value="3">Level 3 (Moderate)</button>
+            <button class="pill-button selected" data-value="4">Level 4 (Adult)</button>
+            <button class="pill-button selected" data-value="5">Level 5 (Extreme)</button>
         </div>
-
-        <div class="question-display" id="questionDisplay">
-            <span>Click "Next Question" to start</span>
-            <button class="like-button" id="likeButton" style="display: none;">❤</button>
-        </div>
-
-        <div class="button-container">
-            <button class="next-button" id="prevButton" disabled>Previous Question</button>
-            <button class="next-button" id="nextButton">Next Question</button>
-        </div>
-
-        <div class="stats" id="stats">
-            Questions remaining: 0
+        <div class="reshuffle-container">
+            <button class="reshuffle-button" id="reshuffleButton">Reshuffle</button>
         </div>
     </div>
 
-    <div class="questions-lists">
-        <div class="questions-section">
-            <h2>Question History</h2>
-            <div class="questions-list" id="historyList">
-                <!-- History questions will be added here -->
-            </div>
+    <div class="container">
+        <h1>Would You Rather</h1>
+
+        <div class="question-display" id="questionDisplay" onclick="handleQuestionDisplayClick()">
+            <div class="option">Click here to start</div>
         </div>
-        <div class="questions-section">
-            <h2>Remaining Questions</h2>
-            <div class="questions-list" id="remainingList">
-                <!-- Remaining questions will be added here -->
-            </div>
+
+        <div class="button-container">
+            <button class="next-button" id="prevButton" disabled>&lt;</button>
+            <button class="like-button" id="likeButton" style="display: none;">❤</button>
+            <button class="next-button" id="nextButton" disabled>&gt;</button>
         </div>
+    </div>
+
+    <div class="players-card" id="playersCard">
+        <div class="players-list" id="playersList"></div>
+    </div>
+
+    <div class="player-management">
+        <input type="text" class="player-input" id="playerInput" placeholder="Enter player name">
+        <button class="management-button add-player" id="addPlayerButton">Add Player</button>
+        <button class="management-button reset-scores" id="resetScoresButton">Reset Scores</button>
+        <button class="management-button remove-players" id="removePlayersButton">Remove All Players</button>
     </div>
 
     <button class="export-liked" id="exportLikedButton">Export Liked Questions</button>
@@ -302,10 +441,10 @@
             questionHistory = [];
             currentHistoryIndex = -1;
             updateAvailableQuestions();
-            document.getElementById('questionDisplay').textContent = 'Click "Next Question" to start';
+            document.getElementById('questionDisplay').innerHTML = '<div class="option">Click here to start</div>';
+            document.getElementById('likeButton').style.display = 'none';
             document.getElementById('prevButton').disabled = true;
-            document.getElementById('nextButton').disabled = availableQuestions.length === 0;
-            updateQuestionsLists();
+            document.getElementById('nextButton').disabled = true;
         }
 
         // Update available questions based on selected NSFW levels
@@ -318,11 +457,7 @@
                 !usedQuestions.has(q.Question)
             );
             
-            document.getElementById('stats').textContent = 
-                `Questions remaining: ${availableQuestions.length}`;
-            
-            document.getElementById('nextButton').disabled = availableQuestions.length === 0;
-            updateQuestionsLists();
+            document.getElementById('nextButton').disabled = true;
         }
 
         // Get random question from available questions
@@ -346,86 +481,31 @@
             const questionDisplay = document.getElementById('questionDisplay');
             const likeButton = document.getElementById('likeButton');
             
+            // Remove "Would you rather" and split the options
+            const questionText = question.Question.replace(/^Would you rather /i, '');
+            const [option1, option2] = questionText.split(/\s+[Oo][Rr]\s+/).map(opt => opt.trim());
+            
             questionDisplay.innerHTML = `
-                <span>${question.Question}</span>
-                <button class="like-button ${likedQuestions.has(question.Question) ? 'liked' : ''}" 
-                        onclick="toggleLike('${question.Question.replace(/'/g, "\\'")}')">❤</button>
+                <div class="option option-1">${option1}</div>
+                <div class="option option-2">${option2}</div>
+                <div class="option-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-text">OR</div>
+                    <div class="divider-line"></div>
+                </div>
             `;
             
-            document.getElementById('stats').textContent = 
-                `Questions remaining: ${availableQuestions.length}`;
-            document.getElementById('nextButton').disabled = availableQuestions.length === 0;
-            updateQuestionsLists();
+            likeButton.style.display = 'flex';
+            likeButton.className = `like-button ${likedQuestions.has(question.Question) ? 'liked' : ''}`;
+            likeButton.onclick = () => toggleLike(question.Question);
+            
+            document.getElementById('nextButton').disabled = currentHistoryIndex >= questionHistory.length - 1;
         }
 
-        // Update both question lists
-        function updateQuestionsLists() {
-            // Update history list
-            const historyList = document.getElementById('historyList');
-            historyList.innerHTML = questionHistory.map((q, index) => `
-                <div class="question-item">
-                    <span class="nsfw-level">Level ${q.NSFW}</span>
-                    ${q.Question}
-                </div>
-            `).join('');
-
-            // Update remaining list
-            const remainingList = document.getElementById('remainingList');
-            remainingList.innerHTML = availableQuestions.map(q => `
-                <div class="question-item">
-                    <span class="nsfw-level">Level ${q.NSFW}</span>
-                    ${q.Question}
-                </div>
-            `).join('');
+        // Save liked questions to localStorage
+        function saveLikedQuestions() {
+            localStorage.setItem('likedQuestions', JSON.stringify(Array.from(likedQuestions)));
         }
-
-        // Update event listeners for pill buttons
-        document.querySelectorAll('.nsfw-selector .pill-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const selectedButtons = document.querySelectorAll('.nsfw-selector .pill-button.selected');
-                
-                // If this is the last selected button, don't allow deselection
-                if (selectedButtons.length === 1 && button.classList.contains('selected')) {
-                    return;
-                }
-                
-                button.classList.toggle('selected');
-                updateAvailableQuestions();
-            });
-        });
-
-        document.getElementById('nextButton').addEventListener('click', () => {
-            if (currentHistoryIndex < questionHistory.length - 1) {
-                // If we're in history, move forward
-                currentHistoryIndex++;
-                displayQuestion(questionHistory[currentHistoryIndex]);
-            } else {
-                // Get a new question
-                const question = getRandomQuestion();
-                if (question) {
-                    questionHistory.push(question);
-                    currentHistoryIndex = questionHistory.length - 1;
-                    displayQuestion(question);
-                } else {
-                    document.getElementById('questionDisplay').textContent = 
-                        "No more questions available! Reset the game to continue.";
-                    document.getElementById('nextButton').disabled = true;
-                }
-            }
-            document.getElementById('prevButton').disabled = currentHistoryIndex <= 0;
-        });
-
-        document.getElementById('prevButton').addEventListener('click', () => {
-            if (currentHistoryIndex > 0) {
-                currentHistoryIndex--;
-                displayQuestion(questionHistory[currentHistoryIndex]);
-                document.getElementById('prevButton').disabled = currentHistoryIndex <= 0;
-            }
-        });
-
-        document.getElementById('reshuffleButton').addEventListener('click', () => {
-            resetGame();
-        });
 
         // Toggle like status
         function toggleLike(questionText) {
@@ -435,12 +515,8 @@
                 likedQuestions.add(questionText);
             }
             saveLikedQuestions();
-            displayQuestion(questionHistory[currentHistoryIndex]);
-        }
-
-        // Save liked questions to localStorage
-        function saveLikedQuestions() {
-            localStorage.setItem('likedQuestions', JSON.stringify(Array.from(likedQuestions)));
+            const likeButton = document.getElementById('likeButton');
+            likeButton.className = `like-button ${likedQuestions.has(questionText) ? 'liked' : ''}`;
         }
 
         // Export liked questions
@@ -459,6 +535,132 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         });
+
+        // Update event listeners for pill buttons
+        document.querySelectorAll('.nsfw-selector .pill-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const selectedButtons = document.querySelectorAll('.nsfw-selector .pill-button.selected');
+                
+                // If this is the last selected button, don't allow deselection
+                if (selectedButtons.length === 1 && button.classList.contains('selected')) {
+                    return;
+                }
+                
+                button.classList.toggle('selected');
+                updateAvailableQuestions();
+            });
+        });
+
+        // Handle click on question display
+        function handleQuestionDisplayClick() {
+            // Get a new question
+            const question = getRandomQuestion();
+            if (question) {
+                questionHistory.push(question);
+                currentHistoryIndex = questionHistory.length - 1;
+                displayQuestion(question);
+            } else {
+                document.getElementById('questionDisplay').innerHTML = 
+                    '<div class="option">No more questions available! Reset the game to continue.</div>';
+            }
+            document.getElementById('prevButton').disabled = currentHistoryIndex <= 0;
+            document.getElementById('nextButton').disabled = true;
+        }
+
+        document.getElementById('nextButton').addEventListener('click', () => {
+            if (currentHistoryIndex < questionHistory.length - 1) {
+                currentHistoryIndex++;
+                displayQuestion(questionHistory[currentHistoryIndex]);
+                document.getElementById('prevButton').disabled = currentHistoryIndex <= 0;
+                document.getElementById('nextButton').disabled = currentHistoryIndex >= questionHistory.length - 1;
+            }
+        });
+
+        document.getElementById('prevButton').addEventListener('click', () => {
+            if (currentHistoryIndex > 0) {
+                currentHistoryIndex--;
+                displayQuestion(questionHistory[currentHistoryIndex]);
+                document.getElementById('prevButton').disabled = currentHistoryIndex <= 0;
+            }
+        });
+
+        document.getElementById('reshuffleButton').addEventListener('click', () => {
+            resetGame();
+        });
+
+        // Toggle options menu
+        document.getElementById('optionsButton').addEventListener('click', () => {
+            const selector = document.getElementById('nsfwSelector');
+            selector.classList.toggle('visible');
+        });
+
+        // Close options menu when clicking outside
+        document.addEventListener('click', (event) => {
+            const selector = document.getElementById('nsfwSelector');
+            const optionsButton = document.getElementById('optionsButton');
+            if (!selector.contains(event.target) && !optionsButton.contains(event.target)) {
+                selector.classList.remove('visible');
+            }
+        });
+
+        // Player management
+        let players = [];
+
+        function updatePlayersCard() {
+            const playersCard = document.getElementById('playersCard');
+            const playersList = document.getElementById('playersList');
+            
+            if (players.length === 0) {
+                playersCard.style.display = 'none';
+                return;
+            }
+
+            playersCard.style.display = 'block';
+            playersList.innerHTML = players.map((player, index) => `
+                <div class="player-item">
+                    <div class="player-name">${player.name}</div>
+                    <div class="player-score">${player.score}</div>
+                    <div class="player-controls">
+                        <button class="score-button decrease-score" onclick="updateScore(${index}, -1)">-</button>
+                        <button class="score-button increase-score" onclick="updateScore(${index}, 1)">+</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateScore(index, change) {
+            players[index].score += change;
+            updatePlayersCard();
+        }
+
+        function addPlayer() {
+            const input = document.getElementById('playerInput');
+            const name = input.value.trim();
+            
+            if (name) {
+                players.push({ name, score: 0 });
+                input.value = '';
+                updatePlayersCard();
+            }
+        }
+
+        function resetScores() {
+            players.forEach(player => player.score = 0);
+            updatePlayersCard();
+        }
+
+        function removeAllPlayers() {
+            players = [];
+            updatePlayersCard();
+        }
+
+        // Add event listeners for player management
+        document.getElementById('addPlayerButton').addEventListener('click', addPlayer);
+        document.getElementById('playerInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addPlayer();
+        });
+        document.getElementById('resetScoresButton').addEventListener('click', resetScores);
+        document.getElementById('removePlayersButton').addEventListener('click', removeAllPlayers);
     </script>
 </body>
 </html>
