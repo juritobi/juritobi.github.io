@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Would You Rather Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .nsfw-selector, .tag-selector {
+            margin: 10px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nsfw-selector h3, .tag-selector h3 {
+            margin: 0;
+            margin-right: 20px;
+        }
+        .nsfw-controls, .tag-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+        .pill-button {
+            padding: 6px 12px;
+            border: 2px solid #007bff;
+            border-radius: 20px;
+            background-color: transparent;
+            color: #007bff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+        .pill-button:hover {
+            background-color: #e6f0ff;
+        }
+        .pill-button.selected {
+            background-color: #007bff;
+            color: white;
+        }
+        .question-display {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        .next-button {
+            display: inline-block;
+            width: 200px;
+            margin: 20px 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        .next-button:hover {
+            background-color: #0056b3;
+        }
+        .next-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .button-container {
+            text-align: center;
+            position: relative;
+        }
+        .reshuffle-button {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+        .reshuffle-button:hover {
+            background-color: #5a6268;
+        }
+        .stats {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+        .questions-lists {
+            margin-top: 30px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .questions-section {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .questions-section h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.2em;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        .questions-list {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        .questions-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        .questions-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .questions-list::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        .questions-list::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .question-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .question-item:last-child {
+            border-bottom: none;
+        }
+        .question-item .nsfw-level {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-right: 8px;
+            background-color: #e9ecef;
+        }
+        .selectors-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .reshuffle-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+        .like-button {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 1.2em;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        .like-button:hover {
+            color: #ff4444;
+        }
+        .like-button.liked {
+            color: #ff4444;
+        }
+        .question-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .export-liked {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .export-liked:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Would You Rather Game</h1>
+        
+        <div class="selectors-container">
+            <div class="nsfw-selector">
+                <h3>Select NSFW Levels:</h3>
+                <div class="nsfw-controls">
+                    <button class="pill-button selected" data-value="1">Level 1 (Safe)</button>
+                    <button class="pill-button selected" data-value="2">Level 2 (Mild)</button>
+                    <button class="pill-button selected" data-value="3">Level 3 (Moderate)</button>
+                    <button class="pill-button selected" data-value="4">Level 4 (Adult)</button>
+                    <button class="pill-button selected" data-value="5">Level 5 (Extreme)</button>
+                </div>
+            </div>
+
+            <div class="reshuffle-container">
+                <button class="reshuffle-button" id="reshuffleButton">Reshuffle</button>
+            </div>
+        </div>
+
+        <div class="question-display" id="questionDisplay">
+            <span>Click "Next Question" to start</span>
+            <button class="like-button" id="likeButton" style="display: none;">❤</button>
+        </div>
+
+        <div class="button-container">
+            <button class="next-button" id="prevButton" disabled>Previous Question</button>
+            <button class="next-button" id="nextButton">Next Question</button>
+        </div>
+
+        <div class="stats" id="stats">
+            Questions remaining: 0
+        </div>
+    </div>
+
+    <div class="questions-lists">
+        <div class="questions-section">
+            <h2>Question History</h2>
+            <div class="questions-list" id="historyList">
+                <!-- History questions will be added here -->
+            </div>
+        </div>
+        <div class="questions-section">
+            <h2>Remaining Questions</h2>
+            <div class="questions-list" id="remainingList">
+                <!-- Remaining questions will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <button class="export-liked" id="exportLikedButton">Export Liked Questions</button>
+
+    <script>
+        let questions = [];
+        let usedQuestions = new Set();
+        let availableQuestions = [];
+        let questionHistory = [];
+        let currentHistoryIndex = -1;
+        let likedQuestions = new Set();
+
+        // Load questions and liked questions from localStorage
+        fetch('questions.json')
+            .then(response => response.json())
+            .then(data => {
+                questions = data;
+                // Load liked questions from localStorage
+                const savedLikes = localStorage.getItem('likedQuestions');
+                if (savedLikes) {
+                    likedQuestions = new Set(JSON.parse(savedLikes));
+                }
+                updateAvailableQuestions();
+            })
+            .catch(error => console.error('Error loading questions:', error));
+
+        // Reset game state
+        function resetGame() {
+            usedQuestions.clear();
+            questionHistory = [];
+            currentHistoryIndex = -1;
+            updateAvailableQuestions();
+            document.getElementById('questionDisplay').textContent = 'Click "Next Question" to start';
+            document.getElementById('prevButton').disabled = true;
+            document.getElementById('nextButton').disabled = availableQuestions.length === 0;
+            updateQuestionsLists();
+        }
+
+        // Update available questions based on selected NSFW levels
+        function updateAvailableQuestions() {
+            const selectedLevels = Array.from(document.querySelectorAll('.nsfw-selector .pill-button.selected'))
+                .map(button => parseInt(button.dataset.value));
+            
+            availableQuestions = questions.filter(q => 
+                selectedLevels.includes(q.NSFW) && 
+                !usedQuestions.has(q.Question)
+            );
+            
+            document.getElementById('stats').textContent = 
+                `Questions remaining: ${availableQuestions.length}`;
+            
+            document.getElementById('nextButton').disabled = availableQuestions.length === 0;
+            updateQuestionsLists();
+        }
+
+        // Get random question from available questions
+        function getRandomQuestion() {
+            if (availableQuestions.length === 0) {
+                return null;
+            }
+            
+            const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+            const question = availableQuestions[randomIndex];
+            
+            // Remove the question from available questions
+            availableQuestions.splice(randomIndex, 1);
+            usedQuestions.add(question.Question);
+            
+            return question;
+        }
+
+        // Display a question
+        function displayQuestion(question) {
+            const questionDisplay = document.getElementById('questionDisplay');
+            const likeButton = document.getElementById('likeButton');
+            
+            questionDisplay.innerHTML = `
+                <span>${question.Question}</span>
+                <button class="like-button ${likedQuestions.has(question.Question) ? 'liked' : ''}" 
+                        onclick="toggleLike('${question.Question.replace(/'/g, "\\'")}')">❤</button>
+            `;
+            
+            document.getElementById('stats').textContent = 
+                `Questions remaining: ${availableQuestions.length}`;
+            document.getElementById('nextButton').disabled = availableQuestions.length === 0;
+            updateQuestionsLists();
+        }
+
+        // Update both question lists
+        function updateQuestionsLists() {
+            // Update history list
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = questionHistory.map((q, index) => `
+                <div class="question-item">
+                    <span class="nsfw-level">Level ${q.NSFW}</span>
+                    ${q.Question}
+                </div>
+            `).join('');
+
+            // Update remaining list
+            const remainingList = document.getElementById('remainingList');
+            remainingList.innerHTML = availableQuestions.map(q => `
+                <div class="question-item">
+                    <span class="nsfw-level">Level ${q.NSFW}</span>
+                    ${q.Question}
+                </div>
+            `).join('');
+        }
+
+        // Update event listeners for pill buttons
+        document.querySelectorAll('.nsfw-selector .pill-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const selectedButtons = document.querySelectorAll('.nsfw-selector .pill-button.selected');
+                
+                // If this is the last selected button, don't allow deselection
+                if (selectedButtons.length === 1 && button.classList.contains('selected')) {
+                    return;
+                }
+                
+                button.classList.toggle('selected');
+                updateAvailableQuestions();
+            });
+        });
+
+        document.getElementById('nextButton').addEventListener('click', () => {
+            if (currentHistoryIndex < questionHistory.length - 1) {
+                // If we're in history, move forward
+                currentHistoryIndex++;
+                displayQuestion(questionHistory[currentHistoryIndex]);
+            } else {
+                // Get a new question
+                const question = getRandomQuestion();
+                if (question) {
+                    questionHistory.push(question);
+                    currentHistoryIndex = questionHistory.length - 1;
+                    displayQuestion(question);
+                } else {
+                    document.getElementById('questionDisplay').textContent = 
+                        "No more questions available! Reset the game to continue.";
+                    document.getElementById('nextButton').disabled = true;
+                }
+            }
+            document.getElementById('prevButton').disabled = currentHistoryIndex <= 0;
+        });
+
+        document.getElementById('prevButton').addEventListener('click', () => {
+            if (currentHistoryIndex > 0) {
+                currentHistoryIndex--;
+                displayQuestion(questionHistory[currentHistoryIndex]);
+                document.getElementById('prevButton').disabled = currentHistoryIndex <= 0;
+            }
+        });
+
+        document.getElementById('reshuffleButton').addEventListener('click', () => {
+            resetGame();
+        });
+
+        // Toggle like status
+        function toggleLike(questionText) {
+            if (likedQuestions.has(questionText)) {
+                likedQuestions.delete(questionText);
+            } else {
+                likedQuestions.add(questionText);
+            }
+            saveLikedQuestions();
+            displayQuestion(questionHistory[currentHistoryIndex]);
+        }
+
+        // Save liked questions to localStorage
+        function saveLikedQuestions() {
+            localStorage.setItem('likedQuestions', JSON.stringify(Array.from(likedQuestions)));
+        }
+
+        // Export liked questions
+        document.getElementById('exportLikedButton').addEventListener('click', () => {
+            const likedQuestionsArray = Array.from(likedQuestions).map(questionText => {
+                return questions.find(q => q.Question === questionText);
+            });
+
+            const blob = new Blob([JSON.stringify(likedQuestionsArray, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'liked_questions.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
