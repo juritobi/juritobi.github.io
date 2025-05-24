@@ -30,6 +30,8 @@ xcopy /E /I /Y dist\* "%TEMP_DIR%\"
 REM Copies all files from Vue's `dist` folder to the temp folder (recursively, force overwrite)
 xcopy /E /I /Y WouldYouRatherGame "%TEMP_DIR%\WouldYouRatherGame"
 REM Copies the custom `game` folder into the temp folder as a subfolder called "game"
+echo juritobi.com > CNAME
+REM Allowing the custom domain to redirect to github pages
 
 cd "%TEMP_DIR%"
 REM Moves into the temporary folder (now contains built site content)
