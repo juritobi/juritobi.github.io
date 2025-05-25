@@ -30,8 +30,6 @@ xcopy /E /I /Y dist\* "%TEMP_DIR%\"
 REM Copies all files from Vue's `dist` folder to the temp folder (recursively, force overwrite)
 xcopy /E /I /Y WouldYouRatherGame "%TEMP_DIR%\WouldYouRatherGame"
 REM Copies the custom `game` folder into the temp folder as a subfolder called "game"
-echo juritobi.com > CNAME
-REM Allowing the custom domain to redirect to github pages
 
 cd "%TEMP_DIR%"
 REM Moves into the temporary folder (now contains built site content)
@@ -46,6 +44,9 @@ REM Adds your GitHub repo as a remote (SSH version). `2>nul` hides the error if 
 echo Switching to gh-pages branch...
 git checkout -b gh-pages
 REM Creates and switches to a new branch called `gh-pages`
+
+echo juritobi.com > CNAME
+REM Allowing the custom domain to redirect to github pages
 
 echo Committing changes...
 git add .
