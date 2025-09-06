@@ -15,7 +15,7 @@ TEMP_DIR=$(mktemp -d)
 
 # Copy build output
 cp -r dist/* "$TEMP_DIR"
-cp -r game "$TEMP_DIR/WouldYouRatherGame"
+cp -r game "$TEMP_DIR/SocialGames"
 
 # Checkout gh-pages branch (create if it doesn't exist)
 git fetch origin gh-pages || true
