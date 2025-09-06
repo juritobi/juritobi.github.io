@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Games Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Social Games Hub</h1>
+            <p>Choose a game and invite your friends to play!</p>
+        </header>
+
+        <!-- Game Menu -->
+        <section class="game-menu">
+            <h2>Available Games</h2>
+            <div class="games-grid">
+                <button class="game-card" data-game="would-you-rather">
+                    <div class="game-icon">🤔</div>
+                    <h3>Would You Rather</h3>
+                    <p>Make tough choices and see what your friends prefer!</p>
+                </button>
+                <button class="game-card" data-game="never-have-i-ever">
+                    <div class="game-icon">🙅‍♀️</div>
+                    <h3>Never Have I Ever</h3>
+                    <p>Discover surprising facts about your friends!</p>
+                </button>
+                <button class="game-card" data-game="its-a-10-but">
+                    <div class="game-icon">🔟</div>
+                    <h3>It's a 10 But</h3>
+                    <p>Rate things but with a twist!</p>
+                </button>
+                <button class="game-card" data-game="the-voting-game">
+                    <div class="game-icon">🗳️</div>
+                    <h3>The Voting Game</h3>
+                    <p>Vote on controversial topics and see the results!</p>
+                </button>
+                <button class="game-card" data-game="paranoia">
+                    <div class="game-icon">👁️</div>
+                    <h3>Paranoia</h3>
+                    <p>Ask and answer questions anonymously!</p>
+                </button>
+            </div>
+        </section>
+
+        <!-- Player Management -->
+        <section class="player-management">
+            <h2>Active Players</h2>
+            <div class="active-players" id="active-players">
+                <p class="no-players">No players selected. Click "Modify Players" to add some!</p>
+            </div>
+            <button class="modify-players-btn" id="modify-players-btn">Modify Players</button>
+        </section>
+    </div>
+
+    <!-- Player Management Modal -->
+    <div class="modal" id="player-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manage Players</h2>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="add-player-section">
+                    <h3>Add New Player</h3>
+                    <div class="add-player-form">
+                        <input type="text" id="new-player-name" placeholder="Enter player name" maxlength="20">
+                        <button id="add-player-btn">Add Player</button>
+                    </div>
+                </div>
+                
+                <div class="player-library">
+                    <h3>Player Library</h3>
+                    <div class="players-grid" id="players-grid">
+                        <!-- Players will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="save-players-btn" id="save-players-btn">Save & Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game View Container -->
+    <div id="game-view" class="game-view hidden">
+        <div class="game-header">
+            <button class="back-btn" id="back-to-menu">← Back to Menu</button>
+            <h1 id="game-title">Game</h1>
+        </div>
+        <div id="game-content">
+            <!-- Game content will be loaded here -->
+        </div>
+    </div>
+
+    <script src="common.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
