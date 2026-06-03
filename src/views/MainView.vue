@@ -13,8 +13,8 @@ import NavBar from "@/components/Headers/NavBar.vue";
   <nav-bar />
   <MainHeader />
   <AboutSection />
-  <PortfolioSection />
   <Experience />
+  <PortfolioSection />
   <SkillsSection />
 </template>
 

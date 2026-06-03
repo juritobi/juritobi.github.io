@@ -48,3 +48,8 @@ I undertook the development of two different websites. This is a real estate age
 
 # Activawords
 I served as an intern, specializing in the creation of 2D animations for educational videos focused on teaching the Spanish language.
+
+# Nordcurrent
+Nordcurrent is a developer and publisher of casual games for smartphones, tablets, and PC/Mac. During my time here, I worked on Airplane Chefs, a free-to-play time management cooking game. <br>
+
+Starting as a junior developer, I was promoted to a mid-level role within four months and entrusted with developing and updating online multiplayer features. My responsibilities also included performance optimizations for our proprietary engine, UI implementation, and core gameplay features.

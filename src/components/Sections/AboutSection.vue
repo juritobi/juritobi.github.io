@@ -6,27 +6,31 @@ import SectionLayout from "@/components/layouts/SectionLayout.vue";
   <SectionLayout p-data="about" p-title="About Me" id="AboutMe">
     <section class="about-text">
       <p class="mb-3">
-        When I was 16, I decided I would work in the video game industry. Since
-        then, I've slowly and steadily been working on learning and improving my
-        skills to be the best game developer I can be, while also exploring
-        other areas of multimedia development. I have always enjoyed learning
-        and facing new challenges, which has led me to gain some experience in
-        lots of different areas.
+        I’ve wanted to make video games for as long as I can remember. For me,
+        game dev isn't just a job, it's a continuous challenge to learn, break
+        things, fix them, and grow.
       </p>
 
       <p class="mb-3">
-        I enjoy working within a team environment. Seeing the combined effort we
-        all make always motivates me to put out my best, and to achieve great
-        results the whole team can enjoy. I'm an organized person and I usually
-        end up taking on leadership roles within self-organized groups, being a
-        communication bridge between team members and deciding and assigning
-        tasks.
+        If I had to pick my biggest strength, it’s adaptability. 
+        I thrive when thrown into the unknown. Whether that means jumping into a 
+        massive, unfamiliar codebase, mastering a new engine feature, or hunting 
+        down performance bottlenecks to optimize a system, I pick up new tech 
+        incredibly fast and just get things done.
+      </p>
+
+      <p class="mb-3">
+        But as much as I love coding, I love teamwork. Because of that, I 
+        naturally gravitate toward bridging communication gaps and organizing 
+        chaos—whether that means helping a teammate unblock a bug, stepping up 
+        to coordinate tasks, or bringing up new ideas to improve workflow or 
+        the product itself.
       </p>
 
       <p>
-        Overall, I am driven by a deep-seated passion for creating games and
-        thrive on the collaborative process. I am eager to contribute my skills
-        and expertise to new and exciting projects.
+        I’ve got the professional experience to know what it takes to build a 
+        great game, and I’m always ready for the next ambitious project to sink 
+        my teeth into.
       </p>
     </section>
   </SectionLayout>
