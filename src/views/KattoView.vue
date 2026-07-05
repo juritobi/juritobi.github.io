@@ -6,9 +6,9 @@ import router from "@/router";
 
 <template>
   <DetailLayout
-    p-title="Katto: Rising Tides"
-    p-data="Katto"
-    p-subtitle="Implementation details and decisions"
+    title="Katto: Rising Tides"
+    page="Katto"
+    subtitle="Implementation details and decisions"
   >
     <p>
       The game was developed using Unreal Engine 5 and programmed with C++.
@@ -26,7 +26,7 @@ import router from "@/router";
       created by others.
     </p>
   </DetailLayout>
-  <SectionLayout p-title="Final Boss" p-data="Final Boss">
+  <SectionLayout title="Final Boss" page="Final Boss">
     <div class="row">
       <div class="col-xl-6">
         <h3>Behaviour</h3>
@@ -132,7 +132,7 @@ import router from "@/router";
     </div>
   </SectionLayout>
 
-  <SectionLayout p-title="Destructible objects" p-data="Destuctibles">
+  <SectionLayout title="Destructible objects" page="Destructibles">
     <div class="row">
       <div class="">
         <h3>Behaviour</h3>
@@ -187,7 +187,7 @@ import router from "@/router";
     </div>
   </SectionLayout>
 
-  <SectionLayout p-title="Optimizations" p-data="Optimizations">
+  <SectionLayout title="Optimizations" page="Optimizations">
     <div class="row">
       <div>
         <h4 class="challenge">Loading and Unloading Levels</h4>
@@ -264,7 +264,7 @@ import router from "@/router";
     </div>
   </SectionLayout>
 
-  <SectionLayout p-title="Pickups and Coins" p-data="Pickups">
+  <SectionLayout title="Pickups and Coins" page="Pickups">
     <div class="row">
       <div class="col-xl-6">
         <h3>Behaviour</h3>
@@ -302,7 +302,7 @@ import router from "@/router";
       <img class="col-xl-6 toped" src="/Coins.gif" alt="aaa" />
     </div>
   </SectionLayout>
-  <SectionLayout p-title="NPC" p-data="PickNPCups">
+  <SectionLayout title="NPC" page="NPC">
     <div class="row">
       <div class="col-xl-6">
         <p>

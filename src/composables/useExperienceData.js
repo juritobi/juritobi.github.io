@@ -57,14 +57,14 @@ function getRoleStyle(role) {
 
 function getExperienceGroupItems(groupTitle) {
   if (groupTitle !== "Other") {
-    return rawExperience.filter((item) => item.Role === groupTitle);
+    return rawExperience.filter((item) => item.role === groupTitle);
   }
 
   return rawExperience.filter(
     (item) =>
-      item.Role !== "Game Development" &&
-      item.Role !== "Studies" &&
-      item.Role !== "Web Development",
+      item.role !== "Game Development" &&
+      item.role !== "Studies" &&
+      item.role !== "Web Development",
   );
 }
 
@@ -92,7 +92,8 @@ export function useExperienceData(containerRef) {
     rawExperience.map((item) => {
       const end = item.end ? new Date(item.end) : new Date();
       const start = new Date(item.start);
-      const style = getRoleStyle(item.Role);
+      const role = item.role;
+      const style = getRoleStyle(role);
       const lengthInMonths =
         (end.getFullYear() - start.getFullYear()) * 12 -
         start.getMonth() +
@@ -100,6 +101,7 @@ export function useExperienceData(containerRef) {
 
       return {
         ...item,
+        role,
         length: lengthInMonths * monthSize.value,
         tlStart:
           ((start.getFullYear() - firstDate.getFullYear()) * 12 +

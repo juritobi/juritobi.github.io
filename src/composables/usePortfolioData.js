@@ -2,16 +2,21 @@ import { computed } from "vue";
 import rawPortfolio from "@/assets/portfolio.json";
 
 function normalizeProject(project) {
+  const display = project.display === true || project.display === "1";
+  const highlight = project.highlight === true || project.highlight === "1";
+
   return {
     ...project,
-    yearDate: new Date(project.releaseDate).getFullYear(),
+    releaseYear: new Date(project.releaseDate).getFullYear(),
+    display,
+    highlight,
   };
 }
 
 export function usePortfolioData() {
   const projects = computed(() => rawPortfolio.map(normalizeProject));
   const displayedProjects = computed(() =>
-    projects.value.filter((project) => project.display === "1"),
+    projects.value.filter((project) => project.display),
   );
 
   const projectsByType = computed(() => ({

@@ -1,21 +1,21 @@
 <script setup>
 defineProps({
-  pIcon: [],
-  pTitle: String,
-  pContent: String,
-  pLink: String,
+  icon: [],
+  title: String,
+  content: String,
+  link: String,
 });
 </script>
 
 <template>
   <li>
-    <a :href="pLink" class="contact-link">
+    <a :href="link" class="contact-link">
       <div class="contact-info">
-        <p class="title">{{ pTitle }}</p>
-        <p class="content">{{ pContent }}</p>
+        <p class="title">{{ title }}</p>
+        <p class="content">{{ content }}</p>
       </div>
       <div class="icon-box">
-        <fa-icon :icon="pIcon" />
+        <fa-icon :icon="icon" />
       </div>
     </a>
   </li>

@@ -2,10 +2,10 @@
 import ExperienceCard from "@/components/Cards/ExperienceCard.vue";
 
 defineProps({
-  pTitle: String,
-  pIcon: [],
-  pItems: Array,
-  pColor: String,
+  title: String,
+  icon: [],
+  items: Array,
+  color: String,
 });
 </script>
 
@@ -13,20 +13,20 @@ defineProps({
   <section class="experience-group">
     <div class="title-wrapper">
       <div class="icon-box">
-        <fa-icon :icon="pIcon" />
+        <fa-icon :icon="icon" />
       </div>
-      <h3 class="h3">{{ pTitle }}</h3>
+      <h3 class="h3">{{ title }}</h3>
     </div>
     <ol class="timeline-list">
       <ExperienceCard
-        v-for="item in pItems.slice().reverse()"
+        v-for="item in items.slice().reverse()"
         :key="item.id"
-        :p-organization="item.Organization"
-        :p-description="item.Descirption"
-        :p-end="item.end"
-        :p-start="item.start"
-        :p-link="item.Link"
-        :p-colot="pColor"
+        :organization="item.organization"
+        :description="item.description"
+        :end="item.end"
+        :start="item.start"
+        :link="item.link"
+        :color="color"
       ></ExperienceCard>
     </ol>
   </section>
@@ -61,7 +61,7 @@ ol {
   justify-content: center;
   align-items: center;
   font-size: 1rem;
-  color: v-bind(pColor);
+  color: v-bind(color);
   box-shadow: var(--shadow-1);
   z-index: 1;
 }
@@ -74,6 +74,5 @@ ol {
   z-index: -1;
 }
 h3{
-  /*color: v-bind(pColor);*/
 }
 </style>

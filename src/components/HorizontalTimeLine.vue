@@ -2,11 +2,10 @@
 import router from "@/router";
 
 defineProps({
-  pYears: Number,
-  pYearSize: Number,
-  pFisrtDate: Date,
-
-  pJson: Array,
+  years: Number,
+  yearSize: Number,
+  firstDate: Date,
+  items: Array,
 });
 
 import { getCurrentInstance } from "vue";
@@ -41,13 +40,13 @@ defineExpose({
     </div>
   </div>
   <ul class="timelines-years">
-    <li v-for="i in pYears" :key="i" :style="{ width: pYearSize + 'px' }">
-      {{ i + pFisrtDate.getFullYear() - 1 }}
+    <li v-for="i in years" :key="i" :style="{ width: yearSize + 'px' }">
+      {{ i + firstDate.getFullYear() - 1 }}
     </li>
 
     <ul class="timeline-events">
       <li
-        v-for="item in pJson"
+        v-for="item in items"
         :key="item.id"
         class="timeline-event"
         :style="{ left: item.tlStart + 'px', top: item.yPos }"
@@ -56,7 +55,7 @@ defineExpose({
           :class="['marker', item.markerClass]"
           :style="{ width: item.length + 'px', backgroundColor: item.color }"
         ></div>
-        <h4>{{ item.Organization }}</h4>
+        <h4>{{ item.organization }}</h4>
       </li>
     </ul>
   </ul>
@@ -73,7 +72,7 @@ defineExpose({
   position: relative;
   top: -6px;
   display: inline-block;
-  width: calc(v-bind("pYearSize"));
+  width: calc(v-bind("yearSize"));
   color: #868686;
   font-size: 11px;
   line-height: 11px;

@@ -7,7 +7,7 @@ import { usePortfolioData } from "@/composables/usePortfolioData";
 
 const { projectsByType, getProjectById } = usePortfolioData();
 
-const kattoProject = computed(() => getProjectById("14")); //TODO: remove Id and use descriptive name
+const kattoProject = computed(() => getProjectById("14"));
 const copperfieldProject = computed(() => getProjectById("15"));
 </script>
 
@@ -17,8 +17,8 @@ const copperfieldProject = computed(() => getProjectById("15"));
       <template v-slot:default>
         <ProjectCard
           v-if="kattoProject"
-          :p-high-light="true"
-          p-link="/katto"
+          :showcase="true"
+          detail-link="/katto"
           v-bind="kattoProject"
         >
         <!--TODO: move this text to an MD file-->
@@ -72,8 +72,8 @@ const copperfieldProject = computed(() => getProjectById("15"));
         </ProjectCard>
         <ProjectCard
           v-if="copperfieldProject"
-          :p-high-light="true"
-          p-link="/copperfield"
+          :showcase="true"
+          detail-link="/copperfield"
           v-bind="copperfieldProject"
         >
           <template v-slot:default>

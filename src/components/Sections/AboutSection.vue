@@ -3,7 +3,7 @@ import SectionLayout from "@/components/layouts/SectionLayout.vue";
 </script>
 
 <template>
-  <SectionLayout p-data="about" p-title="About Me" id="AboutMe">
+  <SectionLayout page="about" title="About Me" id="AboutMe">
     <section class="about-text">
       <p class="mb-3">
         I’ve wanted to make video games for as long as I can remember. For me,

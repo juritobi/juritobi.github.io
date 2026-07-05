@@ -12,14 +12,14 @@ const { firstDate, years, yearSize, timelineItems, experienceGroups } =
 </script>
 
 <template>
-  <section-layout p-data="experience" p-title="Experience" id="Experience">
+  <section-layout page="experience" title="Experience" id="Experience">
     <div class="row timeline m-0 d-none d-lg-block">
       <div ref="mainContainer" class="m-0 p-0 row">
         <HorizontalTimeLine
-          :pYears="years"
-          :pYearSize="yearSize"
-          :pFisrtDate="firstDate"
-          :pJson="timelineItems"
+          :years="years"
+          :year-size="yearSize"
+          :first-date="firstDate"
+          :items="timelineItems"
         />
       </div>
     </div>
@@ -28,10 +28,10 @@ const { firstDate, years, yearSize, timelineItems, experienceGroups } =
       v-for="group in experienceGroups"
       :key="group.id"
       :id="group.id"
-      :p-title="group.title"
-      :p-icon="group.icon"
-      :p-items="group.items"
-      :p-color="group.color"
+      :title="group.title"
+      :icon="group.icon"
+      :items="group.items"
+      :color="group.color"
     />
   </section-layout>
 </template>

@@ -5,9 +5,9 @@ import DetailLayout from "@/components/layouts/DetailLayout.vue";
 
 <template>
   <DetailLayout
-    p-title="Copperfield Engine"
-    p-data="Katto"
-    p-subtitle="Implementation details and decisions"
+    title="Copperfield Engine"
+    page="Copperfield"
+    subtitle="Implementation details and decisions"
   >
     <p>
       Copperfield Engine is a 3D game engine created. It aims to offer the
@@ -18,7 +18,7 @@ import DetailLayout from "@/components/layouts/DetailLayout.vue";
       well as physics.
     </p>
   </DetailLayout>
-  <SectionLayout p-title="Entity Component System" p-data="ECS">
+  <SectionLayout title="Entity Component System" page="ECS">
     <p>
       ECS is an architecture that allows to update objects in a scene in an
       efficient and structured way. This is achieved by following a data-driven
@@ -73,7 +73,7 @@ import DetailLayout from "@/components/layouts/DetailLayout.vue";
       a mistake to learn from.
     </p>
   </SectionLayout>
-  <SectionLayout p-title="Physics" p-data="Physics">
+  <SectionLayout title="Physics" page="Physics">
     <p>
       The physics system I developed included collision detection between
       spheres, Axis Aligned Bounding Boxes (AABBs), and Oriented Bounding Boxes
@@ -124,7 +124,7 @@ import DetailLayout from "@/components/layouts/DetailLayout.vue";
       properly test things, especially if they have never failed before.
     </p>
   </SectionLayout>
-  <SectionLayout p-title="Rendering" p-data="Rendering">
+  <SectionLayout title="Rendering" page="Rendering">
     <p>
       For rendering, we used OpenGL and implemented both forward and deferred
       rendering, each supporting any number of point, directional, or spot
@@ -146,7 +146,7 @@ import DetailLayout from "@/components/layouts/DetailLayout.vue";
       complex and unorganized sections again.
     </p>
   </SectionLayout>
-  <SectionLayout p-title="Input" p-data="Input">
+  <SectionLayout title="Input" page="Input">
     <p>
       Using GLFW, I implemented an action-based input system. For this system,
       the user needed to create a map of strings and a vector of keys. With that

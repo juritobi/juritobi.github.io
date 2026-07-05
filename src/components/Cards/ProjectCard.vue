@@ -2,17 +2,17 @@
 defineProps({
   id: String,
   title: String,
-  subTitle: String,
+  subtitle: String,
   image: String,
   language: String,
-  yearDate: Number,
+  releaseYear: Number,
   platform: String,
   downloadLink: String,
   codeLink: String,
-  VideoLink: String,
-  pHighLight: Boolean,
-  pLink: String,
-  Description: String,
+  videoLink: String,
+  showcase: Boolean,
+  detailLink: String,
+  description: String,
 });
 </script>
 
@@ -20,17 +20,17 @@ defineProps({
   <div
     class="col-12 mb-4"
     :class="{
-      highlight: pHighLight,
-      'col-lg-6': pHighLight,
-      'col-md-6': !pHighLight,
-      'col-xl-4': !pHighLight,
+      highlight: showcase,
+      'col-lg-6': showcase,
+      'col-md-6': !showcase,
+      'col-xl-4': !showcase,
     }"
   >
     <div class="experience-card">
       <img class="card-img-top" :src="image" alt="Card image cap" />
       <div class="card-content">
         <h3 class="card-title">{{ title }}</h3>
-        <h6 class="sub">{{ subTitle }}</h6>
+        <h6 class="sub">{{ subtitle }}</h6>
         <div class="d-flex justify-content-between align-items-end">
           <div class="d-flex legend-container">
             <div class="pe-3">
@@ -43,7 +43,7 @@ defineProps({
             </div>
             <div class="pe-3">
               <span class="legend">Date:</span>
-              <h6>{{ yearDate }}</h6>
+              <h6>{{ releaseYear }}</h6>
             </div>
           </div>
 
@@ -51,19 +51,19 @@ defineProps({
             <a v-if="codeLink" :href="codeLink" class="card-link m-0">
               Documentation
             </a>
-            <a v-if="VideoLink" :href="VideoLink" class="card-link m-0">
+            <a v-if="videoLink" :href="videoLink" class="card-link m-0">
               Video
             </a>
             <a v-if="downloadLink" :href="downloadLink" class="card-link m-0">
               Play
             </a>
-            <router-link v-if="pLink" :to="pLink" class="card-link m-0">
+            <router-link v-if="detailLink" :to="detailLink" class="card-link m-0">
               In Depth Details
             </router-link>
           </div>
         </div>
 
-        <!--        <p class="pt-4" v-if="Description">{{ Description }}</p>-->
+        <!--        <p class="pt-4" v-if="description">{{ description }}</p>-->
         <slot />
       </div>
     </div>

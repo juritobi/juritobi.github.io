@@ -1,11 +1,11 @@
 <script setup>
 defineProps({
-  pTitle: String,
+  title: String,
 });
 </script>
 
 <template>
-  <h3>{{ pTitle }}</h3>
+  <h3>{{ title }}</h3>
   <div class="content-card mb-4">
     <slot></slot>
   </div>

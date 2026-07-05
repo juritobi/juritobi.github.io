@@ -5,15 +5,15 @@ import SkillsList from "@/components/Cards/SkillsList.vue";
 </script>
 
 <template>
-  <section-layout p-title="Skills" p-data="Skills" id="Skills">
-    <SkillsCard p-title="Game Programming">
+  <section-layout title="Skills" page="Skills" id="Skills">
+    <SkillsCard title="Game Programming">
       <SkillsList
-        pTitle="Programming Languages"
-        :p-skills="['C++', 'C', 'C#', 'AssemblyCode', 'lua']"
+        title="Programming Languages"
+        :skills="['C++', 'C', 'C#', 'AssemblyCode', 'lua']"
       />
       <SkillsList
-        pTitle="Engines and Libraries"
-        :p-skills="[
+        title="Engines and Libraries"
+        :skills="[
           'Unreal Engine 5',
           'Unity',
           'OpenGl',
@@ -24,10 +24,10 @@ import SkillsList from "@/components/Cards/SkillsList.vue";
         ]"
       />
     </SkillsCard>
-    <SkillsCard p-title="Other">
+    <SkillsCard title="Other">
       <SkillsList
-        pTitle="Programming Languages"
-        :p-skills="[
+        title="Programming Languages"
+        :skills="[
           'JavaScript',
           'Java',
           'Python',
@@ -41,12 +41,12 @@ import SkillsList from "@/components/Cards/SkillsList.vue";
         ]"
       />
       <SkillsList
-        pTitle="Frameworks"
-        :p-skills="['Vue', 'JQuery', 'Bootstrap', 'Flutter', 'Wordpress']"
+        title="Frameworks"
+        :skills="['Vue', 'JQuery', 'Bootstrap', 'Flutter', 'Wordpress']"
       />
       <SkillsList
-        pTitle="Tools"
-        :p-skills="[
+        title="Tools"
+        :skills="[
           'Figma',
           'Photoshop',
           'Premiere',

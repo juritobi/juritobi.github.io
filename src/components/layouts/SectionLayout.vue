@@ -1,14 +1,14 @@
 <script setup>
 defineProps({
-  pData: String,
-  pTitle: String,
+  page: String,
+  title: String,
 });
 </script>
 
 <template>
-  <article class="container section" :data-page="pData">
+  <article class="container section" :data-page="page">
     <header class="pb-3">
-      <h2 class="h2 section-title">{{ pTitle }}</h2>
+      <h2 class="h2 section-title">{{ title }}</h2>
     </header>
     <slot></slot>
   </article>

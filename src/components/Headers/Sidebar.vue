@@ -70,7 +70,7 @@
           </div>
 
           <div class="contact-info">
-            <p class="contact-title">Linkedin</p>
+            <p class="contact-title">LinkedIn</p>
 
             <a
               href="https://tr.linkedin.com/in/afsakar"

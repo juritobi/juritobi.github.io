@@ -22,33 +22,27 @@ import HeaderLink from "@/components/Snippets/HeaderLink.vue";
     <div class="contacts-list">
       <ul>
         <HeaderLink
-          p-icon="envelope"
-          p-link="mailto:juritobi@gmail.com"
-          p-title="EMAIL"
-          p-content="juritobi@gmail.com"
+          icon="envelope"
+          link="mailto:juritobi@gmail.com"
+          title="EMAIL"
+          content="juritobi@gmail.com"
         />
         <HeaderLink
-          p-icon="phone"
-          p-link="tel:34674410029"
-          p-title="PHONE"
-          p-content="+34 674 410 029"
+          icon="phone"
+          link="tel:34674410029"
+          title="PHONE"
+          content="+34 674 410 029"
         />
         <HeaderLink
-          :p-icon="['fab', 'linkedin']"
-          p-link="https://www.linkedin.com/in/juritobi/"
-          p-title="LinkedIn"
-          p-content="Javier Izquierdo Vicedo"
+          :icon="['fab', 'linkedin']"
+          link="https://www.linkedin.com/in/juritobi/"
+          title="LinkedIn"
+          content="Javier Izquierdo Vicedo"
         />
-        <!--        <HeaderLink-->
-        <!--          p-icon="clipboard-list"-->
-        <!--          p-link="@/assets/Javier Izquierdo Vicedo Portfolio.pdf"-->
-        <!--          p-title="CV"-->
-        <!--          p-content="Download as PDF"-->
-        <!--        />-->
         <HeaderLink
-          p-icon="calendar"
-          p-title="Birthday"
-          p-content="14/06/1998"
+          icon="calendar"
+          title="Birthday"
+          content="14/06/1998"
         />
       </ul>
     </div>

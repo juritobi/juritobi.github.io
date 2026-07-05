@@ -1,14 +1,14 @@
 <script setup>
 defineProps({
-  pTitle: String,
-  pSkills: [],
+  title: String,
+  skills: [],
 });
 </script>
 
 <template>
-  <h4 class="pb-2 text-center">{{ pTitle }}</h4>
+  <h4 class="pb-2 text-center">{{ title }}</h4>
   <ul class="skills-list pb-4 m-0">
-    <li v-for="skill in pSkills" :key="skill" :value="skill">{{ skill }}</li>
+    <li v-for="skill in skills" :key="skill" :value="skill">{{ skill }}</li>
   </ul>
 </template>
 
