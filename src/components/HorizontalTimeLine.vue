@@ -48,9 +48,9 @@ defineExpose({
     <ul class="timeline-events">
       <li
         v-for="item in pJson"
-        :key="item"
+        :key="item.id"
         class="timeline-event"
-        :style="{ left: item.tlSrtart + 'px', top: item.yPos }"
+        :style="{ left: item.tlStart + 'px', top: item.yPos }"
       >
         <div
           :class="['marker', item.markerClass]"

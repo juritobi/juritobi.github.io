@@ -1,51 +1,27 @@
 <script setup>
 import TabsWrapper from "../TabsSystem/TabsWrapper.vue";
 import TabItem from "../TabsSystem/TabItem.vue";
-import json from "../../assets/portfolio.json";
-import { onBeforeMount } from "vue";
+import { computed } from "vue";
 import ProjectCard from "@/components/Cards/ProjectCard.vue";
+import { usePortfolioData } from "@/composables/usePortfolioData";
 
-var highLightsIds = [];
-var gamesIds = [];
-var libsIds = [];
-var appsIds = [];
+const { projectsByType, getProjectById } = usePortfolioData();
 
-onBeforeMount(() => {
-  windowResize();
-});
-
-function windowResize() {
-  for (var i = 0; i < json.length; i++) {
-    if (json[i].display == "1") {
-      var d = new Date(json[i].releaseDate);
-      json[i].yearDate = d.getFullYear();
-
-      switch (parseInt(json[i].type)) {
-        case 0:
-          gamesIds.push(i);
-          break;
-        case 1:
-          libsIds.push(i);
-          break;
-        case 2:
-          appsIds.push(i);
-          break;
-        default:
-          break;
-      }
-      if (json[i].HighLight == "1") {
-        highLightsIds.push(i);
-      }
-    }
-  }
-}
+const kattoProject = computed(() => getProjectById("14")); //TODO: remove Id and use descriptive name
+const copperfieldProject = computed(() => getProjectById("15"));
 </script>
 
 <template>
   <TabsWrapper>
     <TabItem title="High Lights">
       <template v-slot:default>
-        <ProjectCard :p-high-light="true" p-link="Katto" v-bind="json[2]">
+        <ProjectCard
+          v-if="kattoProject"
+          :p-high-light="true"
+          p-link="/katto"
+          v-bind="kattoProject"
+        >
+        <!--TODO: move this text to an MD file-->
           <template v-slot:default>
             <p class="pt-3">
               This is the first published game I've been part of. In it, I've
@@ -94,7 +70,12 @@ function windowResize() {
             </ul>
           </template>
         </ProjectCard>
-        <ProjectCard :p-high-light="true" p-link="Copperfield" v-bind="json[3]">
+        <ProjectCard
+          v-if="copperfieldProject"
+          :p-high-light="true"
+          p-link="/copperfield"
+          v-bind="copperfieldProject"
+        >
           <template v-slot:default>
             <p class="pt-3">
               Copperfield Engine is a 3D game engine created by just two people.
@@ -122,18 +103,18 @@ function windowResize() {
       </template>
     </TabItem>
     <TabItem title="Games">
-      <template v-for="i in gamesIds">
-        <ProjectCard v-bind="json[i]" />
+      <template v-for="project in projectsByType.games" :key="project.id">
+        <ProjectCard v-bind="project" />
       </template>
     </TabItem>
     <TabItem title="Tools and Demos">
-      <template v-for="i in libsIds">
-        <ProjectCard v-bind="json[i]" />
+      <template v-for="project in projectsByType.tools" :key="project.id">
+        <ProjectCard v-bind="project" />
       </template>
     </TabItem>
     <TabItem title="Apps">
-      <template v-for="i in appsIds">
-        <ProjectCard v-bind="json[i]" />
+      <template v-for="project in projectsByType.apps" :key="project.id">
+        <ProjectCard v-bind="project" />
       </template>
     </TabItem>
   </TabsWrapper>

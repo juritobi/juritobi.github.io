@@ -28,8 +28,6 @@ REM Runs the Vue build command. If it fails, jumps to the :error label
 echo Copying files...
 xcopy /E /I /Y dist\* "%TEMP_DIR%\"
 REM Copies all files from Vue's `dist` folder to the temp folder (recursively, force overwrite)
-xcopy /E /I /Y SocialGames "%TEMP_DIR%\SocialGames"
-REM Copies the custom `game` folder into the temp folder as a subfolder called "game"
 
 cd "%TEMP_DIR%"
 REM Moves into the temporary folder (now contains built site content)

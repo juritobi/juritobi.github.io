@@ -1,7 +1,5 @@
 <script setup>
-import router from "@/router";
-
-const props = defineProps({
+defineProps({
   id: String,
   title: String,
   subTitle: String,
@@ -16,10 +14,6 @@ const props = defineProps({
   pLink: String,
   Description: String,
 });
-
-function navigate() {
-  router.push(props.pLink);
-}
 </script>
 
 <template>
@@ -63,15 +57,14 @@ function navigate() {
             <a v-if="downloadLink" :href="downloadLink" class="card-link m-0">
               Play
             </a>
-            <!-- TODO: PDF SWAP -->
-            <a v-if="pLink" v-on:click="navigate()" class="card-link m-0">
+            <router-link v-if="pLink" :to="pLink" class="card-link m-0">
               In Depth Details
-            </a>
+            </router-link>
           </div>
         </div>
 
-<!--        <p class="pt-4" v-if="Description">{{ Description }}</p>-->
-        <slot/>
+        <!--        <p class="pt-4" v-if="Description">{{ Description }}</p>-->
+        <slot />
       </div>
     </div>
   </div>

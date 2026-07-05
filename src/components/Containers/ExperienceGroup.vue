@@ -1,35 +1,11 @@
 <script setup>
 import ExperienceCard from "@/components/Cards/ExperienceCard.vue";
-import { onMounted, ref } from "vue";
-import json from "@/assets/db.json";
 
-const props = defineProps({
+defineProps({
   pTitle: String,
   pIcon: [],
-  pJson: Array,
+  pItems: Array,
   pColor: String,
-});
-
-let finalList = ref([]);
-
-onMounted(() => {
-  if (props.pTitle !== "Other") {
-    for (let i = 0; i < json.length; i++) {
-      if (json[i].Role === props.pTitle) {
-        finalList.value.push(json[i]);
-      }
-    }
-  } else {
-    for (let i = 0; i < json.length; i++) {
-      if (
-        json[i].Role !== "Game Development" &&
-        json[i].Role !== "Studies" &&
-        json[i].Role !== "Web Development"
-      ) {
-        finalList.value.push(json[i]);
-      }
-    }
-  }
 });
 </script>
 
@@ -43,13 +19,13 @@ onMounted(() => {
     </div>
     <ol class="timeline-list">
       <ExperienceCard
-        v-for="i in finalList.slice().reverse()"
-        :key="i"
-        :p-organization="i.Organization"
-        :p-description="i.Descirption"
-        :p-end="i.end"
-        :p-start="i.start"
-        :p-link="i.Link"
+        v-for="item in pItems.slice().reverse()"
+        :key="item.id"
+        :p-organization="item.Organization"
+        :p-description="item.Descirption"
+        :p-end="item.end"
+        :p-start="item.start"
+        :p-link="item.Link"
         :p-colot="pColor"
       ></ExperienceCard>
     </ol>
