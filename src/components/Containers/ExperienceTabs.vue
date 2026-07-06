@@ -10,6 +10,7 @@ import copperfieldHighlightsMarkdown from "@/content/experience-tabs/copperfield
 
 const { projectsByType, getProjectById } = usePortfolioData();
 
+//TODO: use hiighlighted instead of IDs
 const kattoProject = computed(() => getProjectById("14"));
 const copperfieldProject = computed(() => getProjectById("15"));
 </script>

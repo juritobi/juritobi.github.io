@@ -1,12 +1,11 @@
 <script setup>
-import router from "@/router";
-import { onBeforeMount, onMounted, getCurrentInstance } from "vue";
+import { onBeforeUnmount, onMounted, getCurrentInstance } from "vue";
 
 onMounted(() => {
   window.addEventListener("scroll", onScroll);
 });
 
-onBeforeMount(() => {
+onBeforeUnmount(() => {
   window.removeEventListener("scroll", onScroll);
 });
 
@@ -41,8 +40,10 @@ function onScroll() {
 }
 
 function navigate(link) {
-  var id = "#" + link;
-  router.replace(id);
+  document.getElementById(link)?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
 }
 </script>
 
@@ -60,7 +61,7 @@ function navigate(link) {
       </li>
     </ul>
   </nav>
-  <a class="to-top" v-on:click="navigate('app')">^</a>
+  <a class="to-top" v-on:click="navigate('MainHeader')">^</a>
 </template>
 
 <style scoped>

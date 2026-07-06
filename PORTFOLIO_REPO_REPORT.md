@@ -2,9 +2,9 @@
 
 ## Executive Summary
 
-This repository is a static portfolio site built with Vue 3 and Vite, styled with Bootstrap plus a large custom CSS layer, and deployed like a GitHub Pages site. The main portfolio content is mostly data-driven from local JSON files, but several parts are still hard-coded in components and views.
+This repository is a static portfolio site built with Vue 3 and Vite, styled with Bootstrap plus a large custom CSS layer, and deployed like a GitHub Pages site. The main portfolio content is now split between structured local data files and markdown content files, with the page components acting mostly as renderers.
 
-The biggest maintenance opportunity is to centralize content into one clean data model, stop mutating imported JSON inside components, and replace index-based references with stable IDs or slugs.
+The biggest maintenance gains already made are moving derived data into composables, normalizing field names, and replacing several hard-coded content blocks with markdown files. The remaining work is mostly about cleanup, consistency, and validation.
 
 ## How The Site Is Built
 
@@ -67,169 +67,122 @@ The site does not appear to use a backend API or a live database. The content is
 
 - `src/assets/portfolio.json` stores project metadata for the portfolio cards.
 - `src/assets/db.json` stores work experience / timeline entries.
-- `Texts.MD` contains longer text blocks for project/experience descriptions.
-- Individual view files such as `src/views/KattoView.vue` and `src/views/CopperfieldView.vue` also contain large amounts of prose directly in the component template.
+- `src/content/sections/about.md` stores the About section copy.
+- `src/content/experience-tabs/*.md` stores the highlight copy for featured projects.
+- `src/content/views/katto.md` and `src/content/views/copperfield.md` store the long-form project writeups.
 
 ## What The Data Flow Looks Like
 
 ### Portfolio section
 
-`src/components/Containers/ExperienceTabs.vue` imports `src/assets/portfolio.json`, groups records by `type`, and filters by `display`.
+`src/components/Containers/ExperienceTabs.vue` imports `src/assets/portfolio.json`, normalizes the raw records in a composable, groups them by `type`, and filters by `display`.
 
-`src/components/Cards/ProjectCard.vue` receives each project entry as props and renders links based on optional fields such as `codeLink`, `VideoLink`, and `downloadLink`.
+`src/components/Cards/ProjectCard.vue` receives each project entry as props and renders links based on optional fields such as `codeLink`, `videoLink`, and `downloadLink`.
 
 ### Experience section
 
-`src/components/Sections/ExperienceSection.vue` imports `src/assets/db.json`, calculates timeline positions from dates, and injects derived fields such as:
+`src/components/Sections/ExperienceSection.vue` imports `src/assets/db.json` through a composable, calculates timeline positions from dates, and returns derived view data without mutating the source array.
 
-- `length`
-- `tlSrtart`
-- `color`
-- `markerClass`
-- `yPos`
-
-`src/components/Containers/ExperienceGroup.vue` then filters the same dataset again by `Role` and renders cards for each category.
+`src/components/Containers/ExperienceGroup.vue` then filters the same dataset again by `role` and renders cards for each category.
 
 ## Maintenance Risks And Technical Debt
 
-### 1. Imported JSON is mutated in components
+### 1. Scroll listener cleanup is still awkward
 
-The experience and project data are imported directly from JSON and then augmented with extra properties inside component logic.
-
-Why this is risky:
-
-- It mixes raw content with view-only derived state.
-- It makes the same source object behave differently depending on component lifecycle.
-- It becomes harder to validate, test, or reuse the data elsewhere.
-
-### 2. Some content depends on hard-coded array indexes
-
-`src/components/Containers/ExperienceTabs.vue` uses fixed positions like `json[2]` and `json[3]` for highlight cards.
-
-Why this is risky:
-
-- Reordering the JSON changes the UI.
-- Adding or removing records can silently break featured project selection.
-- The code does not express intent as clearly as ID-based selection.
-
-### 3. There are several naming inconsistencies and typos
-
-Examples include:
-
-- `Descirption`
-- `pFisrtDate`
-- `pColot`
-- `tlSrtart`
-- `HighLight`
-
-Why this is risky:
-
-- It makes the data model harder to remember.
-- It increases the chance of bugs when updating content.
-- It makes future refactors more expensive.
-
-### 4. Lifecycle cleanup is inconsistent
-
-`src/components/Headers/NavBar.vue` adds a scroll listener on mount but tries to remove it in `onBeforeMount`, which is the wrong lifecycle moment for cleanup. That should be `onBeforeUnmount`.
+`src/components/Headers/NavBar.vue` adds a scroll listener on mount but removes it in `onBeforeMount`, which is the wrong lifecycle hook for cleanup.
 
 Why this is risky:
 
 - The listener may remain attached longer than intended.
-- It is easy to accidentally create duplicate listeners in future edits.
+- It is easy to introduce duplicate listeners if the component is refactored later.
 
-### 5. Internal navigation is a little brittle
+### 2. Some navigation is still string-based
 
-`src/components/Cards/ProjectCard.vue` calls `router.push(props.pLink)` for internal project links, while the route table in `src/router/index.js` uses lowercase paths like `/katto` and `/copperfield`.
-
-Why this is risky:
-
-- If the prop value does not exactly match a valid route path, navigation breaks.
-- String-based route pushes are easier to mistype than named routes.
-
-### 6. There is duplicated narrative content
-
-Long-form copy exists in multiple places:
-
-- `Texts.MD`
-- the detailed route components
-- data files
+`src/components/Headers/NavBar.vue` still navigates by building hash strings directly.
 
 Why this is risky:
 
-- Updating a project description may require touching multiple files.
-- Copy can drift out of sync over time.
+- String navigation is easier to mistype than named routes.
+- A future change to section IDs would require a matching manual update in the navbar.
 
-### 7. The repository contains legacy or unused material
+### 3. The data schema is better, but still largely convention-driven
+
+`src/assets/portfolio.json` and `src/assets/db.json` are cleaner now, but they are still plain local JSON files with no schema validation.
 
 Why this is risky:
 
-- It makes the repo harder to understand at a glance.
-- It increases noise when searching for the active site code.
+- A typo or missing field can still break the UI.
+- The data model is enforced by convention rather than tooling.
+
+### 4. There is still some duplicated narrative content
+
+Long-form copy is now stored in markdown files, but some of the same ideas still appear in multiple places:
+
+- project card summaries in `src/assets/portfolio.json`
+- detail-page copy in `src/content/views/*.md`
+- featured highlight copy in `src/content/experience-tabs/*.md`
+
+Why this is risky:
+
+- Updating one source does not automatically update the others.
+- The text can still drift if the descriptions are revised independently.
+
+### 5. The repository still relies on human discipline for content updates
+
+The content workflow is much better now, but it still depends on remembering where each kind of text lives.
+
+Why this is risky:
+
+- It is easy to edit the wrong file when updating content.
+- New content contributors may need a short onboarding guide to avoid mistakes.
 
 ## Recommended Improvements
 
 ### Highest priority
 
-1. Create a single content source for portfolio data.
-   - Move projects, experience, skills, and detailed descriptions into one structured content layer, such as JSON with a stable schema or markdown files with frontmatter.
-   - Keep components focused on rendering only.
+1. Finish moving presentation logic out of UI components.
+   - Keep derived data inside composables and keep the view components mostly declarative.
+   - That pattern is already in place for experience and portfolio data, so the main work is extending it consistently.
 
-2. Stop mutating imported data in components.
-   - Build computed view models instead of writing derived fields back into the imported arrays.
-   - Use `computed()` or `watchEffect()` for render-ready data.
+2. Add lightweight validation for local content files.
+   - A simple schema check would catch missing fields or broken references in `portfolio.json` and `db.json`.
+   - This would make the current convention-driven workflow safer.
 
-3. Replace hard-coded indexes with stable IDs or slugs.
-   - Select featured projects by `id` or `slug`.
-   - Filter experiences by explicit category fields.
+3. Keep using stable IDs and markdown sections for editable content.
+   - The current project pages and About section are now markdown-backed, which is a good pattern to keep.
+   - If more long-form content is added later, follow the same approach rather than embedding prose in templates.
 
-4. Normalize the data schema.
-   - Fix typos in field names.
-   - Use consistent casing across all content files.
-   - Prefer one naming convention for all records.
-
-5. Move long text out of route components.
-   - Put detailed page copy into markdown files or a single content JSON file.
-   - This will make editing and proofreading much easier.
+4. Clean up remaining lifecycle and navigation details.
+   - Move the NavBar listener cleanup to the correct unmount hook.
+   - Consider using named routes or a small navigation helper if the app grows.
 
 ### Medium priority
 
-6. Use named routes and `<router-link>` for internal navigation.
-   - This will make route changes safer and more self-documenting.
-
-7. Fix lifecycle cleanup and listener management.
-   - Use `onBeforeUnmount` for cleanup.
-   - Keep scroll/resize logic inside composables where possible.
-
-8. Split legacy apps out of the main portfolio repo.
-   - If old experimental app code is no longer needed, remove it after confirming it is not still deployed.
-
-9. Reduce content duplication.
-   - Store each project description in one place.
-   - Reference that content from both the card view and the detail page.
+5. Reduce duplicated narrative copy.
+   - The repo is much better than before, but some descriptions are still repeated in summary and detail form.
+   - A shared content model would help if you want one edit to propagate everywhere.
 
 ### Lower priority but valuable
 
-10. Add data validation.
-    - A simple schema check or lint script for portfolio JSON would catch typos like `Descirption` before they reach the site.
+6. Add a small build-time content check.
+   - Verify that featured project IDs exist and that markdown section markers are present.
+   - This would protect the new markdown-based content workflow.
 
-11. Add a small test or build-time check for critical data.
-    - For example, verify that all featured projects have valid image paths and routes.
-
-12. Clean up old assets and dead files.
-    - Remove unused binaries, duplicate screenshots, and legacy placeholders if they are no longer referenced.
+7. Document the content conventions for future edits.
+   - `AGENTS.md` already helps with naming and formatting preferences.
+   - It would be useful to keep that file updated as the content structure evolves.
 
 ## Suggested Future Shape
 
-If the goal is to make the site easy to update often, the cleanest long-term structure would be:
+If the goal is to make the site easy to update often, the current direction is already much cleaner:
 
-- `content/projects/*.md` for project writeups
-- `content/experience.json` or `content/experience/*.md` for work history
-- `content/skills.json` for skills and tools
-- `content/profile.json` for header/contact details
-- Vue components that render those files without mutating them
+- keep long-form prose in markdown files
+- keep structured project and experience data in local JSON
+- use composables to derive render-ready state
+- let Vue components stay focused on layout and presentation
 
-That would let you update the portfolio by editing content files rather than touching the component tree.
+That gives you a static, GitHub Pages-friendly setup while still making content easier to edit.
 
 ## Short Verdict
 
-The portfolio is well on its way to being data-driven, but it is currently a hybrid of content files, hard-coded text, and runtime data mutation. The fastest path to maintainability is to centralize content, remove array-index assumptions, and keep components purely presentational.
+The portfolio is now much closer to a maintainable content-driven site than it was originally. The worst data-mutation and typo issues have been addressed, the key long-form pages now live in markdown, and the remaining debt is mostly around cleanup, validation, and a few brittle interaction details.
