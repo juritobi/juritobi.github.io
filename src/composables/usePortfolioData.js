@@ -3,13 +3,14 @@ import rawPortfolio from "@/assets/portfolio.json";
 
 function normalizeProject(project) {
   const display = project.display === true || project.display === "1";
-  const highlight = project.highlight === true || project.highlight === "1";
+  const highlightOrder =
+    project.highlightOrder === null ? null : Number(project.highlightOrder);
 
   return {
     ...project,
     releaseYear: new Date(project.releaseDate).getFullYear(),
     display,
-    highlight,
+    highlightOrder,
   };
 }
 
@@ -25,6 +26,12 @@ export function usePortfolioData() {
     apps: displayedProjects.value.filter((project) => project.type === "app"),
   }));
 
+  const highlightedProjects = computed(() =>
+    displayedProjects.value
+      .filter((project) => project.highlightOrder !== null)
+      .sort((first, second) => first.highlightOrder - second.highlightOrder),
+  );
+
   const projectsBySlug = computed(() =>
     Object.fromEntries(
       displayedProjects.value.map((project) => [project.slug, project]),
@@ -39,6 +46,7 @@ export function usePortfolioData() {
     projects,
     displayedProjects,
     projectsByType,
+    highlightedProjects,
     getProjectBySlug,
   };
 }

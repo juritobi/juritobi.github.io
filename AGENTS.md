@@ -24,6 +24,10 @@
 - Treat JSON files under `src/assets/` as generated output. Regenerate them with `npm run export:content` instead of editing them directly.
 - Keep narrative content in Markdown files under `src/content/`.
 - Use semantic slugs to associate database metadata with Markdown sections and for application lookups.
+- Name project Markdown files after the matching database slug.
+- Use an optional `section:highlight` section in project Markdown for featured-card copy.
+- Use a positive `highlightOrder` to feature a project; leave it `NULL` otherwise.
+- Name project detail routes after the matching database slug.
 - Use `game`, `tool`, or `app` for project type values.
 - If a legacy field name exists, normalize it when touching the file and update the code to match.
 - Use one canonical field name for each concept across the repo.

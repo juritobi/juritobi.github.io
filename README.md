@@ -1,5 +1,8 @@
 # Portfolio
 
+For a task-oriented map of the codebase and content workflow, see
+[`PROJECT_QUICK_REFERENCE.md`](PROJECT_QUICK_REFERENCE.md).
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup

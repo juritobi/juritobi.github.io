@@ -11,7 +11,7 @@ defineProps({
   codeLink: String,
   videoLink: String,
   showcase: Boolean,
-  detailLink: String,
+  detailLink: Object,
 });
 </script>
 

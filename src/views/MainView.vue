@@ -8,8 +8,6 @@ import NavBar from "@/components/Headers/NavBar.vue";
 </script>
 
 <template>
-  <!-- TODO: PDF -->
-  <!--  <OnlineWarning />-->
   <nav-bar />
   <MainHeader />
   <AboutSection />

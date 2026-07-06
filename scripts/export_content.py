@@ -46,7 +46,7 @@ def fetch_portfolio(cursor):
             teamSize,
             display,
             videoLink,
-            highlight
+            highlightOrder
         from PortfolioCards
         order by releaseDate desc, id asc
         """
@@ -68,7 +68,7 @@ def fetch_portfolio(cursor):
             "teamSize": str(row[11]),
             "display": as_bool(row[12]),
             "videoLink": row[13],
-            "highlight": as_bool(row[14]),
+            "highlightOrder": row[14],
         }
         for row in rows
     ]

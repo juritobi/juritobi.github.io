@@ -63,19 +63,18 @@ The detailed project pages are separate Vue views:
 
 ### Main portfolio data
 
-The site does not appear to use a backend API or a live database. The content is stored in local files and rendered at runtime.
+The site does not use a backend API or a live database. Structured metadata is maintained in `portfolio.db`, exported to local JSON during the build, and rendered at runtime.
 
 - `src/assets/portfolio.json` stores project metadata for the portfolio cards.
 - `src/assets/db.json` stores work experience / timeline entries.
 - `src/content/sections/about.md` stores the About section copy.
-- `src/content/experience-tabs/*.md` stores the highlight copy for featured projects.
-- `src/content/views/katto.md` and `src/content/views/copperfield.md` store the long-form project writeups.
+- `src/content/views/katto.md` and `src/content/views/copperfield.md` store both long-form project writeups and optional featured-card sections.
 
 ## What The Data Flow Looks Like
 
 ### Portfolio section
 
-`src/components/Containers/ExperienceTabs.vue` imports `src/assets/portfolio.json`, normalizes the raw records in a composable, groups them by `type`, and filters by `display`.
+`src/components/Containers/ExperienceTabs.vue` consumes normalized project data from a composable. Projects are grouped by `type`, filtered by `display`, and featured projects are sorted by `highlightOrder`.
 
 `src/components/Cards/ProjectCard.vue` receives each project entry as props and renders links based on optional fields such as `codeLink`, `videoLink`, and `downloadLink`.
 
@@ -114,11 +113,16 @@ Why this is risky:
 - A typo or missing field can still break the UI.
 - The data model is enforced by convention rather than tooling.
 
-### 4. Featured highlights and detail pages remain separate content
+### 4. Featured projects rely on slug conventions
 
 Project and experience descriptions have been removed from `portfolio.db` and the generated JSON files. The Katto and Copperfield project narratives now live in their respective detail-page markdown files under `src/content/views/`, while timeline descriptions live in `src/content/experience.md`.
 
-The shorter featured highlight copy remains intentionally separate under `src/content/experience-tabs/` because it serves a different presentation context.
+Featured-card copy now lives in an optional `section:highlight` inside the same project Markdown document. Project Markdown filenames and detail route names must match the database slug.
+
+Why this is risky:
+
+- A renamed slug must be updated consistently across the database, Markdown filename, and route name.
+- These relationships are currently enforced by convention rather than a dedicated content validation command.
 
 ### 5. The repository still relies on human discipline for content updates
 
@@ -141,7 +145,7 @@ Why this is risky:
    - A simple schema check would catch missing fields or broken references in `portfolio.json` and `db.json`.
    - This would make the current convention-driven workflow safer.
 
-3. Keep using stable IDs and markdown sections for editable content.
+3. Keep using stable slugs and markdown sections for editable content.
    - The current project pages and About section are now markdown-backed, which is a good pattern to keep.
    - If more long-form content is added later, follow the same approach rather than embedding prose in templates.
 
@@ -151,14 +155,14 @@ Why this is risky:
 
 ### Medium priority
 
-5. Review featured highlight copy when detail-page content changes.
+5. Review featured copy when detail-page content changes.
    - The database no longer contains project or experience descriptions.
-   - Featured highlights are intentionally shorter, but may need a matching editorial update when the related detail page changes substantially.
+   - Featured copy shares the same project Markdown document, but remains an independent section for its shorter presentation context.
 
 ### Lower priority but valuable
 
 6. Add a small build-time content check.
-   - Verify that featured project IDs exist and that markdown section markers are present.
+   - Verify slug/filename/route relationships and ensure `highlightOrder` values are valid.
    - This would protect the new markdown-based content workflow.
 
 7. Document the content conventions for future edits.

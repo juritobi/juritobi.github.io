@@ -2,16 +2,34 @@
 import TabsWrapper from "../TabsSystem/TabsWrapper.vue";
 import TabItem from "../TabsSystem/TabItem.vue";
 import { computed } from "vue";
+import { useRouter } from "vue-router";
 import ProjectCard from "@/components/Cards/ProjectCard.vue";
 import MarkdownContent from "@/components/MarkdownContent.vue";
 import { usePortfolioData } from "@/composables/usePortfolioData";
-import kattoHighlightsMarkdown from "@/content/experience-tabs/katto-highlights.md?raw";
-import copperfieldHighlightsMarkdown from "@/content/experience-tabs/copperfield-highlights.md?raw";
+import { parseMarkdownSections } from "@/utils/markdown";
 
-const { projectsByType, getProjectBySlug } = usePortfolioData();
+const projectMarkdownFiles = import.meta.glob("../../content/views/*.md", {
+  as: "raw",
+  eager: true,
+});
 
-const kattoProject = computed(() => getProjectBySlug("katto"));
-const copperfieldProject = computed(() => getProjectBySlug("copperfield"));
+const projectHighlights = Object.fromEntries(
+  Object.entries(projectMarkdownFiles).map(([path, source]) => {
+    const slug = path.match(/\/([^/]+)\.md$/)?.[1];
+    return [slug, parseMarkdownSections(source).highlight ?? ""];
+  }),
+);
+
+const router = useRouter();
+const { projectsByType, highlightedProjects } = usePortfolioData();
+
+const highlightedCards = computed(() =>
+  highlightedProjects.value.map((project) => ({
+    ...project,
+    detailLink: router.hasRoute(project.slug) ? { name: project.slug } : null,
+    highlightContent: projectHighlights[project.slug] ?? "",
+  })),
+);
 </script>
 
 <template>
@@ -19,25 +37,22 @@ const copperfieldProject = computed(() => getProjectBySlug("copperfield"));
     <TabItem title="High Lights">
       <template v-slot:default>
         <ProjectCard
-          v-if="kattoProject"
+          v-for="project in highlightedCards"
+          :key="project.slug"
           :showcase="true"
-          detail-link="/katto"
-          v-bind="kattoProject"
+          :detail-link="project.detailLink"
+          v-bind="project"
         >
           <template v-slot:default>
-            <MarkdownContent :source="kattoHighlightsMarkdown" />
+            <MarkdownContent
+              v-if="project.highlightContent"
+              :source="project.highlightContent"
+            />
           </template>
         </ProjectCard>
-        <ProjectCard
-          v-if="copperfieldProject"
-          :showcase="true"
-          detail-link="/copperfield"
-          v-bind="copperfieldProject"
-        >
-          <template v-slot:default>
-            <MarkdownContent :source="copperfieldHighlightsMarkdown" />
-          </template>
-        </ProjectCard>
+        <p v-if="highlightedCards.length === 0" class="empty-state">
+          No featured projects are configured.
+        </p>
       </template>
     </TabItem>
     <TabItem title="Games">
@@ -61,5 +76,11 @@ const copperfieldProject = computed(() => getProjectBySlug("copperfield"));
 <style scoped>
 li {
   list-style: outside disc;
+}
+
+.empty-state {
+  color: var(--light-gray);
+  padding: 1rem;
+  text-align: center;
 }
 </style>

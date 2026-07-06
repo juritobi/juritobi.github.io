@@ -6,14 +6,17 @@ import Katto from "@/views/KattoView.vue";
 const routes = [
   {
     path: "/",
+    name: "home",
     component: AboutView,
   },
   {
     path: "/katto",
+    name: "katto",
     component: Katto,
   },
   {
     path: "/copperfield",
+    name: "copperfield",
     component: Copperfield,
   },
 ];
