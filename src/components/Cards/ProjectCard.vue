@@ -12,7 +12,6 @@ defineProps({
   videoLink: String,
   showcase: Boolean,
   detailLink: String,
-  description: String,
 });
 </script>
 
@@ -63,7 +62,6 @@ defineProps({
           </div>
         </div>
 
-        <!--        <p class="pt-4" v-if="description">{{ description }}</p>-->
         <slot />
       </div>
     </div>

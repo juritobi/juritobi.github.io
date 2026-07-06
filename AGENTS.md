@@ -20,7 +20,9 @@
 
 ## Content Rules
 
-- Treat JSON files under `src/assets/` as raw content sources.
+- Treat `portfolio.db` as the source of truth for structured project and experience metadata.
+- Treat JSON files under `src/assets/` as generated output. Regenerate them with `npm run export:content` instead of editing them directly.
+- Keep narrative content in Markdown files under `src/content/`.
+- Use stable database IDs to associate structured metadata with Markdown sections.
 - If a legacy field name exists, normalize it when touching the file and update the code to match.
 - Use one canonical field name for each concept across the repo.
-

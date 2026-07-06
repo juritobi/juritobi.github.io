@@ -1,5 +1,13 @@
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import rawExperience from "@/assets/db.json";
+import experienceMarkdown from "@/content/experience.md?raw";
+import { parseMarkdownSections } from "@/utils/markdown";
+
+const experienceDescriptions = parseMarkdownSections(experienceMarkdown);
+const experienceItems = rawExperience.map((item) => ({
+  ...item,
+  description: experienceDescriptions[`experience-${item.id}`] ?? "",
+}));
 
 const ROLE_STYLES = {
   Studies: {
@@ -57,10 +65,10 @@ function getRoleStyle(role) {
 
 function getExperienceGroupItems(groupTitle) {
   if (groupTitle !== "Other") {
-    return rawExperience.filter((item) => item.role === groupTitle);
+    return experienceItems.filter((item) => item.role === groupTitle);
   }
 
-  return rawExperience.filter(
+  return experienceItems.filter(
     (item) =>
       item.role !== "Game Development" &&
       item.role !== "Studies" &&
@@ -69,10 +77,10 @@ function getExperienceGroupItems(groupTitle) {
 }
 
 export function useExperienceData(containerRef) {
-  const firstDate = rawExperience.reduce((earliest, item) => {
+  const firstDate = experienceItems.reduce((earliest, item) => {
     const currentStart = new Date(item.start);
     return currentStart < earliest ? currentStart : earliest;
-  }, new Date(rawExperience[0]?.start));
+  }, new Date(experienceItems[0]?.start));
   const finalYear = new Date().getFullYear() + 1;
   const containerWidth = ref(900);
 
@@ -89,7 +97,7 @@ export function useExperienceData(containerRef) {
   }
 
   const timelineItems = computed(() =>
-    rawExperience.map((item) => {
+    experienceItems.map((item) => {
       const end = item.end ? new Date(item.end) : new Date();
       const start = new Date(item.start);
       const role = item.role;

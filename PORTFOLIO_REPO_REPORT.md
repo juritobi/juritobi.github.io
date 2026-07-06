@@ -114,18 +114,11 @@ Why this is risky:
 - A typo or missing field can still break the UI.
 - The data model is enforced by convention rather than tooling.
 
-### 4. There is still some duplicated narrative content
+### 4. Featured highlights and detail pages remain separate content
 
-Long-form copy is now stored in markdown files, but some of the same ideas still appear in multiple places:
+Project and experience descriptions have been removed from `portfolio.db` and the generated JSON files. The Katto and Copperfield project narratives now live in their respective detail-page markdown files under `src/content/views/`, while timeline descriptions live in `src/content/experience.md`.
 
-- project card summaries in `src/assets/portfolio.json`
-- detail-page copy in `src/content/views/*.md`
-- featured highlight copy in `src/content/experience-tabs/*.md`
-
-Why this is risky:
-
-- Updating one source does not automatically update the others.
-- The text can still drift if the descriptions are revised independently.
+The shorter featured highlight copy remains intentionally separate under `src/content/experience-tabs/` because it serves a different presentation context.
 
 ### 5. The repository still relies on human discipline for content updates
 
@@ -158,9 +151,9 @@ Why this is risky:
 
 ### Medium priority
 
-5. Reduce duplicated narrative copy.
-   - The repo is much better than before, but some descriptions are still repeated in summary and detail form.
-   - A shared content model would help if you want one edit to propagate everywhere.
+5. Review featured highlight copy when detail-page content changes.
+   - The database no longer contains project or experience descriptions.
+   - Featured highlights are intentionally shorter, but may need a matching editorial update when the related detail page changes substantially.
 
 ### Lower priority but valuable
 

@@ -45,8 +45,7 @@ def fetch_portfolio(cursor):
             teamSize,
             display,
             videoLink,
-            highlight,
-            description
+            highlight
         from PortfolioCards
         order by releaseDate desc, id asc
         """
@@ -68,7 +67,6 @@ def fetch_portfolio(cursor):
             "display": as_bool(row[11]),
             "videoLink": row[12],
             "highlight": as_bool(row[13]),
-            "description": row[14],
         }
         for row in rows
     ]
@@ -83,7 +81,6 @@ def fetch_experience(cursor):
             end,
             organization,
             role,
-            description,
             link
         from experience
         order by start asc, id asc
@@ -97,8 +94,7 @@ def fetch_experience(cursor):
             "end": row[2],
             "organization": row[3],
             "role": row[4],
-            "description": row[5],
-            "link": row[6],
+            "link": row[5],
         }
         for row in rows
     ]

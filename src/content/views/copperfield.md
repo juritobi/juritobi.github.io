@@ -1,5 +1,5 @@
 <!-- section:intro -->
-Copperfield Engine is a 3D game engine created. It aims to offer the essential features for game development, with an easy-to-use API that follows a data-driven design with the use of ECS. The only libraries used are glfw, glew, imgui, tinyobjloader, StbImage and OpenAL. We have tried to keep them to a minimum, having our own math and collision library, as well as physics.
+Copperfield Engine is a 3D game engine created by just two people. It aims to offer the essential features for game development, with an easy-to-use API that follows a data-driven design with the use of ECS. The only libraries used are glfw, glew, imgui, tinyobjloader, StbImage and OpenAL. We have tried to keep them to a minimum, having our own math and collision library, as well as physics.
 
 <!-- section:ecs -->
 ECS is an architecture that allows updating objects in a scene in an efficient and structured way. This is achieved by following a data-driven design, where components hold data and only data, while the systems operate on the components' data. This separates data from functionality, creating a structured and cache-friendly design since the components can be allocated contiguously in memory with an array or vector.

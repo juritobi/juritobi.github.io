@@ -1,4 +1,6 @@
 <!-- section:intro -->
+This is the first published game I've been part of. It gave me the opportunity to learn what it is like to work with multiple team members across different disciplines and roles. The development team consisted of 16 members and 2 producers.
+
 The game was developed using Unreal Engine 5 and programmed with C++. There are a few small functions and classes that were done with blueprints, which were mostly made towards the end of development when we needed to rush small details. We always kept in mind that whatever we coded should be as usable as possible for our designers and artists.
 
 During development, aside from my assigned programming tasks, I played a leadership role, acting as a communication bridge between programmers and non-programmers. I also frequently found myself helping artists import and organize assets in the engine and with version control. Additionally, I assisted programmers with referencing and using functions and classes created by others.

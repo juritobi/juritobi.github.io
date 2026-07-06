@@ -1,5 +1,6 @@
 <script setup>
 import { onBeforeMount } from "vue";
+import MarkdownContent from "@/components/MarkdownContent.vue";
 
 const props = defineProps({
   organization: String,
@@ -43,9 +44,7 @@ onBeforeMount(() => {
 
     <span>{{ startDateStr }} - {{ endDateStr }}</span>
 
-    <p class="timeline-text">
-      {{ description }}
-    </p>
+    <MarkdownContent class="timeline-text" :source="description" />
     <div class="link-holder">
       <!--      <a href="{{link}}" class="card-link pt-3">See Projects</a>-->
     </div>
@@ -112,6 +111,10 @@ onBeforeMount(() => {
   color: var(--light-gray);
   font-weight: var(--fw-300);
   line-height: 1.6;
+}
+
+.timeline-text :deep(p) {
+  padding-bottom: 0;
 }
 
 </style>
