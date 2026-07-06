@@ -33,6 +33,7 @@ def fetch_portfolio(cursor):
         """
         select
             id,
+            slug,
             title,
             subtitle,
             image,
@@ -54,19 +55,20 @@ def fetch_portfolio(cursor):
     return [
         {
             "id": str(row[0]),
-            "title": row[1],
-            "subtitle": row[2],
-            "image": row[3],
-            "downloadLink": row[4],
-            "codeLink": row[5],
-            "language": row[6],
-            "platform": row[7],
-            "releaseDate": row[8],
-            "type": str(row[9]),
-            "teamSize": str(row[10]),
-            "display": as_bool(row[11]),
-            "videoLink": row[12],
-            "highlight": as_bool(row[13]),
+            "slug": row[1],
+            "title": row[2],
+            "subtitle": row[3],
+            "image": row[4],
+            "downloadLink": row[5],
+            "codeLink": row[6],
+            "language": row[7],
+            "platform": row[8],
+            "releaseDate": row[9],
+            "type": row[10],
+            "teamSize": str(row[11]),
+            "display": as_bool(row[12]),
+            "videoLink": row[13],
+            "highlight": as_bool(row[14]),
         }
         for row in rows
     ]
@@ -77,6 +79,7 @@ def fetch_experience(cursor):
         """
         select
             id,
+            slug,
             start,
             end,
             organization,
@@ -90,11 +93,12 @@ def fetch_experience(cursor):
     return [
         {
             "id": str(row[0]),
-            "start": row[1],
-            "end": row[2],
-            "organization": row[3],
-            "role": row[4],
-            "link": row[5],
+            "slug": row[1],
+            "start": row[2],
+            "end": row[3],
+            "organization": row[4],
+            "role": row[5],
+            "link": row[6],
         }
         for row in rows
     ]

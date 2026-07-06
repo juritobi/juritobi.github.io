@@ -8,11 +8,10 @@ import { usePortfolioData } from "@/composables/usePortfolioData";
 import kattoHighlightsMarkdown from "@/content/experience-tabs/katto-highlights.md?raw";
 import copperfieldHighlightsMarkdown from "@/content/experience-tabs/copperfield-highlights.md?raw";
 
-const { projectsByType, getProjectById } = usePortfolioData();
+const { projectsByType, getProjectBySlug } = usePortfolioData();
 
-//TODO: use hiighlighted instead of IDs
-const kattoProject = computed(() => getProjectById("14"));
-const copperfieldProject = computed(() => getProjectById("15"));
+const kattoProject = computed(() => getProjectBySlug("katto"));
+const copperfieldProject = computed(() => getProjectBySlug("copperfield"));
 </script>
 
 <template>

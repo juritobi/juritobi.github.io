@@ -1,6 +1,7 @@
 ﻿[
     {
         "id": "8",
+        "slug": "dacom-informatica",
         "start": "2016-06-01",
         "end": "2016-08-01",
         "organization": "Dacom Informatica",
@@ -9,6 +10,7 @@
     },
     {
         "id": "5",
+        "slug": "universidad-de-alicante",
         "start": "2016-09-01",
         "end": "2021-09-01",
         "organization": "Universidad de Alicante",
@@ -17,6 +19,7 @@
     },
     {
         "id": "7",
+        "slug": "julian-kenca",
         "start": "2017-06-01",
         "end": "2017-08-01",
         "organization": "Julian Kenca",
@@ -25,6 +28,7 @@
     },
     {
         "id": "1",
+        "slug": "super-kids",
         "start": "2019-05-01",
         "end": "2021-09-01",
         "organization": "Super Kids",
@@ -33,6 +37,7 @@
     },
     {
         "id": "0",
+        "slug": "crunch-games",
         "start": "2019-09-01",
         "end": "2020-10-01",
         "organization": "Crunch Games",
@@ -41,6 +46,7 @@
     },
     {
         "id": "4",
+        "slug": "vicedo-inmobiliaria",
         "start": "2020-06-01",
         "end": "2020-08-01",
         "organization": "Vicedo Inmobiliaria",
@@ -49,6 +55,7 @@
     },
     {
         "id": "6",
+        "slug": "activawords",
         "start": "2021-06-01",
         "end": "2021-08-01",
         "organization": "Activawords",
@@ -57,6 +64,7 @@
     },
     {
         "id": "2",
+        "slug": "divas",
         "start": "2021-10-01",
         "end": "2021-12-01",
         "organization": "Diva's",
@@ -65,6 +73,7 @@
     },
     {
         "id": "9",
+        "slug": "fundamentia",
         "start": "2022-04-01",
         "end": "2022-09-01",
         "organization": "Fundamentia",
@@ -73,6 +82,7 @@
     },
     {
         "id": "10",
+        "slug": "esat",
         "start": "2022-09-01",
         "end": "2024-07-01",
         "organization": "ESAT",
@@ -81,6 +91,7 @@
     },
     {
         "id": "11",
+        "slug": "arkadia-games",
         "start": "2023-09-01",
         "end": "2024-07-01",
         "organization": "Arkadia Games",
@@ -89,6 +100,7 @@
     },
     {
         "id": "13",
+        "slug": "moddo",
         "start": "2024-09-01",
         "end": "2025-01-07",
         "organization": "Moddo",
@@ -97,6 +109,7 @@
     },
     {
         "id": "14",
+        "slug": "nordcurrent",
         "start": "2025-01-13",
         "end": "2026-12-01",
         "organization": "Nordcurrent",

@@ -20,23 +20,25 @@ export function usePortfolioData() {
   );
 
   const projectsByType = computed(() => ({
-    games: displayedProjects.value.filter((project) => project.type === "0"),
-    tools: displayedProjects.value.filter((project) => project.type === "1"),
-    apps: displayedProjects.value.filter((project) => project.type === "2"),
+    games: displayedProjects.value.filter((project) => project.type === "game"),
+    tools: displayedProjects.value.filter((project) => project.type === "tool"),
+    apps: displayedProjects.value.filter((project) => project.type === "app"),
   }));
 
-  const projectMap = computed(() =>
-    Object.fromEntries(displayedProjects.value.map((project) => [project.id, project])),
+  const projectsBySlug = computed(() =>
+    Object.fromEntries(
+      displayedProjects.value.map((project) => [project.slug, project]),
+    ),
   );
 
-  function getProjectById(id) {
-    return projectMap.value[id] ?? null;
+  function getProjectBySlug(slug) {
+    return projectsBySlug.value[slug] ?? null;
   }
 
   return {
     projects,
     displayedProjects,
     projectsByType,
-    getProjectById,
+    getProjectBySlug,
   };
 }

@@ -6,7 +6,7 @@ import { parseMarkdownSections } from "@/utils/markdown";
 const experienceDescriptions = parseMarkdownSections(experienceMarkdown);
 const experienceItems = rawExperience.map((item) => ({
   ...item,
-  description: experienceDescriptions[`experience-${item.id}`] ?? "",
+  description: experienceDescriptions[`experience-${item.slug}`] ?? "",
 }));
 
 const ROLE_STYLES = {
